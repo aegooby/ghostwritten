@@ -24,7 +24,101 @@ main
     height: 100vh;
 }
 
-.page h1 
+.logo + p 
+{
+    margin-top: 6px;
+}
+
+.wrapper
+{
+    align-self: flex-start;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+.header
+{
+    align-self: flex-start;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f7f7f7;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-wrapper
+{
+    align-self: flex-start;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+nav
+{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 4.0rem;
+    background-color: transparent;
+}
+
+nav .links
+{
+    display: flex;
+    align-self: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+nav .links a
+{
+    display: flex;
+    line-height: 1.5;
+    font-size: 20px;
+    color: #999;
+    text-align: center;
+    align-self: center;
+    text-decoration: none;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    transition: color 0.15s ease-in;
+}
+nav .links a:hover
+{
+    color: #444;
+}
+
+nav a.home
+{
+    line-height: 1.5;
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 2rem;
+    margin-right: 4rem;
+    color: #000;
+    text-decoration: none;
+}
+
+.title-wrapper
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.header h1 
 {
     margin: 0;
     line-height: 1.5;
@@ -34,117 +128,91 @@ main
     color: #000;
 }
 
-.page h1 strong 
+.header h1 strong 
 {
-    font-weight: 700;
+    font-weight: 900;
+}
+span.ghost-gray
+{
+    color: #888;
 }
 
-.page p 
+.header h3
 {
     margin: 0;
     line-height: 1.5;
+    font-size: 25px;
+    font-weight: 300;
     text-align: center;
-    color: #333;
+    color: #000;
 }
 
-.logo + p 
+.header h3 strong 
 {
-    margin-top: 6px;
+    font-weight: 500;
 }
 
-.links span,
-.links a 
-{
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.links span 
-{
-    color: #999;
-}
-
-.links span::after 
-{
-    content: "·";
-}
-
-.links a 
-{
-    margin: 0 9px;
-    color: #777;
-    text-decoration: none;
-    border-bottom: 1px dashed #ccc;
-}
-
-.links a:hover 
-{
-    color: #333;
-    border-bottom-color: transparent;
-}
-
-.counter 
+.header .button-wrapper
 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 270px;
-    height: 48px;
-    margin: 30px auto 0;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    transition: border-color 0.15s ease-in;
+    padding-top: 2rem;
 }
 
-.counter:hover 
+.header button
 {
-    border-color: #ccc;
+    background-color: #3f83f8;
+    width: 8rem;
+    height: 3rem;
+    color: #fff;
+    border-radius: 50px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.07s ease-in;
 }
 
-.counter em 
+.header button:hover
 {
-    display: inline-block;
-    width: 48px;
-    font-weight: 400;
-    text-align: center;
-    color: #999;
-}
-
-.counter strong 
-{
-    display: inline-block;
-    width: 48px;
-    font-weight: 600;
-    text-align: center;
-}
-
-.counter button 
-{
-    display: line-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
-    line-height: 1;
-    font-size: 12px;
-    font-family: Courier, monospace;
-    font-weight: 600;
-    color: #666;
-    transition: color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    background-color: #679fff;
     cursor: pointer;
 }
-
-.counter button:hover 
+.header button:active
 {
-    color: #111;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    background-color: #2553a3;
 }
 
-.counter button + button 
+.page 
 {
-    margin-left: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page .main-text
+{
+    display: flex;
+    width: 30rem;
+    padding-top: 3rem;
+    flex-direction: column;
+}
+
+.main-text p
+{
+    margin: 0;
+    line-height: 1.5;
+    text-align: justify;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.main-text p strong
+{
+    font-weight: 700;
 }
 
 .page .copyinfo 
@@ -152,4 +220,6 @@ main
     margin-top: 30px;
     font-size: 14px;
     color: #999;
+    line-height: 1.5;
+    text-align: center;
 }

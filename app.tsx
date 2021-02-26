@@ -20,7 +20,7 @@ export default class App extends React.Component<Props, unknown>
         const element =
             <main>
                 <head>
-                    <title>Hello World - Aleph.js</title>
+                    <title>Ghostwritten</title>
                 </head>
                 <this.props.Page {...this.props.pageProps} />
             </main>;
