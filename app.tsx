@@ -1,8 +1,6 @@
 
 import * as React from "react";
 
-import Logo from "./components/Logo.tsx";
-
 export default class App extends React.Component<unknown, unknown>
 {
     constructor(props: unknown)
