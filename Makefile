@@ -6,10 +6,10 @@ install:
 	curl -fsSL https://deno.land/x/install/install.sh | sh
 
 image:
-	docker build -t ghostwritten/gw-server:_ .
+	docker build --tag ghostwritten/gw-server .
 
 container:
-	docker run -it --init -p 80:8000 ghostwritten/gw-server:_
+	docker run -it --init -p 80:8000 ghostwritten/gw-server:latest
 
 cache: export DENO_DIR=.deno/cache
 cache:
