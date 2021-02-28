@@ -9,7 +9,7 @@ image:
 	docker build -t ghostwritten/gw-server:_ .
 
 container:
-	docker run -it --init -p 8000:8000 ghostwritten/gw-server:_
+	docker run -it --init -p 80:8000 ghostwritten/gw-server:_
 
 cache: export DENO_DIR=.deno/cache
 cache:
