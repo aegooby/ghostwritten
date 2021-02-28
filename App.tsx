@@ -1,7 +1,7 @@
 
 import * as React from "react";
 import * as Stripe from "stripe";
-
+import Popup from "react-popup";
 const stripeAPIKey = "pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVj" +
     "hk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm";
 const stripe = Stripe.loadStripe(stripeAPIKey);
@@ -35,7 +35,10 @@ export default class App extends React.Component<unknown, unknown>
                             <strong>Your</strong> essays.
                         </h3>
                         <div className="button-wrapper">
-                            <button>Get Started</button>
+
+                            <Popup trigger={<button> Get Started</button>} position="right center">
+                            <div>Popup content here !!</div>
+                            </Popup>
                         </div>
                     </div>
                 </div>

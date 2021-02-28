@@ -3,7 +3,7 @@
 /* ¡@deno-react-lint */
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-
+import * as Popup from "react-popup";
 import App from "../App.tsx";
 
 /* !@deno-react-lint */
