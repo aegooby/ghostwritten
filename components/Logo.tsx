@@ -1,5 +1,6 @@
 
 import * as React from "react";
+import * as ReactPopup from "react-popup";
 
 export interface Props
 {

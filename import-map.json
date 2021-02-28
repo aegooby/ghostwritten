@@ -4,7 +4,8 @@
         "react-dom": "https://esm.sh/react-dom@17.0.1",
         "react-dom-server": "https://esm.sh/react-dom@17.0.1/server",
         "react-stripe": "https://cdn.skypack.dev/@stripe/react-stripe-js",
-        "stripe": "https://cdn.skypack.dev/@stripe/stripe-js"
+        "stripe": "https://cdn.skypack.dev/@stripe/stripe-js",
+        "react-popup": "https://esm.sh/reactjs-popup"
     },
     "scopes": {}
 }
