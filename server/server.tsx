@@ -1,10 +1,26 @@
 
-import * as http from "https://deno.land/std/http/mod.ts";
-import * as path from "https://deno.land/std/path/mod.ts";
-import * as colors from "https://deno.land/std/fmt/colors.ts";
+import * as http from "http";
+import * as path from "path";
+import * as colors from "colors";
 
 import * as React from "react";
 import * as ReactDOMServer from "react-dom-server";
+
+export class Console
+{
+    static log(message: string): void
+    {
+        console.log(colors.bold(colors.cyan("  [*]  ")) + message);
+    }
+    static success(message: string): void
+    {
+        console.log(colors.bold(colors.green("  [$]  ")) + message);
+    }
+    static error(message: string): void
+    {
+        console.error(colors.bold(colors.red("  [!]  ")) + message);
+    }
+}
 
 export interface ServerAttributes
 {
@@ -17,18 +33,22 @@ export class Server
 {
     httpServer: http.Server;
 
-    port: number;
     directory: string;
     html404: string;
-    htmlReact: React.ReactElement;
     html: string;
     constructor({ port, directory, html404 }: ServerAttributes)
     {
-        this.port = port;
         this.directory = directory;
-        this.httpServer = http.serve({ port: this.port });
+        const serveTLSOptions =
+        {
+            hostname: "localhost",
+            port: port,
+            certFile: ".https/localhost/cert.pem",
+            keyFile: ".https/localhost/key.pem",
+        };
+        this.httpServer = http.serveTLS(serveTLSOptions);
         this.html404 = html404;
-        this.htmlReact =
+        const htmlReact: React.ReactElement =
             <html lang="en">
                 <head>
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,7 +61,23 @@ export class Server
                     </div>
                 </body>
             </html>;
-        this.html = "<!DOCTYPE html>" + ReactDOMServer.renderToString(this.htmlReact);
+        this.html = "<!DOCTYPE html>" + ReactDOMServer.renderToString(htmlReact);
+    }
+    get port(): number
+    {
+        const address = this.httpServer.listener.addr as Deno.NetAddr;
+        return address.port;
+    }
+    get hostname(): string
+    {
+        const address = this.httpServer.listener.addr as Deno.NetAddr;
+        if ((["::1", "127.0.0.1"]).includes(address.hostname))
+            return "localhost";
+        return address.hostname;
+    }
+    get url(): string
+    {
+        return "https://" + this.hostname + ":" + this.port;
     }
     async static(url: string): Promise<Deno.Reader>
     {
@@ -50,7 +86,7 @@ export class Server
     }
     async respond(request: http.ServerRequest): Promise<void>
     {
-
+        Console.success("Received " + request.method + " request: " + request.url);
         switch (request.url)
         {
             case "/":
@@ -63,9 +99,7 @@ export class Server
                 }
                 catch (error)
                 {
-                    const logString = colors.bold(colors.red(" [!] ")) +
-                        "Route " + request.url + " not found";
-                    console.log(logString);
+                    Console.error("Route " + request.url + " not found");
                     request.respond({ body: await this.static(this.html404) });
                 }
                 break;
@@ -73,21 +107,8 @@ export class Server
     }
     async serve(): Promise<void>
     {
-        const logString = colors.bold(colors.cyan(" [*] ")) +
-            "Server is running on " +
-            colors.underline(colors.magenta("http://localhost:" + this.port));
-        console.log(logString);
+        Console.log("Server is running on " + colors.underline(colors.magenta(this.url)));
         for await (const request of this.httpServer)
             this.respond(request);
     }
 }
-
-const serverAttributes =
-{
-    port: 8000,
-    directory: ".",
-    html404: "static/404.html"
-};
-
-const server = new Server(serverAttributes);
-await server.serve();
