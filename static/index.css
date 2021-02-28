@@ -165,6 +165,7 @@ span.ghost-gray
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     padding-top: 2rem;
 }
 
