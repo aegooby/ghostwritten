@@ -3,7 +3,7 @@
 /* ¡@deno-react-lint */
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import App from "../App.tsx";
+import App from "../components/App.tsx";
 
 /* !@deno-react-lint */
 // deno-lint-ignore ban-ts-comment
