@@ -9,7 +9,7 @@ image:
 	docker build --tag ghostwritten/gw-server .
 
 container:
-	docker run -it --init -p 443:443 ghostwritten/gw-server:latest
+	docker run -it --init -p 443:8443 ghostwritten/gw-server:latest
 
 https:
 	[ -d .https ] || mkdir -p .https
