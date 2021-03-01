@@ -2,6 +2,7 @@
     "compilerOptions": {
         "allowJs": true,
         "experimentalDecorators": true,
+        "noImplicitAny": false,
         "jsx": "react",
         "lib": [
             "deno.ns",

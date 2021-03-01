@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as Stripe from "stripe";
 import * as ReactPopup from "react-popup";
-
+import Form from "./Form.tsx";
 const stripeAPIKey = "pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVj" +
     "hk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm";
 const stripe = Stripe.loadStripe();
@@ -36,9 +36,8 @@ export default class App extends React.Component<unknown, unknown>
                             <strong>Your</strong> essays.
                         </h3>
                         <div className="button-wrapper">
-                            <ReactPopup.Popup trigger={<button> Get Started</button>} modal>
-                                <div>Popup content here !!</div>
-                            </ReactPopup.Popup>
+                            <Form> </Form>
+
                         </div>
                     </div>
                 </div>

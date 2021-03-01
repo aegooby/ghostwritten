@@ -233,3 +233,39 @@ span.ghost-gray
     line-height: 1.5;
     text-align: center;
 }
+.modal {
+  font-size: 12px;
+  background-color: #7768DF;
+  border-radius: 25px;
+  font-family: "Helvetica Neue", Helvetica, Arial sans-serif;
+}
+.modal > .header {
+  width: 75%;
+  background-color: #7768DF;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
