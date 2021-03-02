@@ -45,7 +45,7 @@ export default class App extends React.Component<unknown, unknown>
                     <div className="main-text">
                         <p>
                             Sample text goes here. Envision yourself, for
-                            just one moment, as a schlong.
+                            just one moment, as a schlong. A long schlong.
                         </p>
                         <p>
                             More sample text.
