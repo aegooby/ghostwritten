@@ -36,8 +36,7 @@ export default class App extends React.Component<unknown, unknown>
                             <strong>Your</strong> essays.
                         </h3>
                         <div className="button-wrapper">
-                            <Form> </Form>
-
+                            <Form />
                         </div>
                     </div>
                 </div>
@@ -51,7 +50,7 @@ export default class App extends React.Component<unknown, unknown>
                             More sample text.
                         </p>
                     </div>
-                    <p className="copyinfo">© 2021</p>
+                    <p className="copyinfo">© 2021 Ghostwritten</p>
                 </div>
             </div >;
 
