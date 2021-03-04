@@ -36,7 +36,7 @@ export default class App extends React.Component<unknown, unknown>
                             <strong>Your</strong> essays.
                         </h3>
                         <div className="button-wrapper">
-                            <Form />
+                            <button>Get Started</button>
                         </div>
                     </div>
                 </div>

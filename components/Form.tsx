@@ -11,7 +11,7 @@ export default class Form extends React.Component<unknown, unknown>
     render(): React.ReactElement
     {
         return (
-            <ReactPopup.Popup trigger={<button> Get Started</button>} modal>
+            <ReactPopup.Popup trigger={<button>Get Started</button>} modal>
                 {(close: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) => (
                     <div className="modal">
                         <button className="close" onClick={close}>
