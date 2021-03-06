@@ -3,7 +3,7 @@ import * as React from "react";
 import * as Stripe from "stripe";
 
 import Index from "./Pages/Index.tsx";
-import TestPage from "./Pages/TestPage.tsx";
+import Order from "./Pages/Order.tsx";
 import * as UIRouter from "./Router/UIRouter.tsx";
 
 /** @todo Integrate. */
@@ -19,7 +19,7 @@ export default class App extends React.Component
         super(props);
 
         this.routes.set("/", <Index />);
-        this.routes.set("/test", <TestPage />);
+        this.routes.set("/test", <Order />);
     }
     render(): React.ReactElement
     {

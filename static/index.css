@@ -123,7 +123,7 @@ nav a.home
     justify-content: center;
     flex-direction: column;
     padding-top: 2rem;
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
 }
 
 .header h1
@@ -143,6 +143,21 @@ nav a.home
 span.ghost-gray
 {
     color: #888;
+}
+
+.header h2
+{
+    margin: 0;
+    line-height: 1.5;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    color: #000;
+}
+
+.header h2 strong
+{
+    font-weight: 650;
 }
 
 .header h3
@@ -167,9 +182,10 @@ span.ghost-gray
     align-items: center;
     flex-direction: column;
     padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
-.header button
+button
 {
     background-color: #99a3ff;
     width: 8.5rem;
@@ -177,17 +193,23 @@ span.ghost-gray
     color: #fff;
     font-weight: 600;
     border-radius: 50px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
     transition: background-color 0.15s ease-in-out, box-shadow 0.2s ease-in;
 }
+button.shadow
+{
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+}
 
-.header button:hover
+button:hover
 {
     background-color: #acb4ff;
     cursor: pointer;
+}
+button.shadow:hover
+{
     box-shadow: 0 10px 15px -2px rgba(0, 0, 0, 0.20);
 }
-.header button:active
+button:active
 {
     background-color: #6d76c9;
 }
@@ -236,39 +258,87 @@ span.ghost-gray
     line-height: 1.5;
     text-align: center;
 }
-.modal {
-  font-size: 12px;
-  background-color: #7768DF;
-  border-radius: 25px;
-  font-family: "Helvetica Neue", Helvetica, Arial sans-serif;
+
+h1.page-title 
+{
+    font-size: 30px;
+    font-weight: 800;
+    color: #000000;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
 }
-.modal > .header {
-  width: 75%;
-  background-color: #7768DF;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px;
+
+.form-wrapper 
+{
+    display: flex;
+    max-width: 30rem;
+    padding-top: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
-.modal > .content {
-  width: 100%;
-  padding: 10px 5px;
+
+form 
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 }
-.modal > .actions {
-  width: 100%;
-  padding: 10px 5px;
-  margin: auto;
-  text-align: center;
+
+form h3
+{
+    display: flex;
+    text-align: justify;
+    font-size: 25px;
+    font-weight: 400;
 }
-.modal > .close {
-  cursor: pointer;
-  position: absolute;
-  display: block;
-  padding: 2px 5px;
-  line-height: 20px;
-  right: -10px;
-  top: -10px;
-  font-size: 24px;
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid #cfcece;
+
+form h3 strong
+{
+    font-weight: 600;
+}
+
+form .options
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+input[type=radio]
+{
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+label
+{
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    align-items: center;
+    text-align: center;
+    border: 2px solid #99a3ff;
+    color: #99a3ff;
+    font-weight: 450;
+    border-radius: 5px;
+    width: 150px;
+    height: 100px;
+    margin: 0.5rem;
+    transition: background-color 0.15s ease-in-out, box-shadow 0.2s ease-in;
+}
+label:hover
+{
+    cursor: pointer;
+    box-shadow: 0 0 15px -3px rgba(153, 163, 255, 0.5);
+}
+input[type=radio]:checked + label
+{
+    background-color: #99a3ff;
+    color: #ffffff;
 }

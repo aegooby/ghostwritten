@@ -32,7 +32,7 @@ export default class Index extends React.Component<unknown, unknown>
                             <strong>Your</strong> essays.
                         </h3>
                         <div className="button-wrapper">
-                            <Link href="/test" element={<button>Get Started</button>} />
+                            <Link href="/test" element={<button className="shadow">Get Started</button>} />
                         </div>
                     </div>
                 </div>
