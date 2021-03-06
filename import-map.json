@@ -8,10 +8,12 @@
         "yargs": "https://deno.land/x/yargs/deno.ts",
         "react": "https://esm.sh/react",
         "react-dom": "https://esm.sh/react-dom",
-        "react-dom-server": "https://esm.sh/react-dom/server",
+        "react-dom/server": "https://esm.sh/react-dom/server",
         "react-stripe": "https://esm.sh/@stripe/react-stripe-js?no-check",
         "stripe": "https://esm.sh/@stripe/stripe-js?no-check",
-        "react-popup": "https://esm.sh/reactjs-popup?no-check"
+        "react-popup": "https://esm.sh/reactjs-popup?no-check",
+        "react-spring": "https://esm.sh/react-spring?no-check",
+        "react-spring/renderprops": "https://esm.sh/react-spring/renderprops?no-check"
     },
     "scopes": {}
 }
