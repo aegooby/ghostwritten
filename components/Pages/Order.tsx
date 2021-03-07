@@ -31,12 +31,15 @@ export default class Order extends React.Component<unknown, State>
                             <h3><strong>Essay type</strong></h3>
                             <div className="options">
                                 <input type="radio" id="radio-ia" name="essay-type" />
-                                <label htmlFor="radio-ia">IB Internal Assessment</label>
+                                <label htmlFor="radio-ia">Internal<br /> Assessment</label>
                                 <input type="radio" id="radio-ee" name="essay-type" />
-                                <label htmlFor="radio-ee">IB Extended<br /> Essay</label>
+                                <label htmlFor="radio-ee">Extended<br /> Essay</label>
+                                <input type="radio" id="radio-ca" name="essay-type" />
+                                <label htmlFor="radio-ca">College<br /> Application</label>
                             </div>
                         </form>
                     </div>
+                    <p className="copyinfo">© 2021 Ghostwritten</p>
                 </div>
             </div >;
 

@@ -225,10 +225,9 @@ button:active
 .page .main-text
 {
     display: flex;
+    width: calc(100% - 6rem);
     max-width: 30rem;
-    padding-top: 3rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding: 3rem;
     flex-direction: column;
 }
 
@@ -268,13 +267,13 @@ h1.page-title
     padding-bottom: 4rem;
 }
 
-.form-wrapper 
+.page .form-wrapper 
 {
     display: flex;
+    width: calc(100% - 6rem);
     max-width: 30rem;
-    padding-top: 3rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding: 3rem;
+    flex-direction: column;
 }
 
 form 
@@ -302,7 +301,7 @@ form .options
 {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: flex-start;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -325,9 +324,10 @@ label
     text-align: center;
     border: 2px solid #99a3ff;
     color: #99a3ff;
+    font-size: 16px;
     font-weight: 450;
     border-radius: 5px;
-    width: 150px;
+    width: calc(50% - 2rem);
     height: 100px;
     margin: 0.5rem;
     transition: background-color 0.15s ease-in-out, box-shadow 0.2s ease-in;
