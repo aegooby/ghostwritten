@@ -252,6 +252,7 @@ button:active
 .page .copyinfo
 {
     margin-top: 30px;
+    margin-bottom: 30px;
     font-size: 14px;
     color: #999;
     line-height: 1.5;
@@ -297,7 +298,7 @@ form h3 strong
     font-weight: 600;
 }
 
-form .options
+form.order .radio-wrapper
 {
     display: flex;
     flex-flow: row wrap;
@@ -341,4 +342,13 @@ input[type=radio]:checked + label
 {
     background-color: #99a3ff;
     color: #ffffff;
+}
+
+form.order .additional
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
