@@ -82,9 +82,9 @@ export default class Order extends React.Component<unknown, State>
                                 <input type="radio" id="radio-ca" name="essay-type" onChange={() => this.onTypeChange("ca")} />
                                 <label htmlFor="radio-ca">College<br /> Application</label>
                             </div>
-                            {this.state.essayType != "unknown" && this.state.essayType != "ca" ? <h3><strong>Subject</strong></h3> : <></>}
+                            {this.state.essayType !== "unknown" && this.state.essayType !== "ca" ? <h3><strong>Subject</strong></h3> : <></>}
                             {subject}
-                            {this.state.essaySubject != "unknown" && this.state.essayType != "ca" ? <><h3><strong>Level</strong></h3>{level}</> : <></>}
+                            {this.state.essaySubject !== "unknown" && this.state.essayType !== "ca" ? <><h3><strong>Level</strong></h3>{level}</> : <></>}
                         </form>
                     </div>
                     <p className="copyinfo">© 2021 Ghostwritten</p>
