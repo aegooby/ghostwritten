@@ -1,7 +1,7 @@
 
 import * as React from "react";
 
-import Link from "../Router/Link.tsx";
+import Link from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/Core/Router/Link.tsx";
 
 export default class Index extends React.Component<unknown, unknown>
 {

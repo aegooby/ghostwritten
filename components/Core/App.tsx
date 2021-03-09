@@ -1,9 +1,9 @@
 
 import * as React from "react";
 
-import Index from "./Pages/Index.tsx";
-import Order from "./Pages/Order.tsx";
-import * as UIRouter from "./Router/UIRouter.tsx";
+import Index from "../Pages/Index.tsx";
+import Order from "../Pages/Order.tsx";
+import * as UIRouter from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/Core/Router/UIRouter.tsx";
 
 export default class App extends React.Component
 {
