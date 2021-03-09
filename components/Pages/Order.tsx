@@ -1,5 +1,5 @@
 
-import * as React from "react";
+import * as React from "https://esm.sh/react";
 
 type EssayType = "unknown" | "ia" | "ee" | "ca";
 type EssaySubject = "unknown" | "math-analysis" | "math-applications" | "physics" | "biology" | "english" | "spanish";

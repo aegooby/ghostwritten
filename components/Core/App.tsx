@@ -1,5 +1,5 @@
 
-import * as React from "react";
+import * as React from "https://esm.sh/react";
 
 import Index from "../Pages/Index.tsx";
 import Order from "../Pages/Order.tsx";
