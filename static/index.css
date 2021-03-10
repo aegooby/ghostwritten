@@ -108,6 +108,9 @@ nav .links a:hover
 
 nav a.home
 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     line-height: 1.5;
     font-size: 30px;
     font-weight: 700;
@@ -115,6 +118,13 @@ nav a.home
     margin-right: 4rem;
     color: #000;
     text-decoration: none;
+    padding: 0;
+}
+
+img.logo
+{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .title-wrapper

@@ -16,7 +16,9 @@ export default class Index extends React.Component<unknown, unknown>
                 <div className="header">
                     <div className="nav-wrapper">
                         <nav>
-                            <a className="home" href="/">Home</a>
+                            <a className="home" href="/">
+                                <img className="logo" src="/static/logo.svg" height={50} alt="logo" />Home
+                            </a>
                             <div className="links">
                                 <a href="#">About</a>
                                 <a href="#">Contact</a>
