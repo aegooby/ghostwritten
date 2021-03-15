@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -y curl unzip make ca-certificates certbot --no-install-recommends
 
 # Certbot
-RUN certbot certonly --standalone -d ghostwritten.me -n --agree-tos --email aegooby@gmail.com
+ADD /etc/letsencrypt/live /etc/letsencrypt/live
 
 # Deno
 ENV DENO_INSTALL=/root/.deno
