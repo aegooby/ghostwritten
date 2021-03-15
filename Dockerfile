@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -y curl unzip make ca-certificates certbot --no-install-recommends
 
 # Certbot
-RUN sudo certbot certonly --standalone -d ghostwritten.me
+RUN certbot certonly --standalone -d ghostwritten.me
 
 # Deno
 ENV DENO_INSTALL=/root/.deno
