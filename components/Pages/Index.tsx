@@ -19,9 +19,10 @@ export default class Index extends React.Component<unknown, unknown>
                             <a className="home" href="/">
                                 <img className="logo" src="/static/logo.svg" height={50} alt="logo" />Home
                             </a>
+                            {/** @todo Restore original button link to form */}
                             <div className="links">
-                                <a href="#">About</a>
-                                <a href="#">Contact</a>
+                                {/* <a href="#">About</a> */}
+                                {/* <a href="#">Contact</a> */}
                             </div>
                         </nav>
                     </div>
@@ -34,18 +35,42 @@ export default class Index extends React.Component<unknown, unknown>
                             <strong>Your</strong> essays.
                         </h3>
                         <div className="button-wrapper">
-                            <Link href="/test" element={<button className="shadow">Get Started</button>} />
+                            {/** @todo Restore original button link to form */}
+                            {/* <Link href="/test" element={<button className="shadow">Get Started</button>} /> */}
+                            <button className="shadow" onClick={() => window.location.href = "mailto:ghostwrittenhq@gmail.com"}>Get Started</button>
                         </div>
                     </div>
                 </div>
                 <div className="page">
                     <div className="main-text">
+                        <h1>How it works</h1>
                         <p>
-                            Sample text goes here. Envision yourself, for
-                            just one moment, as a schlong. A long schlong dong.
+                            You send us what you need. Need an IA? Extended
+                            Essay? College application essay? No problem. Tell
+                            us what you need and when, then leave the rest to
+                            us. We guarantee an on-time, A-level essay in your
+                            inbox.
                         </p>
                         <p>
-                            More sample text.
+                            To get started, email us at <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a>
+                        </p>
+                        <h1>About us</h1>
+                        <p>
+                            We are a team of college students who all achieved
+                            40+ points on the IB Diploma in subjects such as
+                            Math and Physics HL, graduating as the top students
+                            in our classes. We know exactly how hard it is to
+                            write a good high school essay — we’ve been through
+                            it. We are committed to using our academic expertise
+                            to help you become a top-scoring student.
+                        </p>
+                        <p className="disclaimer">
+                            <em>
+                                Disclaimer: any work provided by Ghostwritten is
+                                for educational purposes only. Use of this work
+                                is at the recipient's own risk and their
+                                responsibility alone.
+                            </em>
                         </p>
                     </div>
                     <p className="copyinfo">© 2021 Ghostwritten</p>
