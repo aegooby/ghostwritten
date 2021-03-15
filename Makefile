@@ -9,7 +9,7 @@ image:
 	docker build --tag ghostwritten/server .
 
 container:
-	docker run --interactive --tty --init --publish 443:8443  ghostwritten/server:latest
+	docker run --interactive --tty --init --detach --publish 443:8443 ghostwritten/server:latest
 
 cache: export DENO_DIR=.httpsaurus/cache
 cache:
@@ -24,7 +24,7 @@ start-dev:
 start-docker: export DENO_DIR=.httpsaurus/cache
 start-docker:
 	[ -d .httpsaurus/cache ] || make cache
-	deno run --allow-all --unstable server/daemon.tsx --protocol https --hostname 0.0.0.0 --port 8443 --cert /etc/letsencrypt/live
+	deno run --allow-all --unstable server/daemon.tsx --protocol https --hostname 0.0.0.0 --port 8443 --cert /etc/letsencrypt/live/ghostwritten.me
 
 test: export DENO_DIR=.httpsaurus/cache
 test:
