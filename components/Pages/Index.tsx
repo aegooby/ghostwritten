@@ -17,7 +17,8 @@ export default class Index extends React.Component<unknown, unknown>
                     <div className="nav-wrapper">
                         <nav>
                             <a className="home" href="/">
-                                <img className="logo" src="/static/logo.svg" height={50} alt="logo" />Home
+                                <img className="logo" src="/static/logo.svg" height={50} alt="logo" />
+                                Home
                             </a>
                             {/** @todo Restore original button link to form */}
                             <div className="links">
