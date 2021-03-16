@@ -20,7 +20,7 @@ export default class Index extends React.Component<unknown, unknown>
                                 <img className="logo" src="/static/logo.svg" height={50} alt="logo" />
                                 Home
                             </a>
-                            {/** @todo Restore original button link to form */}
+                            {/** @todo Restore links to About and Contact */}
                             <div className="links">
                                 {/* <a href="#">About</a> */}
                                 {/* <a href="#">Contact</a> */}
