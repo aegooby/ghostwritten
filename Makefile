@@ -13,7 +13,7 @@ image:
 	docker build --tag ghostwritten/server .
 
 container:
-	docker run --interactive --tty --init --detach --volume "/etc/letsencrypt/:/etc/letsencrypt/" --publish 443:443 80:80 ghostwritten/server:latest
+	docker run --interactive --tty --init --detach --volume "/etc/letsencrypt/:/etc/letsencrypt/" --publish 443:443 --publish 80:80 ghostwritten/server:latest
 
 cache: export DENO_DIR=.httpsaurus/cache
 cache:
