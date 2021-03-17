@@ -1,7 +1,7 @@
 
 import * as React from "https://esm.sh/react";
 
-import Link from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/Core/Router/Link.tsx";
+import UILink from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/Core/UIRouter/UILink.tsx";
 
 export default class Index extends React.Component<unknown, unknown>
 {
@@ -37,7 +37,7 @@ export default class Index extends React.Component<unknown, unknown>
                         </h3>
                         <div className="button-wrapper">
                             {/** @todo Restore original button link to form */}
-                            {/* <Link href="/test" element={<button className="shadow">Get Started</button>} /> */}
+                            {/* <UILink href="/test" element={<button className="shadow">Get Started</button>} /> */}
                             <button className="shadow" onClick={() => window.location.href = "mailto:ghostwrittenhq@gmail.com"}>Get Started</button>
                         </div>
                     </div>
