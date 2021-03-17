@@ -17,5 +17,5 @@ try
 }
 catch (error)
 {
-    client.Console.log(error);
+    client.Console.error(error);
 }
