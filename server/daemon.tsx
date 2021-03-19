@@ -4,11 +4,11 @@ import * as server from "https://raw.githubusercontent.com/aegooby/httpsaurus/ma
 import * as yargs from "https://deno.land/x/yargs/deno.ts";
 
 const args = yargs.default(Deno.args)
-    .usage("usage: $0 server/daemon.tsx --protocol <protocol> --hostname <host> [--cert] [--help]")
+    .usage("usage: $0 server/daemon.tsx --protocol <protocol> --hostname <host> --domain <domain> [--cert] [--help]")
     .hide("help")
     .hide("version")
     .hide("hostname")
-    .demandOption(["protocol", "hostname"])
+    .demandOption(["protocol", "hostname", "domain"])
     .parse();
 
 try
@@ -22,6 +22,9 @@ try
         httpsPort: 443,
         cert: args.cert,
 
+        domain: args.domain,
+
+        schema: "graphql/schema.gql",
         resolvers: { request: function () { return "response"; } },
         routes:
         {
