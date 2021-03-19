@@ -33,7 +33,7 @@ export default class Index extends React.Component<unknown, unknown>
                         </h1>
                         <h3>
                             <span className="ghost-gray">Our expertise.</span>
-                            <strong>Your</strong> essays.
+                            <span><strong>Your</strong> essays.</span>
                         </h3>
                         <div className="button-wrapper">
                             {/** @todo Restore original button link to form */}
