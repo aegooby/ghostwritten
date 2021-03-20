@@ -132,7 +132,6 @@ img.logo
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding-top: 2rem;
     padding-bottom: 2rem;
     padding-left: 2em;
     padding-right: 2em;

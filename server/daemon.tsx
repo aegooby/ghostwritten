@@ -1,6 +1,9 @@
 
 import * as server from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/server/server.tsx";
 
+import App from "../components/App.tsx";
+
+import * as React from "https://esm.sh/react";
 import * as yargs from "https://deno.land/x/yargs/deno.ts";
 
 const args = yargs.default(Deno.args)
@@ -17,20 +20,21 @@ try
     {
         protocol: args.tls ? "https" as const : "http" as const,
         domain: args.domain,
+        routes:
+        {
+            "/favicon.ico": "/static/favicon.ico",
+            "/robots.txt": "/static/robots.txt",
+        },
         hostname: args.hostname,
         httpPort: 8080,
 
         httpsPort: 8443,
         cert: args.tls,
 
+        App: <App fetch={() => new Promise(() => { })} />,
+
         schema: "graphql/schema.gql",
         resolvers: { request: function () { return "response"; } },
-        routes:
-        {
-            "/favicon.ico": "/static/favicon.ico",
-            "/404.html": "/static/404.html",
-            "/robots.txt": "/static/robots.txt",
-        }
     };
     const httpserver = new server.Server(serverAttributes);
     await httpserver.serve();

@@ -1,8 +1,6 @@
 
 import * as React from "https://esm.sh/react";
 
-import UILink from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/Core/UIRouter/UILink.tsx";
-
 export default class Index extends React.Component<unknown, unknown>
 {
     constructor(props: unknown)
@@ -16,7 +14,7 @@ export default class Index extends React.Component<unknown, unknown>
                 <div className="header">
                     <div className="nav-wrapper">
                         <nav>
-                            <a className="home" href="/">
+                            <a className="home" href="#">
                                 <img className="logo" src="/static/logo.svg" height={50} alt="logo" />
                                 Home
                             </a>

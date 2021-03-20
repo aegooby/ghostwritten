@@ -3,6 +3,10 @@ import * as httpsaurus from "https://raw.githubusercontent.com/aegooby/httpsauru
 import * as assert from "https://deno.land/std/testing/asserts.ts";
 import * as delay from "https://deno.land/std/async/delay.ts";
 
+import * as React from "https://esm.sh/react";
+
+import App from "../components/App.tsx";
+
 try
 {
     const tests: Deno.TestDefinition[] =
@@ -16,15 +20,16 @@ try
                         protocol: "http" as httpsaurus.server.Protocol,
                         hostname: "localhost",
                         httpPort: 8080,
-
-                        schema: "graphql/schema.gql",
-                        resolvers: { request: function () { return "response"; } },
                         routes:
                         {
                             "/favicon.ico": "/static/favicon.ico",
-                            "/404.html": "/static/404.html",
                             "/robots.txt": "/static/robots.txt",
-                        }
+                        },
+
+                        App: <App fetch={() => new Promise(() => { })} />,
+
+                        schema: "graphql/schema.gql",
+                        resolvers: { request: function () { return "response"; } },
                     };
                     const server = new httpsaurus.server.Server(serverAttributes);
                     const time = delay.delay(5000);
@@ -45,18 +50,19 @@ try
                         protocol: "https" as httpsaurus.server.Protocol,
                         hostname: "localhost",
                         httpPort: 8080,
+                        routes:
+                        {
+                            "/favicon.ico": "/static/favicon.ico",
+                            "/robots.txt": "/static/robots.txt",
+                        },
 
                         httpsPort: 4430,
                         cert: "cert/localhost",
 
+                        App: <App fetch={() => new Promise(() => { })} />,
+
                         schema: "graphql/schema.gql",
                         resolvers: { request: function () { return "response"; } },
-                        routes:
-                        {
-                            "/favicon.ico": "/static/favicon.ico",
-                            "/404.html": "/static/404.html",
-                            "/robots.txt": "/static/robots.txt",
-                        }
                     };
                     const server = new httpsaurus.server.Server(serverAttributes);
                     const time = delay.delay(5000);
@@ -77,15 +83,16 @@ try
                         protocol: "http" as httpsaurus.server.Protocol,
                         hostname: "localhost",
                         httpPort: 8080,
-
-                        schema: "graphql/schema.gql",
-                        resolvers: { request: function () { return "response"; } },
                         routes:
                         {
                             "/favicon.ico": "/static/favicon.ico",
-                            "/404.html": "/static/404.html",
                             "/robots.txt": "/static/robots.txt",
-                        }
+                        },
+
+                        App: <App fetch={() => new Promise(() => { })} />,
+
+                        schema: "graphql/schema.gql",
+                        resolvers: { request: function () { return "response"; } },
                     };
                     const server = new httpsaurus.server.Server(serverAttributes);
                     const complete = server.serve();
