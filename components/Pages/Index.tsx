@@ -1,5 +1,6 @@
 
 import * as React from "https://esm.sh/react";
+import * as ReactRouter from "https://esm.sh/react-router-dom";
 
 export default class Index extends React.Component<unknown, unknown>
 {
@@ -14,10 +15,10 @@ export default class Index extends React.Component<unknown, unknown>
                 <div className="header">
                     <div className="nav-wrapper">
                         <nav>
-                            <a className="home" href="#">
+                            <ReactRouter.Link to="/" className="home">
                                 <img className="logo" src="/static/logo.svg" height={50} alt="logo" />
                                 Home
-                            </a>
+                            </ReactRouter.Link>
                             {/** @todo Restore links to About and Contact */}
                             <div className="links">
                                 {/* <a href="#">About</a> */}
@@ -27,7 +28,7 @@ export default class Index extends React.Component<unknown, unknown>
                     </div>
                     <div className="title-wrapper">
                         <h1>
-                            <strong><span className="ghost-gray">Ghost</span>written</strong>
+                            <strong><span><span className="ghost-gray">Ghost</span>written</span></strong>
                         </h1>
                         <h3>
                             <span className="ghost-gray">Our expertise.</span>

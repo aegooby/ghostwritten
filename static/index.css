@@ -139,6 +139,10 @@ img.logo
 
 .header h1
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
     margin: 0;
     line-height: 1.5;
     font-size: 40px;
@@ -149,6 +153,10 @@ img.logo
 
 .header h1 strong
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
     font-weight: 800;
 }
 span.ghost-gray
