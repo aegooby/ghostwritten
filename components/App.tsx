@@ -4,6 +4,7 @@ import * as ReactRouter from "https://esm.sh/react-router-dom";
 import { Console } from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/client/client.tsx";
 
 import Index from "./Pages/Index.tsx";
+import Referral from "./Pages/Referral.tsx";
 import NotFound from "./Pages/NotFound.tsx";
 
 interface Props
@@ -41,6 +42,12 @@ export default class App extends React.Component<Props, unknown>
             <ReactRouter.Switch>
                 <ReactRouter.Route exact path="/">
                     <Index />
+                </ReactRouter.Route>
+                <ReactRouter.Route exact path="/referral/ptembo">
+                    <Referral id="ptembo" />
+                </ReactRouter.Route>
+                <ReactRouter.Route exact path="/referral/yqassem">
+                    <Referral id="yqassem" />
                 </ReactRouter.Route>
                 <ReactRouter.Route render={function (props) { return <NotFound {...props} />; }} />
             </ReactRouter.Switch>;

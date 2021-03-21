@@ -3,9 +3,14 @@ import * as React from "https://esm.sh/react";
 import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
 
-export default class Index extends React.Component<unknown, unknown>
+interface Props
 {
-    constructor(props: unknown)
+    id: string;
+}
+
+export default class Referral extends React.Component<Props, unknown>
+{
+    constructor(props: Props)
     {
         super(props);
     }
@@ -14,7 +19,7 @@ export default class Index extends React.Component<unknown, unknown>
         const element =
             <>
                 <ReactHelmet.Helmet>
-                    <title>Ghostwritten</title>
+                    <title>Ghostwritten | Referral</title>
                 </ReactHelmet.Helmet>
                 <div className="wrapper">
                     <div className="header">
@@ -36,7 +41,7 @@ export default class Index extends React.Component<unknown, unknown>
                                 <strong><span><span className="ghost-gray">Ghost</span>written</span></strong>
                             </h1>
                             <h3>
-                                <span className="ghost-gray">Our expertise.&nbsp;</span><span><strong>Your</strong> essays.</span>
+                                <span className="ghost-gray">Your referrer's ID is</span>&nbsp;<span><strong>{this.props.id}</strong></span>
                             </h3>
                             <div className="button-wrapper">
                                 {/** @todo Restore original button link to form */}
@@ -47,26 +52,12 @@ export default class Index extends React.Component<unknown, unknown>
                     </div>
                     <div className="page">
                         <div className="main-text">
-                            <h1>How it works</h1>
+                            <h1>You've been referred</h1>
                             <p>
-                                You send us what you need. Need an IA? Extended
-                                Essay? College application essay? No problem. Tell
-                                us what you need and when, then leave the rest to
-                                us. We guarantee an on-time, A-level essay in your
-                                inbox.
-                            </p>
-                            <p>
-                                To get started, email us at <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a>
-                            </p>
-                            <h1>About us</h1>
-                            <p>
-                                We are a team of college students who all achieved
-                                40+ points on the IB Diploma in subjects such as
-                                Math and Physics HL, graduating as the top students
-                                in our classes. We know exactly how hard it is to
-                                write a good high school essay — we’ve been through
-                                it. We are committed to using our academic expertise
-                                to help you become a top-scoring student.
+                                Send us an email at <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a> with
+                                your referrer's ID in the subject line and
+                                the details of your essay request, and our team
+                                will begin work on it right away.
                             </p>
                             <p className="disclaimer">
                                 <em>

@@ -24,8 +24,8 @@ export default class NotFound extends React.Component<ReactRouter.RouteComponent
                             <nav>
                                 <ReactRouter.Link to="/" className="home">
                                     <img className="logo" src="/static/logo.svg" height={50} alt="logo" />
-                                Home
-                            </ReactRouter.Link>
+                                    Home
+                                </ReactRouter.Link>
                                 {/** @todo Restore links to About and Contact */}
                                 <div className="links">
                                     {/* <a href="#">About</a> */}
@@ -36,9 +36,7 @@ export default class NotFound extends React.Component<ReactRouter.RouteComponent
                         <div className="title-wrapper">
                             <h1>
                                 <strong>
-                                    <span className="ghost-gray">404</span>
-                                    &nbsp;
-                                    <span>Not Found</span>
+                                    <span className="ghost-gray">404</span>&nbsp;<span>Not Found</span>
                                 </strong>
                             </h1>
                         </div>
