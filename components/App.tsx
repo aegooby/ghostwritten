@@ -49,6 +49,9 @@ export default class App extends React.Component<Props, unknown>
                 <ReactRouter.Route exact path="/referral/yqassem">
                     <Referral id="yqassem" />
                 </ReactRouter.Route>
+                <ReactRouter.Route exact path="/referral/wmohammed">
+                    <Referral id="wmohammed" />
+                </ReactRouter.Route>
                 <ReactRouter.Route render={function (props) { return <NotFound {...props} />; }} />
             </ReactRouter.Switch>;
         return element;
