@@ -16,7 +16,7 @@ export default class NotFound extends React.Component<ReactRouter.RouteComponent
         const element =
             <>
                 <ReactHelmet.Helmet>
-                    <title>Not Found</title>
+                    <title>Not Found | Ghostwritten</title>
                 </ReactHelmet.Helmet>
                 <div className="wrapper">
                     <div className="header">

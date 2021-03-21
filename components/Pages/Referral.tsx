@@ -19,7 +19,7 @@ export default class Referral extends React.Component<Props, unknown>
         const element =
             <>
                 <ReactHelmet.Helmet>
-                    <title>Ghostwritten | Referral</title>
+                    <title>Referral | Ghostwritten</title>
                 </ReactHelmet.Helmet>
                 <div className="wrapper">
                     <div className="header">
