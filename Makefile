@@ -28,13 +28,13 @@ cache: export DENO_DIR=.cache/
 cache: upgrade
 	mkdir -p .cache/
 	deno cache --unstable **/*.tsx
+	yarn install
 
 bundle: export DENO_DIR=.cache/
 bundle: upgrade cache
 	mkdir -p .dist/
-	yarn install
 	deno bundle --config client/tsconfig.json --unstable client/bundle.tsx .dist/deno.bundle.js
-	yarn run babel --minified .dist/deno.bundle.js --out-file .dist/babel.bundle.js
+	# yarn run babel --minified .dist/deno.bundle.js --out-file .dist/babel.bundle.js
 	yarn run webpack
 
 # ------------------------------------------------------------------------------
