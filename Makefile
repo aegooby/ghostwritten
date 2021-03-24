@@ -40,16 +40,21 @@ bundle: upgrade cache
 # ------------------------------------------------------------------------------
 # Run
 # ------------------------------------------------------------------------------
-debug: export DENO_DIR=.cache/
-debug: cache bundle
+localhost: export DENO_DIR=.cache/
+localhost: cache bundle
 	(trap 'kill 0' SIGINT; \
 		deno bundle --watch --config client/tsconfig.json --unstable client/bundle.tsx .dist/deno.bundle.js & \
 		yarn run webpack --watch & \
 		deno run --watch --allow-all --unstable server/daemon.tsx --hostname localhost --tls cert/localhost/ \
 	)
 
-release: export DENO_DIR=.cache/
-release: cache bundle
+dev.remote: export DENO_DIR=.cache/
+dev.remote: cache bundle
+	deno upgrade --version 1.7.0
+	deno run --allow-all --unstable server/daemon.tsx --hostname 0.0.0.0 --domain dev.ghostwritten.me --tls /etc/letsencrypt/live/dev.ghostwritten.me/
+
+remote: export DENO_DIR=.cache/
+remote: cache bundle
 	deno upgrade --version 1.7.0
 	deno run --allow-all --unstable server/daemon.tsx --hostname 0.0.0.0 --domain ghostwritten.me --tls /etc/letsencrypt/live/ghostwritten.me/
 
@@ -64,6 +69,10 @@ prune:
 	docker container prune --force
 	docker image prune --force
 
+dev.docker: prune
+	docker build --tag ghostwritten/server .
+	docker run -itd --init -p 443:8443 -p 80:8080 -v "/etc/letsencrypt/:/etc/letsencrypt/" ghostwritten/server:latest make dev.remote
+
 docker: prune
 	docker build --tag ghostwritten/server .
-	docker run -itd --init -p 443:8443 -p 80:8080 -v "/etc/letsencrypt/:/etc/letsencrypt/" ghostwritten/server:latest
+	docker run -itd --init -p 443:8443 -p 80:8080 -v "/etc/letsencrypt/:/etc/letsencrypt/" ghostwritten/server:latest make remote
