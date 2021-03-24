@@ -53,6 +53,9 @@ export default class App extends React.Component<Props, unknown>
                 <ReactRouter.Route exact path="/referral/wmohammed">
                     <Referral id="wmohammed" />
                 </ReactRouter.Route>
+                <ReactRouter.Route exact path="/referral/nshehaby">
+                    <Referral id="nshehaby" />
+                </ReactRouter.Route>
                 <ReactRouter.Route exact path="/checkout">
                     <Checkout />
                 </ReactRouter.Route>
