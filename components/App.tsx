@@ -6,6 +6,7 @@ import { Console } from "https://raw.githubusercontent.com/aegooby/httpsaurus/ma
 import Index from "./Pages/Index.tsx";
 import Referral from "./Pages/Referral.tsx";
 import NotFound from "./Pages/NotFound.tsx";
+import Checkout from "./Pages/Checkout.tsx";
 
 interface Props
 {
@@ -51,6 +52,9 @@ export default class App extends React.Component<Props, unknown>
                 </ReactRouter.Route>
                 <ReactRouter.Route exact path="/referral/wmohammed">
                     <Referral id="wmohammed" />
+                </ReactRouter.Route>
+                <ReactRouter.Route exact path="/checkout">
+                    <Checkout />
                 </ReactRouter.Route>
                 <ReactRouter.Route render={function (props) { return <NotFound {...props} />; }} />
             </ReactRouter.Switch>;
