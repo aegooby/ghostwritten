@@ -17,6 +17,10 @@ export default class Index extends React.Component<unknown, unknown>
             <>
                 <ReactHelmet.Helmet>
                     <title>Ghostwritten</title>
+                    <meta name="description" content="You send us what you need. Need an IA? 
+                        Extended Essay? College application essay? No problem. 
+                        Tell us what you need and when, then leave the rest to us. 
+                        We guarantee an on-time, A-level essay in your inbox." />
                 </ReactHelmet.Helmet>
                 <div className="wrapper">
                     <div className="header">
