@@ -5,6 +5,9 @@ import App from "../components/App.tsx";
 
 import * as React from "https://esm.sh/react";
 import * as yargs from "https://deno.land/x/yargs/deno.ts";
+// import * as Stripe from "https://cdn.skypack.dev/@stripe/stripe-js";
+
+// Stripe.loadStripe();
 
 const args = yargs.default(Deno.args)
     .usage("usage: $0 server/daemon.tsx --hostname <host> [--domain <name>] [--tls <path>]")
