@@ -74,7 +74,7 @@ prune:
 
 dev.docker:
 	docker build --tag ghostwritten/server .
-	docker run -itd --init -p 443:8443 -p 80:8080 -v "/etc/letsencrypt/:/etc/letsencrypt/" ghostwritten/server:latest make dev.remote
+	docker run -itd --init -p 443:8443 -p 80:8080 -v "/etc/letsencrypt/:/etc/letsencrypt/" ghostwritten/server:latest --env GRAPHQL_API_ENDPOINT=https://dev.ghostwritten.me/graphql make dev.remote
 
 docker:
 	docker build --tag ghostwritten/server .
