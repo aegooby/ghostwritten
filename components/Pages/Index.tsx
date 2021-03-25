@@ -1,8 +1,9 @@
 
 import * as React from "https://esm.sh/react";
-import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
 import MediaQuery from "https://esm.sh/react-responsive";
+
+import Navbar from "../Navbar.tsx";
 
 export default class Index extends React.Component<unknown, unknown>
 {
@@ -19,19 +20,7 @@ export default class Index extends React.Component<unknown, unknown>
                 </ReactHelmet.Helmet>
                 <div className="wrapper">
                     <div className="header">
-                        <div className="nav-wrapper">
-                            <nav>
-                                <ReactRouter.Link to="/" className="home">
-                                    <img className="logo" src="/static/logo.svg" height={50} alt="logo" />
-                                    Home
-                                </ReactRouter.Link>
-                                {/** @todo Restore links to About and Contact */}
-                                <div className="links">
-                                    {/* <a href="#">About</a> */}
-                                    {/* <a href="#">Contact</a> */}
-                                </div>
-                            </nav>
-                        </div>
+                        <Navbar />
                         <div className="title-wrapper">
                             <h1><strong><span><span className="ghost-gray">Ghost</span>written</span></strong></h1>
                             <h2>
@@ -42,7 +31,6 @@ export default class Index extends React.Component<unknown, unknown>
                             </h2>
                             <div className="button-wrapper">
                                 {/** @todo Restore original button link to form */}
-                                {/* <UILink href="/test" element={<button className="shadow">Get Started</button>} /> */}
                                 <button className="shadow" onClick={() => window.location.href = "mailto:ghostwrittenhq@gmail.com"}>Get Started</button>
                             </div>
                         </div>

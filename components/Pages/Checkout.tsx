@@ -1,11 +1,12 @@
 
 import * as React from "https://esm.sh/react";
-import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
 import MediaQuery from "https://esm.sh/react-responsive";
 
 import { Token, StripeCheckoutProps } from "https://esm.sh/react-stripe-checkout";
 import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout@2.6.3";
+
+import Navbar from "../Navbar.tsx";
 
 export default class Checkout extends React.Component<unknown, unknown>
 {
@@ -22,7 +23,9 @@ export default class Checkout extends React.Component<unknown, unknown>
             stripeKey: "pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm",
             name: "Checkout",
             panelLabel: "Pay",
+            currency: "USD",
             amount: 27500,
+            allowRememberMe: false,
         };
         const element =
             <>
@@ -31,32 +34,18 @@ export default class Checkout extends React.Component<unknown, unknown>
                 </ReactHelmet.Helmet>
                 <div className="wrapper">
                     <div className="header">
-                        <div className="nav-wrapper">
-                            <nav>
-                                <ReactRouter.Link to="/" className="home">
-                                    <img className="logo" src="/static/logo.svg" height={50} alt="logo" />
-                                    Home
-                                </ReactRouter.Link>
-                                {/** @todo Restore links to About and Contact */}
-                                <div className="links">
-                                    {/* <a href="#">About</a> */}
-                                    {/* <a href="#">Contact</a> */}
-                                </div>
-                            </nav>
-                        </div>
+                        <Navbar />
                         <div className="title-wrapper">
                             <h1>
                                 <strong><span><span className="ghost-gray">Ghost</span>written</span></strong>
                             </h1>
                             <h2>
-                                <span className="ghost-gray">Our expertise.</span>
+                                <span className="ghost-gray">Pay with</span>
                                 <MediaQuery maxWidth={399}><br /></MediaQuery>
                                 <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
-                                <strong>Your</strong> essays.
+                                <strong>credit card</strong>.
                             </h2>
                             <div className="button-wrapper">
-                                {/** @todo Restore original button link to form */}
-                                {/* <UILink href="/test" element={<button className="shadow">Get Started</button>} /> */}
                                 <StripeCheckout {...stripeCheckoutProps}>
                                     <button className="shadow">Checkout</button>
                                 </StripeCheckout>
@@ -65,7 +54,16 @@ export default class Checkout extends React.Component<unknown, unknown>
                     </div>
                     <div className="page">
                         <div className="main-text">
-                            <p>Temp text.</p>
+                            <h1>100% secure</h1>
+                            <p>
+                                Payments are done through <a href="https://stripe.com">Stripe</a>,
+                                an secure, reputable online payments facilitator
+                                used by companies such as Amazon, Google, and Lyft.
+                            </p>
+                            <p>
+                                Our team will contact you quickly by email to
+                                confirm receipt of any payments for your order.
+                            </p>
                         </div>
                         <p className="copyinfo">© 2021 Ghostwritten</p>
                     </div>

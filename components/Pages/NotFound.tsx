@@ -4,6 +4,8 @@ import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
 import MediaQuery from "https://esm.sh/react-responsive";
 
+import Navbar from "../Navbar.tsx";
+
 export default class NotFound extends React.Component<ReactRouter.RouteComponentProps, unknown>
 {
     constructor(props: ReactRouter.RouteComponentProps)
@@ -21,19 +23,7 @@ export default class NotFound extends React.Component<ReactRouter.RouteComponent
                 </ReactHelmet.Helmet>
                 <div className="wrapper">
                     <div className="header">
-                        <div className="nav-wrapper">
-                            <nav>
-                                <ReactRouter.Link to="/" className="home">
-                                    <img className="logo" src="/static/logo.svg" height={50} alt="logo" />
-                                    Home
-                                </ReactRouter.Link>
-                                {/** @todo Restore links to About and Contact */}
-                                <div className="links">
-                                    {/* <a href="#">About</a> */}
-                                    {/* <a href="#">Contact</a> */}
-                                </div>
-                            </nav>
-                        </div>
+                        <Navbar />
                         <div className="title-wrapper">
                             <h1>
                                 <strong>
