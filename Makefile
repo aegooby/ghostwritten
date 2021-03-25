@@ -69,10 +69,10 @@ prune:
 	docker container prune --force
 	docker image prune --force
 
-dev.docker: prune
+dev.docker:
 	docker build --tag ghostwritten/server .
 	docker run -itd --init -p 443:8443 -p 80:8080 -v "/etc/letsencrypt/:/etc/letsencrypt/" ghostwritten/server:latest make dev.remote
 
-docker: prune
+docker:
 	docker build --tag ghostwritten/server .
 	docker run -itd --init -p 443:8443 -p 80:8080 -v "/etc/letsencrypt/:/etc/letsencrypt/" ghostwritten/server:latest make remote
