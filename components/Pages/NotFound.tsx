@@ -2,6 +2,7 @@
 import * as React from "https://esm.sh/react";
 import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
+import MediaQuery from "https://esm.sh/react-responsive";
 
 export default class NotFound extends React.Component<ReactRouter.RouteComponentProps, unknown>
 {
@@ -36,7 +37,10 @@ export default class NotFound extends React.Component<ReactRouter.RouteComponent
                         <div className="title-wrapper">
                             <h1>
                                 <strong>
-                                    <span className="ghost-gray">404</span>&nbsp;<span>Not Found</span>
+                                    <span className="ghost-gray">404</span>
+                                    <MediaQuery maxWidth={399}><br /></MediaQuery>
+                                    <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
+                                    <span>Not Found</span>
                                 </strong>
                             </h1>
                         </div>

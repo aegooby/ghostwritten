@@ -138,12 +138,14 @@ img.logo
     padding-right: 2em;
 }
 
+.ghost-gray
+{
+    color: #888;
+}
+
 .header h1
 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
+    display: inline-block;
     margin: 0;
     line-height: 1.5;
     font-size: 40px;
@@ -154,38 +156,21 @@ img.logo
 
 .header h1 strong
 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
     font-weight: 800;
 }
-span.ghost-gray
+
+.byline-wrapper
 {
-    color: #888;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
 }
 
 .header h2
 {
-    margin: 0;
-    line-height: 1.5;
-    font-size: 32px;
-    font-weight: 400;
-    text-align: center;
-    color: #000;
-}
-
-.header h2 strong
-{
-    font-weight: 650;
-}
-
-.header h3
-{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
     margin: 0;
     line-height: 1.5;
     font-size: 25px;
@@ -194,9 +179,14 @@ span.ghost-gray
     color: #000;
 }
 
-.header h3 strong
+.header h2 strong
 {
     font-weight: 600;
+}
+
+.header h2.ghost-gray
+{
+    color: #888;
 }
 
 .header .button-wrapper
@@ -257,6 +247,7 @@ button:active
 
 .main-text p
 {
+    display: inline-block;
     margin: 0;
     line-height: 1.5;
     text-align: justify;
@@ -275,6 +266,7 @@ button:active
 
 .main-text h1
 {
+    display: inline-block;
     margin-top: 1em;
     font-size: 22px;
     font-weight: 600;
@@ -282,6 +274,7 @@ button:active
 
 .main-text a
 {
+    display: inline-block;
     color: #99a3ff;
     transition: color 0.15s ease-in-out;
 }

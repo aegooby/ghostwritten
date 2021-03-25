@@ -2,6 +2,8 @@
 import * as React from "https://esm.sh/react";
 import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
+import MediaQuery from "https://esm.sh/react-responsive";
+
 import { Token, StripeCheckoutProps } from "https://esm.sh/react-stripe-checkout";
 import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout@2.6.3";
 
@@ -46,9 +48,12 @@ export default class Checkout extends React.Component<unknown, unknown>
                             <h1>
                                 <strong><span><span className="ghost-gray">Ghost</span>written</span></strong>
                             </h1>
-                            <h3>
-                                <span className="ghost-gray">Our expertise.</span>&nbsp;<span><strong>Your</strong> essays.</span>
-                            </h3>
+                            <h2>
+                                <span className="ghost-gray">Our expertise.</span>
+                                <MediaQuery maxWidth={399}><br /></MediaQuery>
+                                <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
+                                <strong>Your</strong> essays.
+                            </h2>
                             <div className="button-wrapper">
                                 {/** @todo Restore original button link to form */}
                                 {/* <UILink href="/test" element={<button className="shadow">Get Started</button>} /> */}
