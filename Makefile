@@ -35,31 +35,27 @@ bundle: export DENO_DIR=.cache/
 bundle: upgrade cache
 	mkdir -p .dist/
 	deno bundle --config client/tsconfig.json --unstable client/bundle.tsx .dist/deno.bundle.js
-	yarn run webpack
 
 # ------------------------------------------------------------------------------
 # Run
 # ------------------------------------------------------------------------------
 localhost: export DENO_DIR=.cache/
-localhost: export GRAPHQL_API_ENDPOINT=https://localhost:8443/graphql
-localhost: cache
+localhost: cache bundle
 	(trap 'kill 0' SIGINT; \
 		deno bundle --watch --config client/tsconfig.json --unstable client/bundle.tsx .dist/deno.bundle.js & \
-		yarn run webpack --watch & \
+		yarn run webpack --watch --env GRAPHQL_API_ENDPOINT=https://localhost:8443/graphql & \
 		deno run --watch --allow-all --unstable server/daemon.tsx --hostname localhost --tls cert/localhost/ \
 	)
 
 dev.remote: export DENO_DIR=.cache/
-dev.remote: export GRAPHQL_API_ENDPOINT=https://dev.ghostwritten.me/graphql
-dev.remote: cache
-	make bundle
+dev.remote: cache bundle
+	yarn run webpack --env GRAPHQL_API_ENDPOINT=https://dev.ghostwritten.me/graphql
 	deno upgrade --version 1.7.0
 	deno run --allow-all --unstable server/daemon.tsx --hostname 0.0.0.0 --domain dev.ghostwritten.me --tls /etc/letsencrypt/live/dev.ghostwritten.me/
 
 remote: export DENO_DIR=.cache/
-remote: export GRAPHQL_API_ENDPOINT=https://ghostwritten.me/graphql
-remote: cache
-	make bundle
+remote: cache bundle
+	yarn run webpack --env GRAPHQL_API_ENDPOINT=https://ghostwritten.me/graphql
 	deno upgrade --version 1.7.0
 	deno run --allow-all --unstable server/daemon.tsx --hostname 0.0.0.0 --domain ghostwritten.me --tls /etc/letsencrypt/live/ghostwritten.me/
 
