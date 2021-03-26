@@ -19,7 +19,7 @@ export default class Checkout extends React.Component<unknown, unknown>
         const stripeCheckoutProps: StripeCheckoutProps =
         {
             token: (token: Token) => console.log(token),
-            /** @todo Replace `stripeKey` with "pk_live_51IPELvBCMz7QpSOWPhEDdU5yqV0JyrrrpTOz6RKerNkXnsoV5tHum7BjNmsTXVjfPekIgqnAiVUigWWXfaNRVYHN00zjBRkDg0". */
+            /** @todo Replace `stripeKey` with live key. */
             stripeKey: "pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm",
             name: "Checkout",
             panelLabel: "Pay",

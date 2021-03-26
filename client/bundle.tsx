@@ -6,23 +6,16 @@ import * as client from "https://raw.githubusercontent.com/aegooby/httpsaurus/ma
 
 import App from "../components/App.tsx";
 
-interface Process
-{
-    env: Record<string, string>;
-}
-
-declare const process: Process;
-
 try
 {
     const clientAttributes =
     {
-        api: process.env.GRAPHQL_API_ENDPOINT,
+        api: client.process.env.GRAPHQL_API_ENDPOINT,
     };
     const httpclient = new client.Client(clientAttributes);
     const element: React.ReactElement =
         <ReactRouter.BrowserRouter>
-            <App fetch={httpclient.fetch} />
+            <App client={httpclient} />
         </ReactRouter.BrowserRouter>;
     httpclient.hydrate(element);
 }

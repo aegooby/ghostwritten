@@ -1,7 +1,8 @@
 import * as React from "https://esm.sh/react";
 import * as ReactRouter from "https://esm.sh/react-router-dom";
 
-import { Console } from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/client/client.tsx";
+
+import * as client from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/client/client.tsx";
 
 import Index from "./Pages/Index.tsx";
 import Referral from "./Pages/Referral.tsx";
@@ -10,7 +11,7 @@ import Checkout from "./Pages/Checkout.tsx";
 
 interface Props
 {
-    fetch: (json: unknown) => Promise<Record<string, unknown>>;
+    client: client.Client | undefined;
 }
 
 export default class App extends React.Component<Props, unknown>
@@ -25,13 +26,15 @@ export default class App extends React.Component<Props, unknown>
         try
         {
             this.mounted = true;
-            const response = await this.props.fetch({ query: "query{ request }" });
+            if (!this.props.client)
+                return;
+            const response = await this.props.client.fetch({ query: "query{ request }" });
             if (!this.mounted)
                 return;
             const data = response.data;
-            console.log(JSON.stringify(data));
+            client.Console.log(JSON.stringify(data));
         }
-        catch (error) { Console.error(error); }
+        catch (error) { client.Console.error(error); }
     }
     componentWillUnmount(): void
     {
