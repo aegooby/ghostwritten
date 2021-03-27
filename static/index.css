@@ -372,7 +372,7 @@ form.order .form-item-wrapper
     width: 100%;
 }
 
-input
+input, textarea
 {
     -webkit-appearance: none;
     -moz-appearance: none;
