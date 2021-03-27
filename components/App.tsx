@@ -5,7 +5,7 @@ import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as client from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/client/client.tsx";
 
 import Index from "./Pages/Index.tsx";
-import Referral from "./Pages/Referral.tsx";
+import OrderForm from "./Pages/OrderForm.tsx";
 import NotFound from "./Pages/NotFound.tsx";
 import Checkout from "./Pages/Checkout.tsx";
 
@@ -48,16 +48,19 @@ export default class App extends React.Component<Props, unknown>
                     <Index />
                 </ReactRouter.Route>
                 <ReactRouter.Route exact path="/referral/ptembo">
-                    <Referral id="ptembo" />
+                    <OrderForm referral="ptembo" />
                 </ReactRouter.Route>
                 <ReactRouter.Route exact path="/referral/yqassem">
-                    <Referral id="yqassem" />
+                    <OrderForm referral="yqassem" />
                 </ReactRouter.Route>
                 <ReactRouter.Route exact path="/referral/wmohammed">
-                    <Referral id="wmohammed" />
+                    <OrderForm referral="wmohammed" />
                 </ReactRouter.Route>
                 <ReactRouter.Route exact path="/referral/nshehaby">
-                    <Referral id="nshehaby" />
+                    <OrderForm referral="nshehaby" />
+                </ReactRouter.Route>
+                <ReactRouter.Route exact path="/order">
+                    <OrderForm referral={undefined} />
                 </ReactRouter.Route>
                 <ReactRouter.Route exact path="/checkout">
                     <Checkout />

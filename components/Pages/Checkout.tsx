@@ -30,7 +30,7 @@ export default class Checkout extends React.Component<unknown, unknown>
         const element =
             <>
                 <ReactHelmet.Helmet>
-                    <title>Ghostwritten</title>
+                    <title>Ghostwritten | Checkout</title>
                 </ReactHelmet.Helmet>
                 <div className="wrapper">
                     <div className="header">
@@ -43,7 +43,7 @@ export default class Checkout extends React.Component<unknown, unknown>
                                 <span className="ghost-gray">Pay with</span>
                                 <MediaQuery maxWidth={399}><br /></MediaQuery>
                                 <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
-                                <strong>credit card</strong>.
+                                <strong>credit</strong> or <strong>debit</strong>.
                             </h2>
                             <div className="button-wrapper">
                                 <StripeCheckout {...stripeCheckoutProps}>
@@ -57,7 +57,7 @@ export default class Checkout extends React.Component<unknown, unknown>
                             <h1>100% secure</h1>
                             <p>
                                 Payments are done through <a href="https://stripe.com">Stripe</a>,
-                                an secure, reputable online payments facilitator
+                                a secure, reputable online payments facilitator
                                 used by companies such as Amazon, Google, and Lyft.
                             </p>
                             <p>

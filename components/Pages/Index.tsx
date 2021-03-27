@@ -1,5 +1,6 @@
 
 import * as React from "https://esm.sh/react";
+import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
 import MediaQuery from "https://esm.sh/react-responsive";
 
@@ -17,14 +18,7 @@ export default class Index extends React.Component<unknown, unknown>
             <>
                 <ReactHelmet.Helmet>
                     <title>Ghostwritten</title>
-                    <meta name="description" content=
-                        {
-                            "Need an IA? Extended Essay? College application essay? " +
-                            "No problem. Tell us what you need and when, then leave " +
-                            "the rest to us. We guarantee an on-time, A-level essay " +
-                            "in your inbox."
-                        }
-                    />
+                    <meta name="description" content={"Our expertise. Your essays."} />
                 </ReactHelmet.Helmet>
                 <div className="wrapper">
                     <div className="header">
@@ -38,8 +32,9 @@ export default class Index extends React.Component<unknown, unknown>
                                 <strong>Your</strong> essays.
                             </h2>
                             <div className="button-wrapper">
-                                {/** @todo Restore original button link to form */}
-                                <button className="shadow" onClick={() => window.location.href = "mailto:ghostwrittenhq@gmail.com"}>Get Started</button>
+                                <ReactRouter.Link to="/order">
+                                    <button className="shadow">Get Started</button>
+                                </ReactRouter.Link>
                             </div>
                         </div>
                     </div>
@@ -47,24 +42,42 @@ export default class Index extends React.Component<unknown, unknown>
                         <div className="main-text">
                             <h1>How it works</h1>
                             <p>
-                                You send us what you need. Need an IA? Extended
-                                Essay? College application essay? No problem. Tell
-                                us what you need and when, then leave the rest to
-                                us. We guarantee an on-time, A-level essay in your
+                                Looking for a high school or college-level essay?
+                                No problem. Tell us what you need and when, then
+                                leave the rest to our team of skilled writers.
+                                We guarantee an on-time, A-grade essay in your
                                 inbox.
-                            </p>
-                            <p>
-                                To get started, email us at <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a>
                             </p>
                             <h1>About us</h1>
                             <p>
-                                We are a team of college students who all achieved
-                                40+ points on the IB Diploma in subjects such as
-                                Math and Physics HL, graduating as the top students
-                                in our classes. We know exactly how hard it is to
-                                write a good high school essay — we’ve been through
-                                it. We are committed to using our academic expertise
-                                to help you become a top-scoring student.
+                                We are a team of dedicated writers who have consistently
+                                achieved exceptional results through high school
+                                and college, in subjects such as high level mathematics,
+                                physics, literature, and biology.
+                            </p>
+                            <p>
+                                We know exactly how hard it is to write a good essay,
+                                because we’ve been through it before. We are committed
+                                to using our academic expertise to help you become
+                                a top-scoring student.
+                            </p>
+                            <h1>Why Ghostwritten?</h1>
+                            <p>
+                                Many essay writing services employ people who
+                                have not touched a college or high school essay
+                                in years, and are out of touch with modern
+                                curriculums.
+                            </p>
+                            <p>
+                                Others are staffed by unreliable freelancers who
+                                face no reprecussions for conducting scams or
+                                rating manipulation.
+                            </p>
+                            <p>
+                                When you order a Ghostwritten essay, you are
+                                guaranteed dedicated, reliable writers who have
+                                experience with your requirements and curriculum,
+                                whether it's IB, AP, college-level, and many more.
                             </p>
                             <p className="disclaimer">
                                 <em>
@@ -72,7 +85,7 @@ export default class Index extends React.Component<unknown, unknown>
                                     for educational purposes only. Use of this work
                                     is at the recipient's own risk and their
                                     responsibility alone.
-                            </em>
+                                </em>
                             </p>
                         </div>
                         <p className="copyinfo">© 2021 Ghostwritten</p>

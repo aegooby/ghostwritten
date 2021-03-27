@@ -199,7 +199,7 @@ img.logo
     padding-bottom: 2rem;
 }
 
-button
+button, .button
 {
     background-color: #99a3ff;
     width: 8.5rem;
@@ -209,21 +209,21 @@ button
     border-radius: 50px;
     transition: background-color 0.15s ease-in-out, box-shadow 0.2s ease-in;
 }
-button.shadow
+button.shadow, .button.shadow
 {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 15px -2px rgba(0, 0, 0, 0.25);
 }
 
-button:hover
+button:hover, .button:hover
 {
     background-color: #acb4ff;
     cursor: pointer;
 }
-button.shadow:hover
+button.shadow:hover, .button.shadow:hover
 {
-    box-shadow: 0 10px 15px -2px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 5px 15px -1px rgba(0, 0, 0, 0.35);
 }
-button:active
+button:active, .button:active
 {
     background-color: #6d76c9;
 }
@@ -334,26 +334,42 @@ form
     width: 100%;
 }
 
-form h3
+form h1
 {
     display: flex;
+    align-items: center;
     text-align: justify;
     font-size: 25px;
     font-weight: 400;
+    line-height: 1.5;
 }
 
-form h3 strong
+form h1 strong
 {
     font-weight: 600;
 }
 
-form.order .radio-wrapper
+form h1 span.info
+{
+    font-size: 16px;
+    text-align: justify;
+    font-weight: 300;
+    color: #888;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+form.order .form-item-wrapper
 {
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: space-evenly;
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    margin: 0;
+    width: 100%;
 }
 
 input[type=radio]
@@ -374,14 +390,16 @@ label
     text-align: center;
     border: 2px solid #99a3ff;
     color: #99a3ff;
-    font-size: 16px;
+    font-size: 1.15rem;
     font-weight: 450;
     border-radius: 5px;
-    width: calc(50% - 2rem);
+    margin: 0;
+    padding: 0;
+    width: 44%;
     height: 100px;
-    margin: 0.5rem;
     transition: background-color 0.15s ease-in-out, box-shadow 0.2s ease-in;
 }
+
 label:hover
 {
     cursor: pointer;
@@ -393,11 +411,41 @@ input[type=radio]:checked + label
     color: #ffffff;
 }
 
-form.order .additional
+textarea
 {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    border: 2px solid #99a3ff;
+    border-radius: 5px;
+    width: calc(92% - 2.0rem);
+    min-height: 8rem;
+    padding: 1.0rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    resize: none;
+    transition: box-shadow 0.2s ease-in;
+}
+textarea:focus, textarea:hover
+{
+    box-shadow: 0 0 15px -3px rgba(153, 163, 255, 0.5);
+}
+
+input[type=text]
+{
+    border: 2px solid #99a3ff;
+    border-radius: 5px;
+    width: calc(92% - 2.0rem);
+    padding: 1.0rem;
+    transition: box-shadow 0.2s ease-in;
+}
+input[type=text]:focus, input[type=text]:hover
+{
+    box-shadow: 0 0 15px -3px rgba(153, 163, 255, 0.5);
+}
+input[type=text]:disabled
+{
+    font-style: bold;
+    font-weight: 600;
+}
+input[type=text]:disabled:hover
+{
+    cursor: not-allowed;
 }

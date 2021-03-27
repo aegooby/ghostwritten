@@ -16,7 +16,7 @@ export default class Navbar extends React.Component<unknown, unknown>
                     <ReactRouter.Link to="/" className="home">
                         <img className="logo" src="/static/logo.svg" height={50} width={30} alt="logo" />
                                     Home
-                                </ReactRouter.Link>
+                    </ReactRouter.Link>
                     {/** @todo Restore links to About and Contact */}
                     <div className="links">
                         {/* <a href="#">About</a> */}
