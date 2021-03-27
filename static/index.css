@@ -372,6 +372,13 @@ form.order .form-item-wrapper
     width: 100%;
 }
 
+input
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 input[type=radio]
 {
     position: absolute !important;
