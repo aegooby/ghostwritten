@@ -8,67 +8,60 @@ import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout@2.6.3"
 
 import Navbar from "../Navbar.tsx";
 
-export default class Checkout extends React.Component<unknown, unknown>
+export default function Checkout()
 {
-    constructor(props: unknown)
+    const stripeCheckoutProps: StripeCheckoutProps =
     {
-        super(props);
-    }
-    render(): React.ReactElement
-    {
-        const stripeCheckoutProps: StripeCheckoutProps =
-        {
-            token: (token: Token) => console.log(token),
-            /** @todo Replace `stripeKey` with live key. */
-            stripeKey: "pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm",
-            name: "Checkout",
-            panelLabel: "Pay",
-            currency: "USD",
-            amount: 27500,
-            allowRememberMe: false,
-        };
-        const element =
-            <>
-                <ReactHelmet.Helmet>
-                    <title>Ghostwritten | Checkout</title>
-                </ReactHelmet.Helmet>
-                <div className="wrapper">
-                    <div className="header">
-                        <Navbar />
-                        <div className="title-wrapper">
-                            <h1>
-                                <strong><span><span className="ghost-gray">Ghost</span>written</span></strong>
-                            </h1>
-                            <h2>
-                                <span className="ghost-gray">Pay with</span>
-                                <MediaQuery maxWidth={399}><br /></MediaQuery>
-                                <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
-                                <strong>credit</strong> or <strong>debit</strong>.
+        token: (token: Token) => console.log(token),
+        /** @todo Replace `stripeKey` with live key. */
+        stripeKey: "pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm",
+        name: "Checkout",
+        panelLabel: "Pay",
+        currency: "USD",
+        amount: 27500,
+        allowRememberMe: false,
+    };
+    const element: React.ReactElement =
+        <>
+            <ReactHelmet.Helmet>
+                <title>Ghostwritten | Checkout</title>
+            </ReactHelmet.Helmet>
+            <div className="wrapper">
+                <div className="header">
+                    <Navbar />
+                    <div className="title-wrapper">
+                        <h1>
+                            <strong><span><span className="ghost-gray">Ghost</span>written</span></strong>
+                        </h1>
+                        <h2>
+                            <span className="ghost-gray">Pay with</span>
+                            <MediaQuery maxWidth={399}><br /></MediaQuery>
+                            <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
+                            <strong>credit</strong> or <strong>debit</strong>.
                             </h2>
-                            <div className="button-wrapper">
-                                <StripeCheckout {...stripeCheckoutProps}>
-                                    <button className="shadow">Checkout</button>
-                                </StripeCheckout>
-                            </div>
+                        <div className="button-wrapper">
+                            <StripeCheckout {...stripeCheckoutProps}>
+                                <button className="shadow">Checkout</button>
+                            </StripeCheckout>
                         </div>
                     </div>
-                    <div className="page">
-                        <div className="main-text">
-                            <h1>100% secure</h1>
-                            <p>
-                                Payments are done through <a href="https://stripe.com">Stripe</a>,
+                </div>
+                <div className="page">
+                    <div className="main-text">
+                        <h1>100% secure</h1>
+                        <p>
+                            Payments are done through <a href="https://stripe.com">Stripe</a>,
                                 a secure, reputable online payments facilitator
                                 used by companies such as Amazon, Google, and Lyft.
                             </p>
-                            <p>
-                                Our team will contact you quickly by email to
-                                confirm receipt of any payments for your order.
+                        <p>
+                            Our team will contact you quickly by email to
+                            confirm receipt of any payments for your order.
                             </p>
-                        </div>
-                        <p className="copyinfo">© 2021 Ghostwritten</p>
                     </div>
-                </div >
-            </>;
-        return element;
-    }
+                    <p className="copyinfo">© 2021 Ghostwritten</p>
+                </div>
+            </div >
+        </>;
+    return element;
 }

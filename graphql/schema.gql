@@ -1,4 +1,21 @@
+input Email
+{
+    from: String!
+    to: [String]!
+    subject: String
+    text: String
+    html: String
+}
+type EmailResult
+{
+    success: Boolean!
+    errors: [String]
+}
 type Query 
 { 
     request: String
+}
+type Mutation
+{
+    sendEmail(email: Email): EmailResult
 }
