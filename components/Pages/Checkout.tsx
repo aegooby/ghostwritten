@@ -4,7 +4,7 @@ import * as ReactHelmet from "https://esm.sh/react-helmet";
 import MediaQuery from "https://esm.sh/react-responsive";
 
 import { Token, StripeCheckoutProps } from "https://esm.sh/react-stripe-checkout";
-import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout@2.6.3";
+import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout";
 
 import Navbar from "../Navbar.tsx";
 
