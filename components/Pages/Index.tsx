@@ -24,7 +24,7 @@ export default function Index()
                             <MediaQuery maxWidth={399}><br /></MediaQuery>
                             <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
                             <strong>Your</strong> essays.
-                            </h2>
+                        </h2>
                         <div className="button-wrapper">
                             <ReactRouter.Link to="/order">
                                 <button className="shadow">Get Started</button>
