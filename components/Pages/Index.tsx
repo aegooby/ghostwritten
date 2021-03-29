@@ -41,32 +41,32 @@ export default function Index()
                             leave the rest to our team of skilled writers.
                             We guarantee an on-time, A-grade essay in your
                             inbox.
-                            </p>
+                        </p>
                         <h1>About us</h1>
                         <p>
                             We are a team of dedicated writers who have consistently
                             achieved exceptional results through high school
                             and college, in subjects such as high level mathematics,
                             physics, literature, and biology.
-                            </p>
+                        </p>
                         <p>
                             We know exactly how hard it is to write a good essay,
                             because we’ve been through it before. We are committed
                             to using our academic expertise to help you become
                             a top-scoring student.
-                            </p>
+                        </p>
                         <h1>Why Ghostwritten?</h1>
                         <p>
                             Many essay writing services employ people who
                             have not touched a college or high school essay
                             in years, and are out of touch with modern
                             curriculums.
-                            </p>
+                        </p>
                         <p>
                             Others are staffed by unreliable freelancers who
-                            face no reprecussions for conducting scams or
-                            rating manipulation.
-                            </p>
+                            face no reprecussions for conducting fraud, scams,
+                            or rating manipulation.
+                        </p>
                         <p>
                             When you order a Ghostwritten essay, you are
                             guaranteed dedicated, reliable writers who have
@@ -79,7 +79,7 @@ export default function Index()
                                 for educational purposes only. Use of this work
                                 is at the recipient's own risk and their
                                 responsibility alone.
-                                </em>
+                            </em>
                         </p>
                     </div>
                     <p className="copyinfo">© 2021 Ghostwritten</p>
