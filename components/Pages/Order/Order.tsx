@@ -65,6 +65,7 @@ interface Props
 
 export default function Order(props: Props)
 {
+    const history = ReactRouter.useHistory();
     const [status, setStatus] = React.useState(Status.form);
 
     const client = GraphQL.useClient();
@@ -128,7 +129,8 @@ export default function Order(props: Props)
             body = <Failure />;
             break;
         case Status.error:
-            return <ReactRouter.Redirect push to="/internalerror" />;
+            history.push("/internalerror");
+            return <></>;
     }
 
     const element =

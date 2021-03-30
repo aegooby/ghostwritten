@@ -38,7 +38,7 @@ export default function Form(props: Props)
             { 
                 sendEmail(email: 
                     { 
-                        from: "noreply@ghostwritten.me",
+                        
                         to: "ghostwrittenhq@gmail.com",
                         subject: "Request for ${essayType} essay from <${email}>",
                         text: ${gwText},
@@ -53,7 +53,7 @@ export default function Form(props: Props)
             { 
                 sendEmail(email: 
                     { 
-                        from: "noreply@ghostwritten.me",
+                        
                         to: "${email}",
                         subject: "We have received your request",
                         text: ${clientText},
