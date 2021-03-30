@@ -86,7 +86,7 @@ export default function Order(props: Props)
         {
             if (response.errors) 
             {
-                Console.error(JSON.stringify(response));
+                Console.error(response);
                 throw new Error();
             }
         }
@@ -128,7 +128,7 @@ export default function Order(props: Props)
             body = <Failure />;
             break;
         case Status.error:
-            return <ReactRouter.Redirect push exact to="/error" />;
+            return <ReactRouter.Redirect push to="/internalerror" />;
     }
 
     const element =

@@ -43,7 +43,7 @@ export default function App(props: Props)
                 <ReactRouter.Route exact path="/checkout">
                     <Checkout />
                 </ReactRouter.Route>
-                <ReactRouter.Route exact path="/error" component={InternalError} />
+                <ReactRouter.Route exact path="/internalerror" component={InternalError} />
                 <ReactRouter.Route component={NotFound} />
             </ReactRouter.Switch>
         </GraphQL.Provider>;
