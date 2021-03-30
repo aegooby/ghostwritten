@@ -37,7 +37,7 @@ export default function Form(props: Props)
             `mutation 
             { 
                 sendEmail(email: 
-                    { 
+                    {
                         from: "noreply@ghostwritten.me",
                         to: "ghostwrittenhq@gmail.com",
                         subject: "Request for ${essayType} essay from <${email}>",
@@ -52,7 +52,7 @@ export default function Form(props: Props)
             `mutation 
             { 
                 sendEmail(email: 
-                    { 
+                    {
                         from: "noreply@ghostwritten.me",
                         to: "${email}",
                         subject: "We have received your request",
