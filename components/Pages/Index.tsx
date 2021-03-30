@@ -71,7 +71,8 @@ export default function Index()
                             When you order a Ghostwritten essay, you are
                             guaranteed dedicated, reliable writers who have
                             experience with your requirements and curriculum,
-                            whether it's IB, AP, college-level, and many more.
+                            including IB, AP, various college programs, and many
+                            more.
                             </p>
                         <p className="disclaimer">
                             <em>
