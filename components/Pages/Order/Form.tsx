@@ -46,10 +46,8 @@ export default function Form(props: Props)
                     }
                 ) { success } 
             }`;
-        const clientText = `"Hello, this is a confirmation email to let you know 
-            that we have received your request. You will be hearing from us shortly."`;
-        const clientHtml = `"<p>Hello,</p><p>This is a is a confirmation email to 
-            let you know that we have received your request. You will be hearing from us shortly.</p>"`;
+        const clientText = `"Hello, this is a confirmation email to let you know that we have received your request. You will be hearing from us shortly."`;
+        const clientHtml = `"<p>Hello,</p><p>This is a is a confirmation email to let you know that we have received your request. You will be hearing from us shortly.</p>"`;
         const clientMutation =
             `mutation 
             { 
