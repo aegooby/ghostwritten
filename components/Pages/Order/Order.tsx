@@ -10,6 +10,9 @@ import Success from "./Success.tsx";
 import Failure from "./Failure.tsx";
 import Navbar from "../../Navbar.tsx";
 
+
+import InternalError from "../InternalError.tsx";
+
 enum Status
 {
     form,
@@ -125,7 +128,7 @@ export default function Order(props: Props)
             body = <Failure />;
             break;
         case Status.error:
-            return <ReactRouter.Redirect to="/error" />;
+            return <ReactRouter.Redirect push exact to="/error" />;
     }
 
     const element =

@@ -10,6 +10,7 @@ export default function InternalError(props: ReactRouter.RouteComponentProps)
 {
     if (props.staticContext)
         props.staticContext.statusCode = 500;
+
     const element: React.ReactElement =
         <>
             <ReactHelmet.Helmet>
