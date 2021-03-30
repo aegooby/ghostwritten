@@ -10,9 +10,6 @@ import Success from "./Success.tsx";
 import Failure from "./Failure.tsx";
 import Navbar from "../../Navbar.tsx";
 
-
-import InternalError from "../InternalError.tsx";
-
 enum Status
 {
     form,
@@ -65,7 +62,6 @@ interface Props
 
 export default function Order(props: Props)
 {
-    const history = ReactRouter.useHistory();
     const [status, setStatus] = React.useState(Status.form);
 
     const client = GraphQL.useClient();
@@ -129,8 +125,7 @@ export default function Order(props: Props)
             body = <Failure />;
             break;
         case Status.error:
-            history.push("/internalerror");
-            return <></>;
+            return <ReactRouter.Redirect push to="/internalerror" />;
     }
 
     const element =
