@@ -6,7 +6,7 @@ type EssayType = "unknown" | "highschool" | "college";
 interface Props
 {
     referral: string | undefined;
-    onSubmit: (mutation: string) => Promise<void> | void;
+    onSubmit: (mutations: string[]) => Promise<void> | void;
 }
 
 type TargetExtend = EventTarget & HTMLTextAreaElement;
@@ -25,13 +25,15 @@ export default function Form(props: Props)
     async function onSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void>
     {
         event.preventDefault();
-        const referralText = referral === "" ? "No referral code" : "Referral code: " + referral;
+        const referralText = referral === "" ?
+            "No referral code" :
+            "Referral code: " + referral;
         const referralHtml = referral === "" ?
             "<h1></strong>No referral code</strong></h1>" :
             "<h1></strong>Referral code</strong></h1><p>" + referral + "</p>";
-        const text = `"Details: ${details} * ${referralText}"`;
-        const html = `"<h1><strong>Details</strong></h1><p>${details}</p>${referralHtml}"`;
-        const mutation =
+        const gwText = `"Details: ${details} * ${referralText}"`;
+        const gwHtml = `"<h1><strong>Details</strong></h1><p>${details}</p>${referralHtml}"`;
+        const gwMutation =
             `mutation 
             { 
                 sendEmail(email: 
@@ -39,12 +41,29 @@ export default function Form(props: Props)
                         from: "noreply@ghostwritten.me",
                         to: "ghostwrittenhq@gmail.com",
                         subject: "Request for ${essayType} essay from <${email}>",
-                        text: ${text},
-                        html: ${html},
+                        text: ${gwText},
+                        html: ${gwHtml},
                     }
                 ) { success } 
             }`;
-        return await props.onSubmit(mutation);
+        const clientText = `"Hello, this is a confirmation email to let you know 
+            that we have received your request. You will be hearing from us shortly."`;
+        const clientHtml = `"<p>Hello,</p><p>This is a is a confirmation email to 
+            let you know that we have received your request. You will be hearing from us shortly.</p>"`;
+        const clientMutation =
+            `mutation 
+            { 
+                sendEmail(email: 
+                    { 
+                        from: "noreply@ghostwritten.me",
+                        to: "${email}",
+                        subject: "We have received your request",
+                        text: ${clientText},
+                        html: ${clientHtml},
+                    }
+                ) { success } 
+            }`;
+        return await props.onSubmit([gwMutation, clientMutation]);
     }
 
     const complete = essayType !== "unknown" && details !== "" && email !== "";

@@ -7,9 +7,9 @@ export default function Failure()
         <div className="main-text">
             <h1>This shouldn't have happened</h1>
             <p>
-                It seems like we've had trouble receiving your request at our
-                servers. Try reloading the page and checking your internet
-                connection.
+                It seems like we've had trouble processing your request at our
+                servers. Make sure you have entered a valid email address,
+                or try refreshing the page and checking your internet connection.
             </p>
             <p>
                 If the issue persists, send us an email

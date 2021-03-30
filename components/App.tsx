@@ -3,11 +3,14 @@ import * as ReactRouter from "https://esm.sh/react-router-dom";
 
 import * as GraphQL from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/GraphQL/GraphQL.tsx";
 export * as GraphQL from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/GraphQL/GraphQL.tsx";
+export { Console } from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/client/console.tsx";
 
 import Index from "./Pages/Index.tsx";
 import Order from "./Pages/Order/Order.tsx";
-import NotFound from "./Pages/NotFound.tsx";
 import Checkout from "./Pages/Checkout.tsx";
+
+import InternalError from "./Pages/InternalError.tsx";
+import NotFound from "./Pages/NotFound.tsx";
 
 interface Props
 {
@@ -40,7 +43,12 @@ export default function App(props: Props)
                 <ReactRouter.Route exact path="/checkout">
                     <Checkout />
                 </ReactRouter.Route>
-                <ReactRouter.Route render={function (props) { return <NotFound {...props} />; }} />
+                <ReactRouter.Route exact path="/error"
+                    render={function (props) { return <InternalError {...props} />; }}
+                />
+                <ReactRouter.Route
+                    render={function (props) { return <NotFound {...props} />; }}
+                />
             </ReactRouter.Switch>
         </GraphQL.Provider>;
     return element;

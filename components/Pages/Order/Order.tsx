@@ -1,9 +1,10 @@
 
 import * as React from "https://esm.sh/react";
+import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
 import MediaQuery from "https://esm.sh/react-responsive";
 
-import { GraphQL } from "../../App.tsx";
+import { GraphQL, Console } from "../../App.tsx";
 import Form from "./Form.tsx";
 import Success from "./Success.tsx";
 import Failure from "./Failure.tsx";
@@ -11,10 +12,11 @@ import Navbar from "../../Navbar.tsx";
 
 enum Status
 {
-    unknown,
+    form,
     loading,
     success,
-    failure
+    failure,
+    error,
 }
 
 interface HeaderProps
@@ -60,22 +62,45 @@ interface Props
 
 export default function Order(props: Props)
 {
-    const [status, setStatus] = React.useState(Status.unknown);
+    const [status, setStatus] = React.useState(Status.form);
 
     const client = GraphQL.useClient();
 
     let header: React.ReactElement = <></>;
     let body: React.ReactElement = <></>;
 
-    function onSubmit(mutation: string)
+    function onSubmit(mutations: string[])
     {
+        type EmailResult = Record<string, Record<string, Record<string, boolean>>>;
+
         if (!client) return;
-        const promise = client.fetch({ query: mutation });
+
+        const fetches: Promise<Record<string, unknown>>[] =
+            mutations.map(function (mutation) { return client.fetch({ query: mutation }); });
+        const promises = Promise.all(fetches);
         setStatus(Status.loading);
-        async function _()
+        function checkError(response: Record<string, unknown>)
         {
-            const response = await promise as Record<string, Record<string, Record<string, boolean>>>;
-            const success = response.data.sendEmail.success;
+            if (response.errors) 
+            {
+                Console.error(JSON.stringify(response));
+                throw new Error();
+            }
+        }
+        async function _(): Promise<void>
+        {
+            const responses = await promises;
+            try { responses.forEach(checkError); }
+            catch (error) 
+            {
+                setStatus(Status.error);
+                return;
+            }
+
+            const dataResponses = responses as EmailResult[];
+            const successes =
+                dataResponses.map(function (response) { return response.data.sendEmail.success; });
+            const success = successes.reduce(function (__a, __b) { return __a && __b; });
             success ? setStatus(Status.success) : setStatus(Status.failure);
         }
         _();
@@ -83,6 +108,14 @@ export default function Order(props: Props)
 
     switch (status)
     {
+        case Status.loading:
+            header = <Header gray={"Loading..."} black={<></>} />;
+            body = <Loading />;
+            break;
+        case Status.form:
+            header = <Header gray={"Select"} black={"your essay."} />;
+            body = <Form referral={props.referral} onSubmit={onSubmit} />;
+            break;
         case Status.success:
             header = <Header gray={"Order"} black={<><strong>confirmed</strong>.</>} />;
             body = <Success />;
@@ -91,14 +124,8 @@ export default function Order(props: Props)
             header = <Header gray={"Order"} black={<><strong>failed!</strong></>} />;
             body = <Failure />;
             break;
-        case Status.loading:
-            header = <Header gray={"Loading..."} black={<></>} />;
-            body = <Loading />;
-            break;
-        default:
-            header = <Header gray={"Select"} black={"your essay."} />;
-            body = <Form referral={props.referral} onSubmit={onSubmit} />;
-            break;
+        case Status.error:
+            return <ReactRouter.Redirect to="/error" />;
     }
 
     const element =

@@ -464,7 +464,8 @@ input[type=text]:disabled:hover
     align-items: center;
     width: calc(100% - 6rem);
     max-width: 30rem;
-    padding: 3rem;
+    padding-top: 8rem;
+    padding-bottom: 7rem;
 }
 
 .lds-ring 
