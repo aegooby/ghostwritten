@@ -69,14 +69,14 @@ export default function Order(props: Props)
     let header: React.ReactElement = <></>;
     let body: React.ReactElement = <></>;
 
-    function onSubmit(mutations: string[])
+    function onSubmit(mutations: GraphQL.Query[])
     {
         type EmailResult = Record<string, Record<string, Record<string, boolean>>>;
 
         if (!client) return;
 
         const fetches: Promise<Record<string, unknown>>[] =
-            mutations.map(function (mutation) { return client.fetch({ query: mutation }); });
+            mutations.map(function (mutation) { return client.fetch(mutation); });
         const promises = Promise.all(fetches);
         setStatus(Status.loading);
         function checkError(response: Record<string, unknown>)

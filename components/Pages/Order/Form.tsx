@@ -1,12 +1,14 @@
 
 import * as React from "https://esm.sh/react";
 
+import { GraphQL, Console } from "../../App.tsx";
+
 type EssayType = "unknown" | "highschool" | "college";
 
 interface Props
 {
     referral: string | undefined;
-    onSubmit: (mutations: string[]) => Promise<void> | void;
+    onSubmit: (mutations: GraphQL.Query[]) => Promise<void> | void;
 }
 
 type TargetExtend = EventTarget & HTMLTextAreaElement;
@@ -25,42 +27,61 @@ export default function Form(props: Props)
     async function onSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void>
     {
         event.preventDefault();
+
+        const query =
+            `
+                mutation SendEmail($email: Email)
+                { sendEmail(email: $email) { success } }
+            `;
+
         const referralText = referral === "" ?
-            "No referral code" :
-            "Referral code: " + referral;
+            `No referral code` :
+            `Referral code: ${referral}`;
         const referralHtml = referral === "" ?
-            "<h1></strong>No referral code</strong></h1>" :
-            "<h1></strong>Referral code</strong></h1><p>" + referral + "</p>";
-        const gwText = `"Details: ${details} * ${referralText}"`;
-        const gwHtml = `"<h1><strong>Details</strong></h1><p>${details}</p>${referralHtml}"`;
-        const gwMutation =
-            `mutation 
-            { 
-                sendEmail(email: 
-                    {
-                        from: "noreply@ghostwritten.me",
-                        to: "ghostwrittenhq@gmail.com",
-                        subject: "Request for ${essayType} essay from <${email}>",
-                        text: ${gwText},
-                        html: ${gwHtml},
-                    }
-                ) { success } 
-            }`;
-        const clientText = `"Hello, this is a confirmation email to let you know that we have received your request. You will be hearing from us shortly."`;
-        const clientHtml = `"<p>Hello,</p><p>This is a is a confirmation email to let you know that we have received your request. You will be hearing from us shortly.</p>"`;
-        const clientMutation =
-            `mutation 
-            { 
-                sendEmail(email: 
-                    {
-                        from: "noreply@ghostwritten.me",
-                        to: "${email}",
-                        subject: "We have received your request",
-                        text: ${clientText},
-                        html: ${clientHtml},
-                    }
-                ) { success } 
-            }`;
+            `<h1></strong>No referral code</strong></h1>` :
+            `<h1></strong>Referral code</strong></h1><p>${referral}</p>`;
+        const gwText = `Details: ${details} * ${referralText}`;
+        const gwHtml = `<h1><strong>Details</strong></h1><p>${details}</p>${referralHtml}`;
+
+        const gwMutation: GraphQL.Query =
+        {
+            query: query,
+            variables:
+            {
+                "email":
+                {
+                    "from": `noreply@ghostwritten.me`,
+                    "to": `ghostwrittenhq@gmail.com`,
+                    "subject": `Request for ${essayType} essay from <${email}>`,
+                    "text": gwText,
+                    "html": gwHtml,
+                }
+            }
+        };
+
+        const clientText = `Hello, and thanks for choosing Ghostwritten! ` +
+            `This is a confirmation email to let you know that we have ` +
+            `received your request. You will be hearing from us shortly.`;
+        const clientHtml = `<p>Hello,</p><p>Thanks for choosing Ghostwritten!` +
+            ` This is a is a confirmation email to let you know that we have ` +
+            `received your request. You will be hearing from us shortly.</p>`;
+
+        const clientMutation: GraphQL.Query =
+        {
+            query: query,
+            variables:
+            {
+                "email":
+                {
+                    "from": `noreply@ghostwritten.me`,
+                    "to": `${email}`,
+                    "subject": `We've received your request!`,
+                    "text": clientText,
+                    "html": clientHtml,
+                }
+            }
+        };
+
         return await props.onSubmit([gwMutation, clientMutation]);
     }
 

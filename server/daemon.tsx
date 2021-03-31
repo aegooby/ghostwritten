@@ -3,7 +3,6 @@ import * as server from "https://raw.githubusercontent.com/aegooby/httpsaurus/ma
 
 import App from "../components/App.tsx";
 
-import * as React from "https://esm.sh/react";
 import * as yargs from "https://deno.land/x/yargs/deno.ts";
 import * as dotenv from "https://deno.land/x/dotenv/mod.ts";
 
@@ -46,7 +45,7 @@ try
         httpsPort: 8443,
         cert: args.tls,
 
-        App: <App client={undefined} />,
+        App: App,
 
         schema: "graphql/schema.gql",
         resolvers: new resolvers.Resolvers(env)

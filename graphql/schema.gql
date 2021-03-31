@@ -19,3 +19,8 @@ type Mutation
 {
     sendEmail(email: Email): EmailResult
 }
+
+mutation SendEmail($email: Email)
+{
+    sendEmail(email: $email) { success } 
+}
