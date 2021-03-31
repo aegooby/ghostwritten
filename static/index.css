@@ -201,6 +201,9 @@ img.logo
 
 button, .button
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #99a3ff;
     width: 8.5rem;
     height: 3rem;
@@ -211,6 +214,7 @@ button, .button
 }
 button.shadow, .button.shadow
 {
+    transition: background-color 0.15s ease-in-out, box-shadow 0.2s ease-in;
     box-shadow: 0 5px 15px -2px rgba(0, 0, 0, 0.25);
 }
 
@@ -225,7 +229,14 @@ button.shadow:hover, .button.shadow:hover
 }
 button:active, .button:active
 {
+    box-shadow: 0 5px 15px -1px rgba(0, 0, 0, 0.35);
     background-color: #6d76c9;
+}
+
+a.button
+{
+    text-decoration: none;
+    text-align: center;
 }
 
 .page

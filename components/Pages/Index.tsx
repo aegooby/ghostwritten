@@ -26,8 +26,8 @@ export default function Index()
                             <strong>Your</strong> essays.
                         </h2>
                         <div className="button-wrapper">
-                            <ReactRouter.Link to="/order">
-                                <button className="shadow">Get Started</button>
+                            <ReactRouter.Link className="button shadow" to="/order">
+                                Get Started
                             </ReactRouter.Link>
                         </div>
                     </div>
