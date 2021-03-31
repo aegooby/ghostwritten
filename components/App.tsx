@@ -1,9 +1,7 @@
 import * as React from "https://esm.sh/react";
 import * as ReactRouter from "https://esm.sh/react-router-dom";
 
-import * as GraphQL from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/GraphQL/GraphQL.tsx";
-export * as GraphQL from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/GraphQL/GraphQL.tsx";
-export { Console } from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/client/console.tsx";
+import { GraphQL } from "./Core/Core.tsx";
 
 import Index from "./Pages/Index.tsx";
 import Order from "./Pages/Order/Order.tsx";

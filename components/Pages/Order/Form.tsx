@@ -1,7 +1,7 @@
 
 import * as React from "https://esm.sh/react";
 
-import { GraphQL, Console } from "../../App.tsx";
+import { GraphQL } from "../../Core/Core.tsx";
 
 type EssayType = "unknown" | "highschool" | "college";
 

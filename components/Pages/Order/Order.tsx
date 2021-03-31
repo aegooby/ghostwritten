@@ -4,7 +4,7 @@ import * as ReactRouter from "https://esm.sh/react-router-dom";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
 import MediaQuery from "https://esm.sh/react-responsive";
 
-import { GraphQL, Console } from "../../App.tsx";
+import { GraphQL, Console } from "../../Core/Core.tsx";
 import Form from "./Form.tsx";
 import Success from "./Success.tsx";
 import Failure from "./Failure.tsx";
