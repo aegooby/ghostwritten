@@ -28,13 +28,14 @@ upgrade:
 cache: export DENO_DIR=.cache/
 cache: upgrade
 	mkdir -p .cache/
-	deno cache --unstable **/*.tsx
+	deno --unstable cache **/*.tsx
 	yarn install
 
 bundle: export DENO_DIR=.cache/
 bundle: upgrade cache
 	mkdir -p .dist/
-	deno bundle --config client/tsconfig.json --unstable client/bundle.tsx .dist/deno.bundle.js
+	deno --unstable bundle --config client/tsconfig.json https://esm.sh/@stripe/stripe-js .dist/stripe.bundle.js
+	deno --unstable bundle --config client/tsconfig.json client/bundle.tsx .dist/deno.bundle.js
 
 # ------------------------------------------------------------------------------
 # Run
@@ -42,26 +43,26 @@ bundle: upgrade cache
 localhost: export DENO_DIR=.cache/
 localhost: cache bundle
 	(trap 'kill 0' SIGINT; \
-		deno bundle --watch --config client/tsconfig.json --unstable client/bundle.tsx .dist/deno.bundle.js & \
+		deno bundle --unstable --watch --config client/tsconfig.json client/bundle.tsx .dist/deno.bundle.js & \
 		yarn run webpack --watch --env GRAPHQL_API_ENDPOINT=https://localhost:8443/graphql & \
-		deno run --watch --allow-all --unstable server/daemon.tsx --hostname localhost --tls cert/localhost/ \
+		deno run --unstable --watch --allow-all --location=https://stripe.com/ server/daemon.tsx --hostname localhost --tls cert/localhost/ \
 	)
 
 dev.remote: export DENO_DIR=.cache/
 dev.remote: cache bundle
 	yarn run webpack --env GRAPHQL_API_ENDPOINT=https://dev.ghostwritten.me/graphql
 	deno upgrade --version 1.7.0
-	deno run --allow-all --unstable server/daemon.tsx --hostname 0.0.0.0 --domain dev.ghostwritten.me --tls /etc/letsencrypt/live/dev.ghostwritten.me/
+	deno --unstable run --allow-all server/daemon.tsx --hostname 0.0.0.0 --domain dev.ghostwritten.me --tls /etc/letsencrypt/live/dev.ghostwritten.me/
 
 remote: export DENO_DIR=.cache/
 remote: cache bundle
 	yarn run webpack --env GRAPHQL_API_ENDPOINT=https://ghostwritten.me/graphql
 	deno upgrade --version 1.7.0
-	deno run --allow-all --unstable server/daemon.tsx --hostname 0.0.0.0 --domain ghostwritten.me --tls /etc/letsencrypt/live/ghostwritten.me/
+	deno --unstable run --allow-all server/daemon.tsx --hostname 0.0.0.0 --domain ghostwritten.me --tls /etc/letsencrypt/live/ghostwritten.me/
 
 test: export DENO_DIR=.cache/
 test: cache
-	deno test --allow-all --unstable tests/
+	deno --unstable test --allow-all tests/
 
 # ------------------------------------------------------------------------------
 # Docker 

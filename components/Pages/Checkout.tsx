@@ -6,21 +6,46 @@ import MediaQuery from "https://esm.sh/react-responsive";
 import { Token, StripeCheckoutProps } from "https://esm.sh/react-stripe-checkout";
 import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout";
 
+import { GraphQL, throwOnClient } from "../Core/Core.tsx";
 import Navbar from "../Navbar.tsx";
+
+let stripePromise: Promise<Record<string, unknown>> | undefined = undefined;
+
+try { throwOnClient(); }
+catch
+{
+    const Stripe = await import("./stripe.bundle.js");
+    stripePromise = Stripe.loadStripe("pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm");
+}
+
+type TargetExtend = EventTarget & HTMLTextAreaElement;
+interface Target extends TargetExtend
+{
+    value: unknown;
+}
 
 export default function Checkout()
 {
-    const stripeCheckoutProps: StripeCheckoutProps =
+    const client = GraphQL.useClient();
+    const [amount, setAmount] = React.useState(0);
+
+    async function onSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void>
     {
-        token: (token: Token) => console.log(token),
-        /** @todo Replace `stripeKey` with live key. */
-        stripeKey: "pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm",
-        name: "Checkout",
-        panelLabel: "Pay",
-        currency: "USD",
-        amount: 27500,
-        allowRememberMe: false,
-    };
+        event.preventDefault();
+        const stripe = await stripePromise;
+    }
+
+    // const stripeCheckoutProps: StripeCheckoutProps =
+    // {
+    //     token: (token: Token) => console.log(token),
+    //     /** @todo Replace `stripeKey` with live key. */
+    //     stripeKey: "pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm",
+    //     name: "Checkout",
+    //     panelLabel: "Pay",
+    //     currency: "USD",
+    //     amount: 27500,
+    //     allowRememberMe: false,
+    // };
     const element: React.ReactElement =
         <>
             <ReactHelmet.Helmet>
@@ -38,26 +63,35 @@ export default function Checkout()
                             <MediaQuery maxWidth={399}><br /></MediaQuery>
                             <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
                             <strong>credit</strong> or <strong>debit</strong>.
-                            </h2>
-                        <div className="button-wrapper">
-                            <StripeCheckout {...stripeCheckoutProps}>
-                                <button className="shadow">Checkout</button>
-                            </StripeCheckout>
-                        </div>
+                        </h2>
                     </div>
                 </div>
                 <div className="page">
                     <div className="main-text">
+                        <form className="order" onSubmit={onSubmit}>
+                            <div className="form-item-wrapper">
+                                <input
+                                    type="text" id="amount" name="amount" required
+                                    placeholder={"Enter amount to be paid (USD)"}
+                                    onChange={function (event) { setAmount(parseInt((event.target as Target).value as string)); }}
+                                />
+                            </div>
+                            <div className="form-item-wrapper">
+                                {/* <StripeCheckout onClick={() => ""} {...stripeCheckoutProps}> */}
+                                <input type="submit" value="Checkout" className="button shadow" />
+                                {/* </StripeCheckout> */}
+                            </div>
+                        </form>
                         <h1>100% secure</h1>
                         <p>
                             Payments are done through <a href="https://stripe.com">Stripe</a>,
                                 a secure, reputable online payments facilitator
                                 used by companies such as Amazon, Google, and Lyft.
-                            </p>
+                        </p>
                         <p>
                             Our team will contact you quickly by email to
                             confirm receipt of any payments for your order.
-                            </p>
+                        </p>
                     </div>
                     <p className="copyinfo">© 2021 Ghostwritten</p>
                 </div>
