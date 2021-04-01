@@ -19,13 +19,13 @@ const args = yargs.default(Deno.args)
     .parse();
 
 const env = dotenv.config();
-const stripeConfig =
-{
-    apiVersion: "2020-08-27" as const,
-    typescript: true as const,
-    protocol: "https" as const
-};
-const stripe = new Stripe(env.STRIPE_TEST_KEY, stripeConfig);
+// const stripeConfig =
+// {
+//     apiVersion: "2020-08-27" as const,
+//     typescript: true as const,
+//     protocol: "https" as const
+// };
+// const stripe = new Stripe(env.STRIPE_TEST_KEY, stripeConfig);
 
 export interface Email
 {
@@ -51,23 +51,6 @@ export class Resolvers
     public request(): string
     {
         return "response";
-    }
-    public async idStripe(): Promise<string>
-    {
-        const domain = args.domain ?? "localhost:8443";
-        const checkoutOptions: Stripe.checkouts.sessions.ICheckoutCreationOptions =
-        {
-            // deno-lint-ignore camelcase
-            payment_method_types: ["card"],
-            mode: "payment",
-            // deno-lint-ignore camelcase
-            success_url: `https://${domain}/checkout-success`,
-            // deno-lint-ignore camelcase
-            cancel_url: `https://${domain}/checkout`,
-        };
-        const session = await stripe.checkout.sessions.create(checkoutOptions);
-        server.Console.log(session);
-        return session.id;
     }
     public async sendEmail({ email }: { email: Email; }): Promise<EmailResult>
     {
