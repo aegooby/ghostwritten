@@ -99,6 +99,6 @@ try
 }
 catch (error)
 {
-    server.Console.error(error.toString());
+    server.Console.error(error);
     Deno.exit(1);
 }
