@@ -169,7 +169,7 @@ yargs.default(Deno.args)
         try 
         {
             await bundler.bundle({ entry: "https://esm.sh/@stripe/stripe-js", watch: false });
-            await bundler.bundle({ entry: "client/bundle.tsx", watch: true });
+            await bundler.bundle({ entry: "client/bundle.tsx", watch: false });
         }
         catch (error) 
         {
@@ -183,7 +183,7 @@ yargs.default(Deno.args)
         {
             cmd:
                 [
-                    "yarn", "run", "webpack", "--watch", "--env",
+                    "yarn", "run", "webpack", "--env",
                     `GRAPHQL_API_ENDPOINT=https://${domain}/graphql`
                 ]
         };
@@ -191,7 +191,7 @@ yargs.default(Deno.args)
         {
             cmd:
                 [
-                    "deno", "run", "--unstable", "--watch", "--allow-all",
+                    "deno", "run", "--unstable", "--allow-all",
                     "server/daemon.tsx", "--hostname", "0.0.0.0", "--domain",
                     domain, "--tls", `/etc/letsencrypt/live/${domain}/`
                 ],
