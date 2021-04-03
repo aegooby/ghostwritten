@@ -187,6 +187,11 @@ yargs.default(Deno.args)
                     `GRAPHQL_API_ENDPOINT=https://${domain}/graphql`
                 ]
         };
+        const upgradeRunOptions: Deno.RunOptions =
+        {
+            cmd: ["deno", "--unstable", "upgrade", "--version", "1.7.0"],
+            env: { DENO_DIR: ".cache/" }
+        };
         const serverRunOptions: Deno.RunOptions =
         {
             cmd:
@@ -203,6 +208,12 @@ yargs.default(Deno.args)
         webpackProcess.close();
         if (!webpackStatus.success)
             Deno.exit(webpackStatus.code);
+
+        const upgradeProcess = Deno.run(upgradeRunOptions);
+        const upgradeStatus = await upgradeProcess.status();
+        upgradeProcess.close();
+        if (!upgradeStatus.success)
+            Deno.exit(upgradeStatus.code);
 
         const serverProcess = Deno.run(serverRunOptions);
         const serverStatus = await serverProcess.status();
@@ -253,7 +264,7 @@ yargs.default(Deno.args)
         {
             cmd:
                 [
-                    "docker", "run", "-it", "--init", "-p", "443:8443", "-p",
+                    "docker", "run", "-itd", "--init", "-p", "443:8443", "-p",
                     "80:8080", "-v", "/etc/letsencrypt/:/etc/letsencrypt/",
                     "ghostwritten/server:latest", ...command.split(" "),
                     "remote", ...devFlag
