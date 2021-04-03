@@ -11,10 +11,9 @@ interface Props
     onSubmit: (mutations: GraphQL.Query[]) => Promise<void> | void;
 }
 
-type TargetExtend = EventTarget & HTMLTextAreaElement;
-interface Target extends TargetExtend
+interface Value
 {
-    value: unknown;
+    value: string;
 }
 
 export default function Form(props: Props)
@@ -109,7 +108,7 @@ export default function Form(props: Props)
                         wrap="soft" name="details" required
                         placeholder="Enter details here..."
                         value={details}
-                        onChange={function (event) { setDetails((event.target as Target).value as string); }}
+                        onChange={function (event) { setDetails((event.target as (typeof event.target & Value)).value); }}
                     />
                 </div>
                 <h1><strong>Email</strong><span className="info">(required)</span></h1>
@@ -117,7 +116,7 @@ export default function Form(props: Props)
                     <input
                         type="text" id="email" name="email" required
                         placeholder="someone@example.com"
-                        onChange={function (event) { setEmail(((event.target as Target).value as string).trim()); }}
+                        onChange={function (event) { setEmail((event.target as (typeof event.target & Value)).value.trim()); }}
                     />
                 </div>
                 <h1><strong>Referral code</strong><span className="info">(optional)</span></h1>
@@ -127,7 +126,7 @@ export default function Form(props: Props)
                         value={props.referral ?? referral}
                         placeholder={"Enter a valid referral code for 5% off!"}
                         disabled={props.referral ? true : undefined}
-                        onChange={function (event) { setReferral(((event.target as Target).value as string).trim()); }}
+                        onChange={function (event) { setReferral((event.target as (typeof event.target & Value)).value.trim()); }}
                     />
                 </div>
                 <div className="form-item-wrapper">

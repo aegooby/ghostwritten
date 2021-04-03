@@ -3,8 +3,8 @@ import * as React from "https://esm.sh/react";
 import * as ReactHelmet from "https://esm.sh/react-helmet";
 import MediaQuery from "https://esm.sh/react-responsive";
 
-import { Token, StripeCheckoutProps } from "https://esm.sh/react-stripe-checkout";
-import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout";
+// import { Token, StripeCheckoutProps } from "https://esm.sh/react-stripe-checkout";
+// import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout";
 
 import { GraphQL, throwOnClient } from "../Core/Core.tsx";
 import Navbar from "../Navbar.tsx";
@@ -14,14 +14,13 @@ let stripePromise: Promise<Record<string, unknown>> | undefined = undefined;
 try { throwOnClient(); }
 catch
 {
-    const Stripe = await import("./stripe.bundle.js");
+    const Stripe = await import("./stripe-js.prebuilt.bundle.js");
     stripePromise = Stripe.loadStripe("pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm");
 }
 
-type TargetExtend = EventTarget & HTMLTextAreaElement;
-interface Target extends TargetExtend
+interface Value
 {
-    value: unknown;
+    value: string;
 }
 
 export default function Checkout()
@@ -29,7 +28,7 @@ export default function Checkout()
     const client = GraphQL.useClient();
     const [amount, setAmount] = React.useState(0);
 
-    async function onSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void>
+    async function onSubmit(event: React.FormEvent<HTMLFormElement>)
     {
         event.preventDefault();
         const stripe = await stripePromise;
@@ -73,7 +72,7 @@ export default function Checkout()
                                 <input
                                     type="text" id="amount" name="amount" required
                                     placeholder={"Enter amount to be paid (USD)"}
-                                    onChange={function (event) { setAmount(parseInt((event.target as Target).value as string)); }}
+                                    onChange={function (event) { setAmount(parseInt((event as (typeof event & Value)).value)); }}
                                 />
                             </div>
                             <div className="form-item-wrapper">
