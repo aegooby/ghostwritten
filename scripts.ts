@@ -247,7 +247,7 @@ yargs.default(Deno.args)
         if (!buildStatus.success)
             Deno.exit(buildStatus.code);
 
-        const devFlag: string[] = args.dev ? ["dev"] : [];
+        const devFlag: string[] = args.dev ? ["--dev"] : [];
 
         const runRunOptions: Deno.RunOptions =
         {
@@ -255,8 +255,8 @@ yargs.default(Deno.args)
                 [
                     "docker", "run", "-it", "--init", "-p", "443:8443", "-p",
                     "80:8080", "-v", "/etc/letsencrypt/:/etc/letsencrypt/",
-                    "ghostwritten/server:latest", //...command.split(" "),
-                    //"remote", ...devFlag
+                    "ghostwritten/server:latest", ...command.split(" "),
+                    "remote", ...devFlag
                 ]
         };
 
