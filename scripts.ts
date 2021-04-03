@@ -240,7 +240,7 @@ yargs.default(Deno.args)
         }
 
         const buildRunOptions: Deno.RunOptions =
-            { cmd: ["docker", "build", "--tag", "httpsaurus/server", "."] };
+            { cmd: ["docker", "build", "--tag", "ghostwritten/server", "."] };
         const buildProcess = Deno.run(buildRunOptions);
         const buildStatus = await buildProcess.status();
         buildProcess.close();
