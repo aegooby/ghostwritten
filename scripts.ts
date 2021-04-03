@@ -255,8 +255,8 @@ yargs.default(Deno.args)
                 [
                     "docker", "run", "-it", "--init", "-p", "443:8443", "-p",
                     "80:8080", "-v", "/etc/letsencrypt/:/etc/letsencrypt/",
-                    "ghostwritten/server:latest", //"deno", ...command.split(" "),
-                    //"remote", ...devFlag
+                    "ghostwritten/server:latest", "deno", ...command.split(" "),
+                    "remote", ...devFlag
                 ]
         };
 
