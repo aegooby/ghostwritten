@@ -9,8 +9,8 @@ RUN apt-get install -y curl unzip make ca-certificates certbot nodejs npm --no-i
 ENV DENO_INSTALL=/root/.deno
 ENV PATH="$DENO_INSTALL/bin:$PATH"
 ADD . .
-RUN make install
+RUN curl -fsSL https://deno.land/x/install/install.sh | sh
+RUN deno run --unstable --allow-all scripts.ts install
 
 # Server
-RUN make cache
-RUN make bundle
+RUN deno run --unstable --allow-all scripts.ts cache
