@@ -112,6 +112,7 @@ async function bundle(args: Arguments)
 }
 async function localhost(_: Arguments)
 {
+    await cache(_);
     const bundler =
         new Bundler({ dist: ".dist", env: { DENO_DIR: ".cache/" } });
     const webpackRunOptions: Deno.RunOptions =
@@ -145,7 +146,7 @@ async function localhost(_: Arguments)
 }
 async function remote(args: Arguments)
 {
-    await bundle(args);
+    await cache(args);
     const bundler =
         new Bundler({ dist: ".dist", env: { DENO_DIR: ".cache/" } });
     try { await bundler.bundle({ entry: "client/bundle.tsx", watch: false }); }
