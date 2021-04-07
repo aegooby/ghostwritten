@@ -10,7 +10,7 @@ ENV DENO_INSTALL=/root/.deno
 ENV PATH="$DENO_INSTALL/bin:$PATH"
 ADD . .
 RUN curl -fsSL https://deno.land/x/install/install.sh | sh
-RUN deno run --unstable --allow-all scripts.ts install
 
 # Server
+RUN deno run --unstable --allow-all scripts.ts install
 RUN deno run --unstable --allow-all scripts.ts cache
