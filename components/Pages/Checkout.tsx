@@ -14,7 +14,7 @@ let stripePromise: Promise<Record<string, unknown>> | undefined = undefined;
 try { throwOnClient(); }
 catch
 {
-    const Stripe = await import("./stripe-js.prebuilt.bundle.js");
+    const Stripe = await import(`https://esm.sh/@stripe/stripe-js?no-check`);
     stripePromise = Stripe.loadStripe("pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm");
 }
 

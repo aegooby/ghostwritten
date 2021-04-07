@@ -6,7 +6,6 @@ import { GraphQL } from "./Core/Core.tsx";
 import Index from "./Pages/Index.tsx";
 import Order from "./Pages/Order/Order.tsx";
 import Checkout from "./Pages/Checkout.tsx";
-
 import InternalError from "./Pages/InternalError.tsx";
 import NotFound from "./Pages/NotFound.tsx";
 

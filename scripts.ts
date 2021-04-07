@@ -97,11 +97,7 @@ yargs.default(Deno.args)
 
         const bundler =
             new Bundler({ dist: ".dist", env: { DENO_DIR: ".cache/" } });
-        try 
-        {
-            await bundler.bundle({ entry: "https://esm.sh/@stripe/stripe-js", watch: false });
-            await bundler.bundle({ entry: "client/bundle.tsx", watch: false });
-        }
+        try { await bundler.bundle({ entry: "client/bundle.tsx", watch: false }); }
         catch (error) 
         {
             Console.error(error);
@@ -125,18 +121,11 @@ yargs.default(Deno.args)
     {
         const bundler =
             new Bundler({ dist: ".dist", env: { DENO_DIR: ".cache/" } });
-        try { await bundler.bundle({ entry: "https://esm.sh/@stripe/stripe-js", watch: false }); }
-        catch (error) 
-        {
-            Console.error(error);
-            Deno.exit(1);
-        }
-
         const webpackRunOptions: Deno.RunOptions =
         {
             cmd:
                 [
-                    "yarn", "run", "webpack", "--watch", "--env",
+                    "yarn", "run", "webpack", "--env",
                     "GRAPHQL_API_ENDPOINT=https://localhost:8443/graphql"
                 ]
         };
@@ -144,32 +133,28 @@ yargs.default(Deno.args)
         {
             cmd:
                 [
-                    "deno", "run", "--unstable", "--watch", "--allow-all",
+                    "deno", "run", "--unstable", "--allow-all",
                     "server/daemon.tsx", "--hostname", "localhost", "--tls",
                     "cert/localhost/"
                 ],
             env: { DENO_DIR: ".cache/" }
         };
 
-        const bundle =
-            bundler.bundle({ entry: "client/bundle.tsx", watch: true });
+        await bundler.bundle({ entry: "client/bundle.tsx", watch: false });
+
         const webpackProcess = Deno.run(webpackRunOptions);
-        const serverProcess = Deno.run(serverRunOptions);
-
-        await Promise.all([bundle, webpackProcess.status(), serverProcess.status()]);
-
+        await webpackProcess.status();
         webpackProcess.close();
+
+        const serverProcess = Deno.run(serverRunOptions);
+        await serverProcess.status();
         serverProcess.close();
     })
     .command("remote", "", {}, async function (args: Arguments)
     {
         const bundler =
             new Bundler({ dist: ".dist", env: { DENO_DIR: ".cache/" } });
-        try 
-        {
-            await bundler.bundle({ entry: "https://esm.sh/@stripe/stripe-js", watch: false });
-            await bundler.bundle({ entry: "client/bundle.tsx", watch: false });
-        }
+        try { await bundler.bundle({ entry: "client/bundle.tsx", watch: false }); }
         catch (error) 
         {
             Console.error(error);
