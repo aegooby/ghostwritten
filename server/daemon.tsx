@@ -1,14 +1,14 @@
 
-import * as server from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/server/server.tsx";
+import * as server from "httpsaurus/server";
 
 import App from "../components/App.tsx";
 
-import * as yargs from "https://deno.land/x/yargs/deno.ts";
-import * as dotenv from "https://deno.land/x/dotenv/mod.ts";
+import * as yargs from "yargs";
+import * as dotenv from "dotenv";
 
-import * as sendgrid from "https://deno.land/x/sendgrid@0.0.3/mod.ts";
+import * as sendgrid from "sendgrid";
 // @deno-types="https://raw.githubusercontent.com/aegooby/types/master/stripe/index.d.ts";
-import Stripe from "https://jspm.dev/stripe";
+import Stripe from "stripe";
 
 const args = yargs.default(Deno.args)
     .usage("usage: $0 server/daemon.tsx --hostname <host> [--domain <name>] [--tls <path>]")

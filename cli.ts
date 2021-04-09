@@ -6,20 +6,16 @@ import * as fs from "https://deno.land/std/fs/mod.ts";
 import * as path from "https://deno.land/std/path/mod.ts";
 
 Deno.env.set("DENO_DIR", ".cache/");
-const { Console, Bundler } = await import("https://raw.githubusercontent.com/aegooby/httpsaurus/master/server/server.tsx");
+const { Console, Bundler } = await import("httpsaurus/server");
 
 const thisFile = path.basename(path.fromFileUrl(Deno.mainModule));
-const command = `deno --unstable run --allow-all ${thisFile}`;
+const command = `deno run --unstable --import-map import-map.json --allow-all ${thisFile}`;
 
 async function clean(args: Arguments)
 {
     if (!args.cache && !args.dist && !args.node)
         args.all = true;
-    const runOptions: Deno.RunOptions =
-    {
-        cmd: ["rm", "-rf"],
-        env: { PATH: Deno.env.get("PATH")! }
-    };
+    const runOptions: Deno.RunOptions = { cmd: ["rm", "-rf"] };
     if (args.all || args.cache)
         runOptions.cmd.push(".cache/");
     if (args.all || args.dist)
@@ -34,41 +30,25 @@ async function clean(args: Arguments)
 }
 async function install(_: Arguments)
 {
-    const hashRunOptions: Deno.RunOptions =
-    {
-        cmd: ["hash", "yarn"],
-        env: { PATH: Deno.env.get("PATH")! }
-    };
-    const hashProcess = Deno.run(hashRunOptions);
+    const hashProcess = Deno.run({ cmd: ["hash", "yarn"] });
     const hashStatus = await hashProcess.status();
     hashProcess.close();
     if (hashStatus.success)
         Deno.exit(hashStatus.code);
 
-    const npmRunOptions: Deno.RunOptions =
-    {
-        cmd: ["npm", "install", "--global", "yarn"],
-        env: { PATH: Deno.env.get("PATH")! }
-    };
-    const npmProcess = Deno.run(npmRunOptions);
+    const npmProcess =
+        Deno.run({ cmd: ["npm", "install", "--global", "yarn"] });
     const npmStatus = await npmProcess.status();
     npmProcess.close();
     Deno.exit(npmStatus.code);
 }
-
 async function upgrade(_: Arguments)
 {
-    const runOptions: Deno.RunOptions =
-    {
-        cmd: ["deno", "upgrade"],
-        env: { PATH: Deno.env.get("PATH")! }
-    };
-    const process = Deno.run(runOptions);
+    const process = Deno.run({ cmd: ["deno", "upgrade"] });
     const status = await process.status();
     process.close();
     Deno.exit(status.code);
 }
-
 async function cache(_: Arguments)
 {
     const files: string[] = [];
@@ -77,14 +57,10 @@ async function cache(_: Arguments)
 
     const denoRunOptions: Deno.RunOptions =
     {
-        cmd: ["deno", "--unstable", "cache", ...files],
-        env: { PATH: Deno.env.get("PATH")!, DENO_DIR: ".cache/" }
+        cmd: ["deno", "cache", "--unstable", "--import-map", "import-map.json", ...files],
+        env: { DENO_DIR: ".cache/" }
     };
-    const yarnRunOptions: Deno.RunOptions =
-    {
-        cmd: ["yarn", "install"],
-        env: { PATH: Deno.env.get("PATH")! }
-    };
+    const yarnRunOptions: Deno.RunOptions = { cmd: ["yarn", "install"] };
 
     const denoProcess = Deno.run(denoRunOptions);
     const yarnProcess = Deno.run(yarnRunOptions);
@@ -108,12 +84,11 @@ async function bundle(args: Arguments)
         Deno.exit(1);
     }
 
-    await cache(args);
-
     const bundlerAttributes =
     {
         dist: ".dist",
-        env: { PATH: Deno.env.get("PATH")!, DENO_DIR: ".cache/" }
+        importMap: "import-map.json",
+        env: { DENO_DIR: ".cache/" }
     };
     const bundler = new Bundler(bundlerAttributes);
     try { await bundler.bundle({ entry: "client/bundle.tsx", watch: false }); }
@@ -129,8 +104,7 @@ async function bundle(args: Arguments)
             [
                 "yarn", "run", "webpack",
                 "--env", `GRAPHQL_API_ENDPOINT=${args.graphql}`
-            ],
-        env: { PATH: Deno.env.get("PATH")! }
+            ]
     };
     const process = Deno.run(runOptions);
     const status = await process.status();
@@ -139,27 +113,30 @@ async function bundle(args: Arguments)
 }
 async function localhost(_: Arguments)
 {
-    await cache(_);
-    const bundler =
-        new Bundler({ dist: ".dist", env: { DENO_DIR: ".cache/" } });
+    const bundlerAttributes =
+    {
+        dist: ".dist",
+        importMap: "import-map.json",
+        env: { DENO_DIR: ".cache/" }
+    };
+    const bundler = new Bundler(bundlerAttributes);
     const webpackRunOptions: Deno.RunOptions =
     {
         cmd:
             [
                 "yarn", "run", "webpack", "--env",
                 "GRAPHQL_API_ENDPOINT=https://localhost:8443/graphql"
-            ],
-        env: { PATH: Deno.env.get("PATH")! }
+            ]
     };
     const serverRunOptions: Deno.RunOptions =
     {
         cmd:
             [
                 "deno", "run", "--unstable", "--allow-all",
-                "server/daemon.tsx", "--hostname", "localhost", "--tls",
-                "cert/localhost/"
+                "--import-map", "import-map.json", "server/daemon.tsx",
+                "--hostname", "localhost", "--tls", "cert/localhost/"
             ],
-        env: { PATH: Deno.env.get("PATH")!, DENO_DIR: ".cache/" }
+        env: { DENO_DIR: ".cache/" }
     };
 
     await bundler.bundle({ entry: "client/bundle.tsx", watch: false });
@@ -178,7 +155,8 @@ async function remote(args: Arguments)
     const bundlerAttributes =
     {
         dist: ".dist",
-        env: { PATH: Deno.env.get("PATH")!, DENO_DIR: ".cache/" }
+        importMap: "import-map.json",
+        env: { DENO_DIR: ".cache/" }
     };
     const bundler = new Bundler(bundlerAttributes);
     try { await bundler.bundle({ entry: "client/bundle.tsx", watch: false }); }
@@ -197,22 +175,22 @@ async function remote(args: Arguments)
                 "yarn", "run", "webpack", "--env",
                 `GRAPHQL_API_ENDPOINT=https://${domain}/graphql`
             ],
-        env: { PATH: Deno.env.get("PATH")! }
     };
     const upgradeRunOptions: Deno.RunOptions =
     {
         cmd: ["deno", "--unstable", "upgrade", "--version", "1.7.0"],
-        env: { PATH: Deno.env.get("PATH")!, DENO_DIR: ".cache/" }
+        env: { DENO_DIR: ".cache/" }
     };
     const serverRunOptions: Deno.RunOptions =
     {
         cmd:
             [
                 "deno", "run", "--unstable", "--allow-all",
+                "--import-map", "import-map.json",
                 "server/daemon.tsx", "--hostname", "0.0.0.0", "--domain",
                 domain, "--tls", `/etc/letsencrypt/live/${domain}/`
             ],
-        env: { PATH: Deno.env.get("PATH")!, DENO_DIR: ".cache/" }
+        env: { DENO_DIR: ".cache/" }
     };
 
     const webpackProcess = Deno.run(webpackRunOptions);
@@ -237,12 +215,8 @@ async function remote(args: Arguments)
 }
 async function test(_: Arguments)
 {
-    const runOptions: Deno.RunOptions =
-    {
-        cmd: ["deno", "--unstable", "test", "--allow-all", "tests/"],
-        env: { PATH: Deno.env.get("PATH")! }
-    };
-    const process = Deno.run(runOptions);
+    const process =
+        Deno.run({ cmd: ["deno", "test", "--unstable", "--allow-all", "--import-map", "import-map.json", "tests/"] });
     const status = await process.status();
     process.close();
     Deno.exit(status.code);
@@ -251,23 +225,15 @@ async function docker(args: Arguments)
 {
     if (args.prune)
     {
-        const containerRunOptions: Deno.RunOptions =
-        {
-            cmd: ["docker", "container", "prune", "--force"],
-            env: { PATH: Deno.env.get("PATH")! }
-        };
-        const containerProcess = Deno.run(containerRunOptions);
+        const containerProcess =
+            Deno.run({ cmd: ["docker", "container", "prune", "--force"] });
         const containerStatus = await containerProcess.status();
         containerProcess.close();
         if (!containerStatus.success)
             Deno.exit(containerStatus.code);
 
-        const imageRunOptions: Deno.RunOptions =
-        {
-            cmd: ["docker", "container", "prune", "--force"],
-            env: { PATH: Deno.env.get("PATH")! }
-        };
-        const imageProcess = Deno.run(imageRunOptions);
+        const imageProcess =
+            Deno.run({ cmd: ["docker", "container", "prune", "--force"] });
         const imageStatus = await imageProcess.status();
         imageProcess.close();
         if (!imageStatus.success)
@@ -275,10 +241,7 @@ async function docker(args: Arguments)
     }
 
     const buildRunOptions: Deno.RunOptions =
-    {
-        cmd: ["docker", "build", "--tag", "ghostwritten/server", "."],
-        env: { PATH: Deno.env.get("PATH")! }
-    };
+        { cmd: ["docker", "build", "--tag", "ghostwritten/server", "."] };
     const buildProcess = Deno.run(buildRunOptions);
     const buildStatus = await buildProcess.status();
     buildProcess.close();
@@ -291,12 +254,10 @@ async function docker(args: Arguments)
     {
         cmd:
             [
-                "docker", "run", "-itd", "--init", "-p", "443:8443", "-p",
-                "80:8080", "-v", "/etc/letsencrypt/:/etc/letsencrypt/",
-                "ghostwritten/server:latest", ...command.split(" "),
+                "docker", "run", "-it", "--init", "-p", "443:8443", "-p",
+                "80:8080", "ghostwritten/server:latest", ...command.split(" "),
                 "remote", ...devFlag
-            ],
-        env: { PATH: Deno.env.get("PATH")! }
+            ]
     };
 
     const runProcess = Deno.run(runRunOptions);
@@ -317,6 +278,7 @@ yargs.default(Deno.args)
     })
     .command("version", "", {}, function (_: Arguments)
     {
+        Console.log(`${colors.gray("Ghost")}${colors.reset("written")} v1.1.1`);
         Console.log(`${colors.bold("https")}${colors.reset("aurus")} v1.1.2`);
     })
     .command("clean", "", {}, clean)

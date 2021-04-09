@@ -1,2 +1,2 @@
 
-export * from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/Core/Core.tsx";
+export * from "httpsaurus/components/Core";

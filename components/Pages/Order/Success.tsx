@@ -1,5 +1,5 @@
 
-import * as React from "https://esm.sh/react";
+import * as React from "react";
 
 export default function Success()
 {

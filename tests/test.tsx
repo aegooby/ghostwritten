@@ -1,7 +1,7 @@
 
-import * as server from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/server/server.tsx";
-import * as assert from "https://deno.land/std/testing/asserts.ts";
-import * as delay from "https://deno.land/std/async/delay.ts";
+import * as server from "httpsaurus/server";
+import * as assert from "asserts";
+import * as delay from "delay";
 
 import App from "../components/App.tsx";
 

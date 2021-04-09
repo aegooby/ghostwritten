@@ -1,8 +1,8 @@
 
-import * as React from "https://esm.sh/react";
-import * as ReactRouter from "https://esm.sh/react-router-dom";
+import * as React from "react";
+import * as ReactRouter from "react-router";
 
-import * as client from "https://raw.githubusercontent.com/aegooby/httpsaurus/master/client/client.tsx";
+import * as client from "httpsaurus/client";
 
 import App from "../components/App.tsx";
 

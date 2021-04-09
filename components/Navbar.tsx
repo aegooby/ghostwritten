@@ -1,6 +1,6 @@
 
-import * as React from "https://esm.sh/react";
-import * as ReactRouter from "https://esm.sh/react-router-dom";
+import * as React from "react";
+import * as ReactRouter from "react-router";
 
 export default function Navbar()
 {

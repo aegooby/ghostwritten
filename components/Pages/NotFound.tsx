@@ -1,12 +1,19 @@
 
-import * as React from "https://esm.sh/react";
-import * as ReactRouter from "https://esm.sh/react-router-dom";
-import * as ReactHelmet from "https://esm.sh/react-helmet";
-import MediaQuery from "https://esm.sh/react-responsive";
+import * as React from "react";
+import * as ReactHelmet from "react-helmet";
+import MediaQuery from "react-responsive";
 
 import Navbar from "../Navbar.tsx";
 
-export default function NotFound(props: ReactRouter.RouteComponentProps)
+interface Props
+{
+    staticContext:
+    {
+        statusCode: number;
+    };
+}
+
+export default function NotFound(props: Props)
 {
     if (props.staticContext)
         props.staticContext.statusCode = 404;

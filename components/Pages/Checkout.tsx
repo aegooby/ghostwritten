@@ -1,7 +1,7 @@
 
-import * as React from "https://esm.sh/react";
-import * as ReactHelmet from "https://esm.sh/react-helmet";
-import MediaQuery from "https://esm.sh/react-responsive";
+import * as React from "react";
+import * as ReactHelmet from "react-helmet";
+import MediaQuery from "react-responsive";
 
 // import { Token, StripeCheckoutProps } from "https://esm.sh/react-stripe-checkout";
 // import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout";
@@ -9,14 +9,14 @@ import MediaQuery from "https://esm.sh/react-responsive";
 import { GraphQL, throwOnClient } from "../Core/Core.tsx";
 import Navbar from "../Navbar.tsx";
 
-let stripePromise: Promise<Record<string, unknown>> | undefined = undefined;
+// let stripePromise: Promise<Record<string, unknown>> | undefined = undefined;
 
-try { throwOnClient(); }
-catch
-{
-    const Stripe = await import(`https://esm.sh/@stripe/stripe-js?no-check`);
-    stripePromise = Stripe.loadStripe("pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm");
-}
+// try { throwOnClient(); }
+// catch
+// {
+//     const Stripe = await import(`https://esm.sh/@stripe/stripe-js?no-check`);
+//     stripePromise = Stripe.loadStripe("pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm");
+// }
 
 interface Value
 {
@@ -28,10 +28,10 @@ export default function Checkout()
     const client = GraphQL.useClient();
     const [amount, setAmount] = React.useState(0);
 
-    async function onSubmit(event: React.FormEvent<HTMLFormElement>)
+    function onSubmit(event: React.FormEvent<HTMLFormElement>)
     {
         event.preventDefault();
-        const stripe = await stripePromise;
+        // const stripe = await stripePromise;
     }
 
     // const stripeCheckoutProps: StripeCheckoutProps =
