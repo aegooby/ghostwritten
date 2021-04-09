@@ -249,7 +249,8 @@ async function docker(args: Arguments)
         cmd:
             [
                 "docker", "run", "-it", "--init", "-p", "443:8443", "-p",
-                "80:8080", "ghostwritten/server:latest", ...command.split(" "),
+                "80:8080", "-v", "/etc/letsencrypt/:/etc/letsencrypt/",
+                "ghostwritten/server:latest", ...command.split(" "),
                 "remote", ...devFlag
             ]
     };
