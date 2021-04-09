@@ -26,28 +26,21 @@ async function clean(args: Arguments)
     const process = Deno.run(runOptions);
     const status = await process.status();
     process.close();
-    Deno.exit(status.code);
+    return status.code;
 }
 async function install(_: Arguments)
 {
-    const hashProcess = Deno.run({ cmd: ["hash", "yarn"] });
-    const hashStatus = await hashProcess.status();
-    hashProcess.close();
-    if (hashStatus.success)
-        Deno.exit(hashStatus.code);
-
-    const npmProcess =
-        Deno.run({ cmd: ["npm", "install", "--global", "yarn"] });
+    const npmProcess = Deno.run({ cmd: ["npm", "install", "--global", "yarn"] });
     const npmStatus = await npmProcess.status();
     npmProcess.close();
-    Deno.exit(npmStatus.code);
+    return npmStatus.code;
 }
 async function upgrade(_: Arguments)
 {
     const process = Deno.run({ cmd: ["deno", "upgrade"] });
     const status = await process.status();
     process.close();
-    Deno.exit(status.code);
+    return status.code;
 }
 async function cache(_: Arguments)
 {
@@ -71,18 +64,20 @@ async function cache(_: Arguments)
     yarnProcess.close();
 
     if (!denoStatus.success)
-        Deno.exit(denoStatus.code);
+        return denoStatus.code;
     if (!yarnStatus.success)
-        Deno.exit(yarnStatus.code);
-    Deno.exit();
+        return yarnStatus.code;
 }
 async function bundle(args: Arguments)
 {
     if (!args.graphql)
     {
-        console.error(`usage: ${command} bundle --graphql <endpoint>`);
-        Deno.exit(1);
+        Console.error(`usage: ${command} bundle --graphql <endpoint>`);
+        return;
     }
+
+    if (await cache(args))
+        throw new Error("Caching failed");
 
     const bundlerAttributes =
     {
@@ -92,11 +87,7 @@ async function bundle(args: Arguments)
     };
     const bundler = new Bundler(bundlerAttributes);
     try { await bundler.bundle({ entry: "client/bundle.tsx", watch: false }); }
-    catch (error) 
-    {
-        Console.error(error);
-        Deno.exit(1);
-    }
+    catch (error) { throw error; }
 
     const runOptions: Deno.RunOptions =
     {
@@ -109,10 +100,15 @@ async function bundle(args: Arguments)
     const process = Deno.run(runOptions);
     const status = await process.status();
     process.close();
-    Deno.exit(status.code);
+    return status.code;
 }
 async function localhost(_: Arguments)
 {
+    if (await install(_))
+        throw new Error("Installation failed");
+    if (await cache(_))
+        throw new Error("Caching failed");
+
     const bundlerAttributes =
     {
         dist: ".dist",
@@ -151,7 +147,11 @@ async function localhost(_: Arguments)
 }
 async function remote(args: Arguments)
 {
-    await cache(args);
+    if (await install(args))
+        throw new Error("Installation failed");
+    if (await cache(args))
+        throw new Error("Caching failed");
+
     const bundlerAttributes =
     {
         dist: ".dist",
@@ -160,11 +160,7 @@ async function remote(args: Arguments)
     };
     const bundler = new Bundler(bundlerAttributes);
     try { await bundler.bundle({ entry: "client/bundle.tsx", watch: false }); }
-    catch (error) 
-    {
-        Console.error(error);
-        Deno.exit(1);
-    }
+    catch (error) { throw error; }
 
     const domain =
         args.dev ? "dev.ghostwritten.me" : "ghostwritten.me";
@@ -197,21 +193,19 @@ async function remote(args: Arguments)
     const webpackStatus = await webpackProcess.status();
     webpackProcess.close();
     if (!webpackStatus.success)
-        Deno.exit(webpackStatus.code);
+        return webpackStatus.code;
 
     const upgradeProcess = Deno.run(upgradeRunOptions);
     const upgradeStatus = await upgradeProcess.status();
     upgradeProcess.close();
     if (!upgradeStatus.success)
-        Deno.exit(upgradeStatus.code);
+        return upgradeStatus.code;
 
     const serverProcess = Deno.run(serverRunOptions);
     const serverStatus = await serverProcess.status();
     serverProcess.close();
     if (!serverStatus.success)
-        Deno.exit(serverStatus.code);
-
-    Deno.exit();
+        return serverStatus.code;
 }
 async function test(_: Arguments)
 {
@@ -219,7 +213,7 @@ async function test(_: Arguments)
         Deno.run({ cmd: ["deno", "test", "--unstable", "--allow-all", "--import-map", "import-map.json", "tests/"] });
     const status = await process.status();
     process.close();
-    Deno.exit(status.code);
+    return status.code;
 }
 async function docker(args: Arguments)
 {
@@ -230,14 +224,14 @@ async function docker(args: Arguments)
         const containerStatus = await containerProcess.status();
         containerProcess.close();
         if (!containerStatus.success)
-            Deno.exit(containerStatus.code);
+            return containerStatus.code;
 
         const imageProcess =
             Deno.run({ cmd: ["docker", "container", "prune", "--force"] });
         const imageStatus = await imageProcess.status();
         imageProcess.close();
         if (!imageStatus.success)
-            Deno.exit(imageStatus.code);
+            return imageStatus.code;
     }
 
     const buildRunOptions: Deno.RunOptions =
@@ -246,7 +240,7 @@ async function docker(args: Arguments)
     const buildStatus = await buildProcess.status();
     buildProcess.close();
     if (!buildStatus.success)
-        Deno.exit(buildStatus.code);
+        return buildStatus.code;
 
     const devFlag: string[] = args.dev ? ["--dev"] : [];
 
@@ -264,17 +258,14 @@ async function docker(args: Arguments)
     const runStatus = await runProcess.status();
     runProcess.close();
     if (!runStatus.success)
-        Deno.exit(runStatus.code);
-
-    Deno.exit();
+        return runStatus.code;
 }
 
 yargs.default(Deno.args)
     .help(false)
     .command("*", "", {}, function (_: Arguments)
     {
-        Console.log(`usage: ${command} <command> [options]`);
-        Deno.exit(1);
+        Console.error(`usage: ${command} <command> [options]`);
     })
     .command("version", "", {}, function (_: Arguments)
     {
@@ -293,6 +284,5 @@ yargs.default(Deno.args)
     .command("help", "", {}, function (_: Arguments)
     {
         Console.log(`usage: ${command} <command> [options]`);
-        Deno.exit();
     })
     .parse();
