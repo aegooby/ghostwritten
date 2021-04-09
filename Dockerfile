@@ -13,5 +13,5 @@ WORKDIR /ghostwritten
 RUN curl -fsSL https://deno.land/x/install/install.sh | sh
 
 # Server
-RUN deno run --unstable --allow-all scripts.ts install
-RUN deno run --unstable --allow-all scripts.ts cache
+# RUN deno run --unstable --allow-all scripts.ts install
+# RUN deno run --unstable --allow-all scripts.ts cache
