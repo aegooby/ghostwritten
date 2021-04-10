@@ -217,6 +217,12 @@ async function test(_: Arguments)
 }
 async function docker(args: Arguments)
 {
+    if (!args.target)
+    {
+        Console.error(`usage: ${command} docker --target <value>`);
+        return;
+    }
+
     if (args.prune)
     {
         const containerProcess =
@@ -235,31 +241,12 @@ async function docker(args: Arguments)
     }
 
     const buildRunOptions: Deno.RunOptions =
-        { cmd: ["docker", "build", "--tag", "ghostwritten/server", "."] };
+        { cmd: ["docker", "build", "--target", args.target, "--tag", "ghostwritten/server", "."] };
     const buildProcess = Deno.run(buildRunOptions);
     const buildStatus = await buildProcess.status();
     buildProcess.close();
     if (!buildStatus.success)
         return buildStatus.code;
-
-    const devFlag: string[] = args.dev ? ["--dev"] : [];
-
-    const runRunOptions: Deno.RunOptions =
-    {
-        cmd:
-            [
-                "docker", "run", "-itd", "--init", "-p", "443:8443", "-p",
-                "80:8080", "-v", "/etc/letsencrypt/:/etc/letsencrypt/",
-                "ghostwritten/server:latest", ...command.split(" "),
-                "remote", ...devFlag
-            ]
-    };
-
-    const runProcess = Deno.run(runRunOptions);
-    const runStatus = await runProcess.status();
-    runProcess.close();
-    if (!runStatus.success)
-        return runStatus.code;
 }
 
 yargs.default(Deno.args)
