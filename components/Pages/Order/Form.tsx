@@ -1,7 +1,8 @@
 
 import * as React from "react";
 
-import { GraphQL } from "../../Core/Core.tsx";
+import { GraphQL } from "httpsaurus/components/Core";
+import { tag as graphql } from "httpsaurus/graphql";
 
 type EssayType = "unknown" | "highschool" | "college";
 
@@ -28,10 +29,7 @@ export default function Form(props: Props)
         event.preventDefault();
 
         const query =
-            `
-                mutation SendEmail($email: Email)
-                { sendEmail(email: $email) { success } }
-            `;
+            graphql`mutation SendEmail($email: Email){ sendEmail(email: $email) { success } }`;
 
         const referralText = referral === "" ?
             `No referral code` :

@@ -13,6 +13,7 @@
         "stripe": "https://jspm.dev/stripe",
         "httpsaurus/server": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/server/server.tsx",
         "httpsaurus/client": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/client/client.tsx",
+        "httpsaurus/graphql": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/graphql/graphql.tsx",
         "httpsaurus/components/Core": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/Core/Core.tsx",
         "http": "https://deno.land/std/http/mod.ts",
         "path": "https://deno.land/std/path/mod.ts",

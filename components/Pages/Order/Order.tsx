@@ -4,7 +4,7 @@ import * as ReactRouter from "react-router";
 import * as ReactHelmet from "react-helmet";
 import MediaQuery from "react-responsive";
 
-import { GraphQL, Console } from "../../Core/Core.tsx";
+import { GraphQL, Console } from "httpsaurus/components/Core";
 import Form from "./Form.tsx";
 import Success from "./Success.tsx";
 import Failure from "./Failure.tsx";

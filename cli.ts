@@ -147,6 +147,11 @@ async function localhost(_: Arguments)
 }
 async function remote(args: Arguments)
 {
+    if (!args.target || (args.target !== "dev" && args.target !== "live"))
+    {
+        Console.error(`usage: ${command} remote --target <dev | live>`);
+        return;
+    }
     if (await install(args))
         throw new Error("Installation failed");
     if (await cache(args))
@@ -163,7 +168,7 @@ async function remote(args: Arguments)
     catch (error) { throw error; }
 
     const domain =
-        args.dev ? "dev.ghostwritten.me" : "ghostwritten.me";
+        (args.target === "dev") ? "dev.ghostwritten.me" : "ghostwritten.me";
     const webpackRunOptions: Deno.RunOptions =
     {
         cmd:
