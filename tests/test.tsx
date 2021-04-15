@@ -1,7 +1,7 @@
 
-import * as server from "httpsaurus/server";
-import * as assert from "std/asserts";
-import * as delay from "std/delay";
+import * as server from "@httpsaurus/server";
+import * as assert from "@std/asserts";
+import * as delay from "@std/delay";
 
 import App from "../components/App.tsx";
 

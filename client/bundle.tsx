@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as ReactRouter from "react-router";
 
-import * as client from "httpsaurus/client";
+import * as client from "@httpsaurus/client";
 
 import App from "../components/App.tsx";
 

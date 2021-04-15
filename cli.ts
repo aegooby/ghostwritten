@@ -6,7 +6,7 @@ import * as fs from "https://deno.land/std/fs/mod.ts";
 import * as path from "https://deno.land/std/path/mod.ts";
 
 Deno.env.set("DENO_DIR", ".cache/");
-const { Console, Bundler } = await import("httpsaurus/server");
+const { Console, Bundler } = await import("@httpsaurus/server");
 
 const thisFile = path.basename(path.fromFileUrl(Deno.mainModule));
 const command = `deno run --unstable --import-map import-map.json --allow-all ${thisFile}`;

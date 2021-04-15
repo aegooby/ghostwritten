@@ -1,8 +1,8 @@
 
 import * as React from "react";
 
-import { GraphQL } from "httpsaurus/components/Core";
-import { tag as graphql } from "httpsaurus/graphql";
+import { GraphQL } from "@httpsaurus/components/Core";
+import { tag as graphql } from "@httpsaurus/graphql";
 
 type EssayType = "unknown" | "highschool" | "college";
 

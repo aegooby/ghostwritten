@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactRouter from "react-router";
 
-import { GraphQL } from "httpsaurus/components/Core";
+import { GraphQL } from "@httpsaurus/components/Core";
 
 import Index from "./Pages/Index.tsx";
 import Order from "./Pages/Order/Order.tsx";

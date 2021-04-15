@@ -1,5 +1,5 @@
 
-import * as server from "httpsaurus/server";
+import * as server from "@httpsaurus/server";
 
 import App from "../components/App.tsx";
 

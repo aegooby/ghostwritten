@@ -6,7 +6,7 @@ import MediaQuery from "react-responsive";
 // import { Token, StripeCheckoutProps } from "https://esm.sh/react-stripe-checkout";
 // import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout";
 
-import { GraphQL, throwOnClient } from "httpsaurus/components/Core";
+import { GraphQL, throwOnClient } from "@httpsaurus/components/Core";
 import Navbar from "../Navbar.tsx";
 
 let stripePromise: Promise<Record<string, unknown>> | undefined = undefined;
