@@ -57,15 +57,15 @@ export default function Index()
                         </p>
                         <h1>Why Ghostwritten?</h1>
                         <p>
-                            Many essay writing services employ people who
-                            have not touched a college or high school essay
+                            Many essay writing services are staffed by people
+                            who have not touched a college or high school essay
                             in years, and are out of touch with modern
                             curriculums.
                         </p>
                         <p>
-                            Others are staffed by unreliable freelancers who
-                            face no reprecussions for conducting fraud, scams,
-                            or rating manipulation.
+                            Others employ unreliable freelancers who face no
+                            reprecussions for conducting fraud, scams, or rating
+                            manipulation.
                         </p>
                         <p>
                             When you order a Ghostwritten essay, you are
@@ -73,7 +73,7 @@ export default function Index()
                             experience with your requirements and curriculum,
                             including IB, AP, various college programs, and many
                             more.
-                            </p>
+                        </p>
                         <p className="disclaimer">
                             <em>
                                 Disclaimer: any work provided by Ghostwritten is
