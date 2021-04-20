@@ -1,6 +1,5 @@
 
 import * as server from "@httpsaurus/server";
-import * as assert from "@std/asserts";
 import * as async from "@std/async";
 
 import App from "../components/App.tsx";
