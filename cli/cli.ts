@@ -3,7 +3,6 @@ import * as yargs from "@yargs/yargs";
 import { Arguments } from "@yargs/types";
 import * as colors from "@std/colors";
 import * as fs from "@std/fs";
-import * as path from "@std/path";
 import { Console, Bundler } from "@httpsaurus/server";
 
 Deno.env.set("DENO_DIR", ".cache/");
