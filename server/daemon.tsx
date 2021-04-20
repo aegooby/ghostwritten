@@ -3,12 +3,12 @@ import * as server from "@httpsaurus/server";
 
 import App from "../components/App.tsx";
 
-import * as yargs from "yargs";
+import * as yargs from "@yargs/yargs";
 import * as dotenv from "dotenv";
 
 import * as sendgrid from "sendgrid";
 // @deno-types="https://raw.githubusercontent.com/aegooby/types/master/stripe/index.d.ts";
-import Stripe from "stripe";
+// import Stripe from "stripe";
 
 const args = yargs.default(Deno.args)
     .usage("usage: $0 server/daemon.tsx --hostname <host> [--domain <name>] [--tls <path>]")
@@ -74,9 +74,9 @@ export class Resolvers
 
 try
 {
-    const serverAttributes =
+    const serverAttributes: server.ServerAttributes =
     {
-        protocol: args.tls ? "https" as const : "http" as const,
+        secure: !!args.tls,
         domain: args.domain,
         routes:
         {
@@ -84,9 +84,9 @@ try
             "/robots.txt": "/static/robots.txt",
         },
         hostname: args.hostname,
-        httpPort: 8080,
+        port: 8080,
 
-        httpsPort: 8443,
+        portTls: 8443,
         cert: args.tls,
 
         App: App,
