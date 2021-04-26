@@ -3,7 +3,7 @@ import * as yargs from "@yargs/yargs";
 import { Arguments } from "@yargs/types";
 import * as colors from "@std/colors";
 import * as fs from "@std/fs";
-import { Console, Bundler } from "@httpsaurus/server";
+import { Console, Bundler, version as serverVersion } from "@httpsaurus/server";
 
 Deno.env.set("DENO_DIR", ".cache/");
 function createCommand(): [string[], string]
@@ -37,7 +37,7 @@ function all(_: Arguments)
 function version(_: Arguments)
 {
     Console.log(`${colors.gray("Ghost")}${colors.reset("written")} v2.0.11`);
-    Console.log(`${colors.bold("https")}${colors.reset("aurus")} v2.0.11`);
+    Console.log(`${colors.bold("https")}${colors.reset("aurus")} ${serverVersion.string()}`);
 }
 async function clean(args: Arguments)
 {
