@@ -9,15 +9,6 @@ import MediaQuery from "react-responsive";
 import { GraphQL, throwOnClient } from "@httpsaurus/components/Core";
 import Navbar from "../Navbar.tsx";
 
-let stripePromise: Promise<Record<string, unknown>> | undefined = undefined;
-
-try { throwOnClient(); }
-catch
-{
-    const Stripe = await import(`https://esm.sh/@stripe/stripe-js?no-check`);
-    stripePromise = Stripe.loadStripe("pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm");
-}
-
 interface Value
 {
     value: string;
@@ -31,7 +22,12 @@ export default function Checkout()
     async function onSubmit(event: React.FormEvent<HTMLFormElement>)
     {
         event.preventDefault();
-        const stripe = await stripePromise;
+        try { throwOnClient(); }
+        catch
+        {
+            const Stripe = await import(`https://esm.sh/@stripe/stripe-js?no-check`);
+            await Stripe.loadStripe("pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm");
+        }
     }
 
     // const stripeCheckoutProps: StripeCheckoutProps =
