@@ -71,6 +71,9 @@ async function remote(args: Arguments)
     if (await cache(args))
         throw new Error("Caching failed");
 
+    const domain =
+        (args.target === "dev") ? "dev.ghostwritten.me" : "ghostwritten.me";
+
     const snowpackRunOptions: Deno.RunOptions =
     {
         cmd:
@@ -92,7 +95,7 @@ async function remote(args: Arguments)
                 "deno", "run", "--unstable", "--allow-all",
                 "--import-map", "import-map.json",
                 "server/daemon.tsx", "--hostname", "0.0.0.0",
-                "--tls", "cert/0.0.0.0"
+                "--tls", `/etc/letsencrypt/live/${domain}/`
             ],
         env: { DENO_DIR: ".cache/" }
     };
