@@ -79,7 +79,7 @@ async function remote(args: Arguments)
         cmd:
             [
                 "yarn", "run", "snowpack", "--config",
-                `config/remote-${args.target}.snowpack.json`, "build"
+                `config/remote-${args.target}.snowpack.js`, "build"
             ],
     };
     const snowpackProcess = Deno.run(snowpackRunOptions);
