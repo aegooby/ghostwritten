@@ -5,15 +5,12 @@
 # Server
 .cache/
 dist/
+_snowpack/
 public/**/*.gz
 remote.pem
 
 # Build
 build/
-
-# HTTPS
-*.key
-*.crt
 
 # Logs
 logs/

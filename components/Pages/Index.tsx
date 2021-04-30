@@ -1,6 +1,6 @@
 
 import * as React from "react";
-import * as ReactRouter from "react-router";
+import * as ReactRouter from "react-router-dom";
 import * as ReactHelmet from "react-helmet";
 import MediaQuery from "react-responsive";
 

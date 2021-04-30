@@ -1,10 +1,10 @@
 
 import * as React from "react";
-import * as ReactRouter from "react-router";
+import * as ReactRouter from "react-router-dom";
 import * as ReactHelmet from "react-helmet";
 import MediaQuery from "react-responsive";
 
-import { GraphQL, Console } from "@httpsaurus/components/Core";
+import { GraphQL, Console } from "../../../components/Core/Core.tsx";
 import Form from "./Form.tsx";
 import Success from "./Success.tsx";
 import Failure from "./Failure.tsx";
@@ -125,7 +125,7 @@ export default function Order(props: Props)
             body = <Failure />;
             break;
         case Status.error:
-            return <ReactRouter.Redirect push to="/internalerror" />;
+            return <ReactRouter.Navigate to="/internalerror" />;
     }
 
     const element =
