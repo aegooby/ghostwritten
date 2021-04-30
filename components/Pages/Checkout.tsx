@@ -6,7 +6,7 @@ import MediaQuery from "react-responsive";
 // import { Token, StripeCheckoutProps } from "https://esm.sh/react-stripe-checkout";
 // import StripeCheckout from "https://cdn.skypack.dev/react-stripe-checkout";
 
-import { GraphQL, throwOnClient } from "@httpsaurus/components/Core";
+import { GraphQL, throwOnClient } from "../Core/Core.tsx";
 import Navbar from "../Navbar.tsx";
 
 interface Value
@@ -25,7 +25,7 @@ export default function Checkout()
         try { throwOnClient(); }
         catch
         {
-            const Stripe = await import(`https://esm.sh/@stripe/stripe-js?no-check`);
+            const Stripe = await import("@stripe/stripe-js");
             await Stripe.loadStripe("pk_test_51IPELvBCMz7QpSOWDOXR1BzczWDxi6ZqkJtiE6MN3grVjhk7L512MLB1ZSDwmRv1GNQbU2Mpnfo2SSCwNvxzr8mX00ZbZlstKm");
         }
     }

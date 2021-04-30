@@ -3,15 +3,15 @@
         "react": "https://esm.sh/react",
         "react-dom": "https://esm.sh/react-dom",
         "react-dom/server": "https://esm.sh/react-dom/server",
-        "react-router": "https://esm.sh/react-router-dom",
+        "react-router-dom": "https://esm.sh/react-router-dom@next?no-check",
+        "react-router-dom/server": "https://esm.sh/react-router-dom@next/server?no-check",
         "react-helmet": "https://esm.sh/react-helmet",
         "react-responsive": "https://esm.sh/react-responsive",
         "sendgrid": "https://deno.land/x/sendgrid@0.0.3/mod.ts",
         "stripe": "https://jspm.dev/stripe",
+        "@stripe/stripe-js": "https://esm.sh/@stripe/stripe-js?no-check",
+        "@httpsaurus/cli": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/cli/cli.ts",
         "@httpsaurus/server": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/server/server.tsx",
-        "@httpsaurus/client": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/client/client.tsx",
-        "@httpsaurus/graphql": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/graphql/graphql.tsx",
-        "@httpsaurus/components/Core": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/components/Core/Core.tsx",
         "@std/path": "https://deno.land/std/path/mod.ts",
         "@std/fs": "https://deno.land/std/fs/mod.ts",
         "@std/colors": "https://deno.land/std/fmt/colors.ts",
@@ -24,6 +24,7 @@
         "denoflate": "https://deno.land/x/denoflate/mod.ts",
         "@yargs/types": "https://deno.land/x/yargs/deno-types.ts",
         "@yargs/yargs": "https://deno.land/x/yargs/deno.ts",
+        "opener": "https://deno.land/x/opener/mod.ts",
         "dotenv": "https://deno.land/x/dotenv/mod.ts"
     }
 }

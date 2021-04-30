@@ -7,7 +7,7 @@ import Navbar from "../Navbar.tsx";
 
 interface Props
 {
-    staticContext:
+    staticContext?:
     {
         statusCode: number;
     };
