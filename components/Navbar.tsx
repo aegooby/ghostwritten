@@ -13,8 +13,9 @@ export default function Navbar()
                 </ReactRouter.Link>
                 {/** @todo Restore links to About and Contact */}
                 <div className="links">
-                    {/* <a href="#">About</a> */}
-                    {/* <a href="#">Contact</a> */}
+                    <ReactRouter.Link to="/support">
+                        Support
+                    </ReactRouter.Link>
                 </div>
             </nav>
         </div>;

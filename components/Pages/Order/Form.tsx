@@ -87,7 +87,7 @@ export default function Form(props: Props)
     const element =
         <div className="form-wrapper">
             <form className="order" onSubmit={onSubmit}>
-                <h1><strong>Essay type</strong><span className="info">(required)</span></h1>
+                <h1><strong>Essay type</strong><span className="info required">(required)</span></h1>
                 <div className="form-item-wrapper">
                     <input
                         type="radio" id="radio-highschool" name="essay-type" required
@@ -100,7 +100,7 @@ export default function Form(props: Props)
                     />
                     <label htmlFor="radio-college">College<br /> Level</label>
                 </div>
-                <h1><strong>Details</strong><span className="info">(required)</span></h1>
+                <h1><strong>Details</strong><span className="info required">(required)</span></h1>
                 <div className="form-item-wrapper">
                     <textarea
                         wrap="soft" name="details" required
@@ -109,7 +109,7 @@ export default function Form(props: Props)
                         onChange={function (event) { setDetails((event.target as (typeof event.target & Value)).value); }}
                     />
                 </div>
-                <h1><strong>Email</strong><span className="info">(required)</span></h1>
+                <h1><strong>Email</strong><span className="info required">(required)</span></h1>
                 <div className="form-item-wrapper">
                     <input
                         type="text" id="email" name="email" required

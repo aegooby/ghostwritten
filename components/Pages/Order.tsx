@@ -4,11 +4,11 @@ import * as ReactRouter from "react-router-dom";
 import * as ReactHelmet from "react-helmet";
 import MediaQuery from "react-responsive";
 
-import { GraphQL, Console } from "../../../components/Core/Core.tsx";
-import Form from "./Form.tsx";
-import Success from "./Success.tsx";
-import Failure from "./Failure.tsx";
-import Navbar from "../../Navbar.tsx";
+import { GraphQL, Console, Suspense } from "../../components/Core/Core.tsx";
+import Form from "./Order/Form.tsx";
+const Success = React.lazy(() => import("./Order/Success.tsx"));
+const Failure = React.lazy(() => import("./Order/Failure.tsx"));
+import Navbar from "../Navbar.tsx";
 
 enum Status
 {
@@ -57,7 +57,7 @@ function Loading()
 
 interface Props
 {
-    referral: string | undefined;
+    referral?: string | undefined;
 }
 
 export default function Order(props: Props)
@@ -118,11 +118,11 @@ export default function Order(props: Props)
             break;
         case Status.success:
             header = <Header gray={"Order"} black={<><strong>confirmed</strong>.</>} />;
-            body = <Success />;
+            body = <Suspense fallback={<Loading />}><Success /></Suspense>;
             break;
         case Status.failure:
             header = <Header gray={"Order"} black={<><strong>failed!</strong></>} />;
-            body = <Failure />;
+            body = <Suspense fallback={<Loading />}><Failure /></Suspense>;
             break;
         case Status.error:
             return <ReactRouter.Navigate to="/internalerror" />;

@@ -7,20 +7,22 @@ import Navbar from "../Navbar.tsx";
 
 interface Props
 {
+    code: number;
+    text: string;
     staticContext?:
     {
         statusCode: number;
     };
 }
 
-export default function NotFound(props: Props)
+export default function Error(props: Props)
 {
     if (props.staticContext)
-        props.staticContext.statusCode = 404;
+        props.staticContext.statusCode = props.code;
     const element: React.ReactElement =
         <>
             <ReactHelmet.Helmet>
-                <title>Not Found | Ghostwritten</title>
+                <title>Ghostwritten | {props.text}</title>
             </ReactHelmet.Helmet>
             <div className="wrapper">
                 <div className="header">
@@ -28,10 +30,10 @@ export default function NotFound(props: Props)
                     <div className="title-wrapper">
                         <h1>
                             <strong>
-                                <span className="ghost-gray">404</span>
+                                <span className="ghost-gray">{props.code}</span>
                                 <MediaQuery maxWidth={399}><br /></MediaQuery>
                                 <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
-                                <span>Not Found</span>
+                                <span>{props.text}</span>
                             </strong>
                         </h1>
                     </div>

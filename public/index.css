@@ -352,6 +352,7 @@ form
 form h1
 {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     text-align: justify;
     font-size: 25px;
@@ -372,6 +373,10 @@ form h1 span.info
     color: #888;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+}
+form h1 span.info.required
+{
+    color: #db2316;
 }
 
 form.order .form-item-wrapper
