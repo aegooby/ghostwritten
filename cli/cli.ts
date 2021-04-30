@@ -95,7 +95,7 @@ async function remote(args: Arguments)
                 "deno", "run", "--unstable", "--allow-all",
                 "--import-map", "import-map.json",
                 "server/daemon.tsx", "--hostname", "0.0.0.0",
-                "--tls", `/etc/letsencrypt/live/${domain}/`
+                "--domain", domain, "--tls", `/etc/letsencrypt/live/${domain}/`
             ],
         env: { DENO_DIR: ".cache/" }
     };
