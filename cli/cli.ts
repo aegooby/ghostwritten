@@ -106,7 +106,7 @@ async function remote(args: Arguments)
         {
             const controller = new AbortController();
             async.delay(5000).then(function () { controller.abort(); });
-            const response = await fetch(`https://${domain}/`, { signal: controller.signal });
+            const response = await fetch(`https://0.0.0.0:8443/`, { signal: controller.signal });
             if (!response.ok)
                 throw new Error(`${domain} is down`);
             await async.delay(5000);
