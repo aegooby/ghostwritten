@@ -113,17 +113,31 @@ async function remote(args: Arguments)
             await async.delay(5000);
         }
     };
-    // while (true)
-    // {
-    const serverProcess = Deno.run(serverRunOptions);
-    try 
+    const ready = async function (): Promise<void>
     {
-        await async.delay(15000);
-        await Promise.race([serverProcess.status(), fetcher()]);
+        while (true)
+        {
+            try
+            {
+                await async.delay(750);
+                const init = { headers: { "x-http-only": "" } };
+                await fetch(`http://${domain}:8080/`, init);
+                return;
+            }
+            catch { undefined; }
+        }
+    };
+    while (true)
+    {
+        const serverProcess = Deno.run(serverRunOptions);
+        try
+        {
+            await ready();
+            await Promise.race([serverProcess.status(), fetcher()]);
+        }
+        catch (error) { Console.log(error); }
+        serverProcess.close();
     }
-    catch (error) { Console.log(error); }
-    serverProcess.close();
-    // }
 }
 async function test(_: Arguments)
 {
