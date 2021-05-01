@@ -107,7 +107,7 @@ async function remote(args: Arguments)
             const controller = new AbortController();
             async.delay(5000).then(function () { controller.abort(); });
             const init = { signal: controller.signal };
-            const response = await fetch(`https://github.com/`, init);
+            const response = await fetch(`https://${domain}/`, init);
             if (!response.ok)
                 throw new Error(`${domain} is down`);
             await async.delay(5000);
@@ -118,7 +118,7 @@ async function remote(args: Arguments)
     const serverProcess = Deno.run(serverRunOptions);
     try 
     {
-        await async.delay(5000);
+        await async.delay(15000);
         await Promise.race([serverProcess.status(), fetcher()]);
     }
     catch (error) { Console.log(error); }
