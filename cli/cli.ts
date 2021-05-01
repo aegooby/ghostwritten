@@ -116,6 +116,7 @@ async function remote(args: Arguments)
         const serverProcess = Deno.run(serverRunOptions);
         try 
         {
+            await async.delay(10000);
             const promises = [serverProcess.status(), fetcher()];
             await Promise.race(promises);
         }
