@@ -100,13 +100,14 @@ async function remote(args: Arguments)
             ],
         env: { DENO_DIR: ".cache/" }
     };
-    const fetcher = async function ()
+    const fetcher = async function (): Promise<never>
     {
         while (true)
         {
             const controller = new AbortController();
             async.delay(5000).then(function () { controller.abort(); });
-            const response = await fetch(`https://localhost:8443/`, { signal: controller.signal });
+            const init = { signal: controller.signal };
+            const response = await fetch(`https://${domain}/`, init);
             if (!response.ok)
                 throw new Error(`${domain} is down`);
             await async.delay(5000);
@@ -117,9 +118,8 @@ async function remote(args: Arguments)
     const serverProcess = Deno.run(serverRunOptions);
     try 
     {
-        await async.delay(10000);
-        const promises = [serverProcess.status(), fetcher()];
-        await Promise.race(promises);
+        await async.delay(5000);
+        await Promise.race([serverProcess.status(), fetcher()]);
     }
     catch (error) { Console.log(error); }
     serverProcess.close();
