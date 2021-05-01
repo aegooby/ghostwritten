@@ -2,7 +2,7 @@
 import * as React from "react";
 
 import { GraphQL } from "../../Core/Core.tsx";
-import { tag as graphql } from "../../../graphql/graphql.tsx";
+import graphql from "../../../graphql/graphql.tsx";
 
 type EssayType = "unknown" | "highschool" | "college";
 
