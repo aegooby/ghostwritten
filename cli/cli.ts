@@ -2,6 +2,7 @@
 import * as yargs from "@yargs/yargs";
 import { Arguments } from "@yargs/types";
 import * as colors from "@std/colors";
+import * as async from "@std/async";
 
 import { Console, version } from "@httpsaurus/server";
 import * as cli from "@httpsaurus/cli";
@@ -99,10 +100,28 @@ async function remote(args: Arguments)
             ],
         env: { DENO_DIR: ".cache/" }
     };
-    const serverProcess = Deno.run(serverRunOptions);
-    const serverStatus = await serverProcess.status();
-    serverProcess.close();
-    return serverStatus.code;
+    const fetcher = async function ()
+    {
+        while (true)
+        {
+            await async.delay(5000);
+            const promises = [fetch(`https://${domain}/`), async.delay(5000)];
+            const result = await Promise.race(promises);
+            if (!(result instanceof Response) || !(result as Response).ok)
+                throw new Error(`${domain} is down`);
+        }
+    };
+    while (true)
+    {
+        const serverProcess = Deno.run(serverRunOptions);
+        try 
+        {
+            const promises = [serverProcess.status(), fetcher()];
+            await Promise.race(promises);
+        }
+        catch { undefined; }
+        serverProcess.close();
+    }
 }
 async function test(_: Arguments)
 {
