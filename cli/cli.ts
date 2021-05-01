@@ -110,6 +110,7 @@ async function remote(args: Arguments)
             const response = await fetch(`https://${domain}:8443/`, init);
             if (!response.ok)
                 throw new Error(`${domain} is down`);
+            Console.log("check(): server is up", Console.timestamp);
             await async.delay(5000);
         }
     };
