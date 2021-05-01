@@ -133,6 +133,7 @@ async function remote(args: Arguments)
         try
         {
             await ready();
+            Console.success("fetch(): server is ready");
             await Promise.race([serverProcess.status(), fetcher()]);
         }
         catch (error) { Console.log(error); }
