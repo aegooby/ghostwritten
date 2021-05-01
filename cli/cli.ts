@@ -104,16 +104,12 @@ async function remote(args: Arguments)
     {
         while (true)
         {
-            await async.delay(5000);
-            const delay = async function (time: number)
-            {
-                await async.delay(time);
-                throw new Error("Timeout");
-            };
-            const promises = [fetch(`https://${domain}/`), delay(5000)];
-            const result = await Promise.race(promises);
-            if (!result.ok)
+            const controller = new AbortController();
+            async.delay(5000).then(function () { controller.abort(); });
+            const response = await fetch(`https://${domain}/`, { signal: controller.signal });
+            if (!response.ok)
                 throw new Error(`${domain} is down`);
+            await async.delay(5000);
         }
     };
     // while (true)
