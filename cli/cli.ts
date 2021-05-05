@@ -89,6 +89,7 @@ async function remote(args: Arguments)
     if (!snowpackStatus.success)
         return snowpackStatus.code;
 
+    /** @todo Add Deno TLS. */
     const serverRunOptions: Deno.RunOptions =
     {
         cmd:
@@ -96,7 +97,7 @@ async function remote(args: Arguments)
                 "deno", "run", "--unstable", "--allow-all",
                 "--import-map", "import-map.json",
                 "server/daemon.tsx", "--hostname", "0.0.0.0",
-                "--domain", domain, "--tls", `/etc/letsencrypt/live/${domain}/`
+                "--domain", domain, // "--tls", `/etc/letsencrypt/live/${domain}/`
             ],
         env: { DENO_DIR: ".cache/" }
     };
@@ -110,7 +111,7 @@ async function remote(args: Arguments)
             const response = await fetch(`https://${domain}:8443/`, init);
             if (!response.ok)
                 throw new Error(`${domain} is down`);
-            Console.log("fetch(): server is up", Console.timestamp);
+            Console.log("fetch(): server is up", { time: true });
             await async.delay(30000);
         }
     };
@@ -134,10 +135,12 @@ async function remote(args: Arguments)
         try
         {
             await ready();
-            Console.success("fetch(): server is ready", Console.timestamp);
-            await Promise.race([serverProcess.status(), fetcher()]);
+            Console.success("fetch(): server is ready", { time: true });
+            /** @todo See if fetcher is needed for Deno TLS. */
+            // await Promise.race([serverProcess.status(), fetcher()]);
+            await serverProcess.status();
         }
-        catch { Console.error("fetch(): server is down, restarting", Console.timestamp); }
+        catch { Console.error("fetch(): server is down, restarting", { time: true }); }
         serverProcess.close();
     }
 }
