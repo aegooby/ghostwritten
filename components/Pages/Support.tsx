@@ -1,44 +1,29 @@
 
 import * as React from "react";
-import * as ReactRouter from "react-router-dom";
-import * as ReactHelmet from "react-helmet";
-import MediaQuery from "react-responsive";
 
-import Navbar from "../Navbar.tsx";
+import Footer from "../Footer.tsx";
+import Header from "../Header.tsx";
+import Page from "../Page.tsx";
 
 export default function Index()
 {
-    const element: React.ReactElement =
-        <>
-            <ReactHelmet.Helmet>
-                <title>Ghostwritten | Support</title>
-            </ReactHelmet.Helmet>
-            <div className="wrapper">
-                <div className="header">
-                    <Navbar />
-                    <div className="title-wrapper">
-                        <h1><strong><span><span className="ghost-gray">Ghost</span>written</span></strong></h1>
-                        <h2>
-                            <span className="ghost-gray">Contact</span>&nbsp;<strong>us</strong>.
-                        </h2>
-                    </div>
-                </div>
-                <div className="page">
-                    <div className="main-text">
-                        <h1>We're here to help</h1>
-                        <p>
-                            We aim to deliver the best quality work and service
-                            to our customers. If you are dissatisfied with your
-                            Ghostwritten experience, or experiencing issues with
-                            the website, don't hesitate to reach out to us
-                            at <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a> and
-                            our support team will do our best to help you
-                            immediately.
+    const email = <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a>;
+    const content: React.ReactElement =
+        <div className="wrapper">
+            <Header h2Gray="Contact" h2Black={<><strong>us</strong>.</>} />
+            <div className="page">
+                <div className="main-text">
+                    <h1>We're here to help</h1>
+                    <p>
+                        We aim to provide the best for our customers. If you
+                        were not satisfied with your experience, or if you
+                        are having issues with the website, feel free to reach
+                            out to us via email at {email} and our support team
+                            will do our best to help you immediately.
                         </p>
-                    </div>
-                    <p className="copyinfo">© 2021 Ghostwritten</p>
                 </div>
-            </div >
-        </>;
-    return element;
+            </div>
+            <Footer />
+        </div >;
+    return <Page helmet={<title>Ghostwritten | Support</title>} content={content} />;
 }

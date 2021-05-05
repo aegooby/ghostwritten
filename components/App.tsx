@@ -8,6 +8,9 @@ import Support from "./Pages/Support.tsx";
 import Order from "./Pages/Order.tsx";
 import Checkout from "./Pages/Checkout.tsx";
 import Error from "./Pages/Error.tsx";
+import Privacy from "./Pages/Privacy.tsx";
+import Terms from "./Pages/Terms.tsx";
+import License from "./Pages/License.tsx";
 
 interface Props
 {
@@ -21,6 +24,9 @@ export default function App(props: Props)
             <ReactRouter.Routes>
                 <ReactRouter.Route path="/" element={<Index />} />
                 <ReactRouter.Route path="/support" element={<Support />} />
+                <ReactRouter.Route path="/privacy" element={<Privacy />} />
+                <ReactRouter.Route path="/terms" element={<Terms />} />
+                <ReactRouter.Route path="/license" element={<License />} />
                 <ReactRouter.Route path="/referral/ptembo" element={<Order referral="ptembo" />} />
                 <ReactRouter.Route path="/referral/yqassem" element={<Order referral="yqassem" />} />
                 <ReactRouter.Route path="/referral/wmohammed" element={<Order referral="wmohammed" />} />

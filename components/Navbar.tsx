@@ -8,14 +8,12 @@ export default function Navbar()
         <div className="nav-wrapper">
             <nav>
                 <ReactRouter.Link to="/" className="home">
-                    <img className="logo" src="/logo.svg" height={50} width={30} alt="logo" />
-                                Home
-                </ReactRouter.Link>
-                {/** @todo Restore links to About and Contact */}
+                    <img className="logo" src="/logo.svg" height={50} width={30} alt="logo" />Home
+                    </ReactRouter.Link>
                 <div className="links">
                     <ReactRouter.Link to="/support">
                         Support
-                    </ReactRouter.Link>
+                        </ReactRouter.Link>
                 </div>
             </nav>
         </div>;

@@ -32,25 +32,25 @@ function createCommand(): [string[], string]
 }
 const [args, command] = createCommand();
 
-function all(_: Arguments)
+function all(args: Arguments)
 {
-    return cli.all(_);
+    return cli.all(args);
 }
 async function clean(args: Arguments)
 {
     return await cli.clean(args);
 }
-async function install(_: Arguments)
+async function install(args: Arguments)
 {
-    return await cli.install(_);
+    return await cli.install(args);
 }
-async function upgrade(_: Arguments)
+async function upgrade(args: Arguments)
 {
-    return await cli.upgrade(_);
+    return await cli.upgrade(args);
 }
-async function cache(_: Arguments)
+async function cache(args: Arguments)
 {
-    return await cli.cache(_);
+    return await cli.cache(args);
 }
 async function bundle(args: Arguments)
 {
@@ -101,20 +101,21 @@ async function remote(args: Arguments)
             ],
         env: { DENO_DIR: ".cache/" }
     };
-    const fetcher = async function (): Promise<never>
-    {
-        while (true)
-        {
-            const controller = new AbortController();
-            async.delay(5000).then(function () { controller.abort(); });
-            const init = { signal: controller.signal };
-            const response = await fetch(`https://${domain}:8443/`, init);
-            if (!response.ok)
-                throw new Error(`${domain} is down`);
-            Console.log("fetch(): server is up", { time: true });
-            await async.delay(30000);
-        }
-    };
+    /** @todo See if fetcher is needed for Deno TLS. */
+    // const fetcher = async function (): Promise<never>
+    // {
+    //     while (true)
+    //     {
+    //         const controller = new AbortController();
+    //         async.delay(5000).then(function () { controller.abort(); });
+    //         const init = { signal: controller.signal };
+    //         const response = await fetch(`https://${domain}:8443/`, init);
+    //         if (!response.ok)
+    //             throw new Error(`${domain} is down`);
+    //         Console.log("fetch(): server is up", { time: true });
+    //         await async.delay(30000);
+    //     }
+    // };
     const ready = async function (): Promise<void>
     {
         while (true)
@@ -144,13 +145,13 @@ async function remote(args: Arguments)
         serverProcess.close();
     }
 }
-async function test(_: Arguments)
+async function test(args: Arguments)
 {
-    return await cli.test(_);
+    return await cli.test(args);
 }
-async function prune(_: Arguments)
+async function prune(args: Arguments)
 {
-    return await cli.prune(_);
+    return await cli.prune(args);
 }
 async function docker(args: Arguments)
 {
@@ -171,9 +172,9 @@ async function docker(args: Arguments)
     if (!buildStatus.success)
         return buildStatus.code;
 }
-function help(_: Arguments)
+function help(args: Arguments)
 {
-    return cli.help(_);
+    return cli.help(args);
 }
 
 if (import.meta.main)

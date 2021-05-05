@@ -1,14 +1,15 @@
 
 import * as React from "react";
 import * as ReactRouter from "react-router-dom";
-import * as ReactHelmet from "react-helmet";
-import MediaQuery from "react-responsive";
 
-import { GraphQL, Console, Suspense } from "../../components/Core/Core.tsx";
-import Form from "./Order/Form.tsx";
-const Success = React.lazy(() => import("./Order/Success.tsx"));
-const Failure = React.lazy(() => import("./Order/Failure.tsx"));
-import Navbar from "../Navbar.tsx";
+import { GraphQL, Console } from "../../components/Core/Core.tsx";
+const Form = React.lazy(() => import("./Lazy/Order/Form.tsx"));
+const Success = React.lazy(() => import("./Lazy/Order/Success.tsx"));
+const Failure = React.lazy(() => import("./Lazy/Order/Failure.tsx"));
+import Header from "../Header.tsx";
+import Footer from "../Footer.tsx";
+import Loading from "../Loading.tsx";
+import Page from "../Page.tsx";
 
 enum Status
 {
@@ -17,42 +18,6 @@ enum Status
     success,
     failure,
     error,
-}
-
-interface HeaderProps
-{
-    responsive?: boolean;
-    gray: React.ReactElement | string;
-    black: React.ReactElement | string;
-}
-
-function Header(props: HeaderProps)
-{
-    const element =
-        <h2>
-            <span className="ghost-gray">{props.gray}</span>
-            {
-                props.responsive ?
-                    <>
-                        <MediaQuery maxWidth={399}><br /></MediaQuery>
-                        <MediaQuery minWidth={400}><>&nbsp;</></MediaQuery>
-                    </> :
-                    <>&nbsp;</>
-            }
-            <span>{props.black}</span>
-        </h2>;
-    return element;
-}
-
-function Loading()
-{
-    const element =
-        <div className="lds-ring-wrapper">
-            <div className="lds-ring">
-                <div></div><div></div><div></div><div></div>
-            </div>
-        </div>;
-    return element;
 }
 
 interface Props
@@ -65,9 +30,6 @@ export default function Order(props: Props)
     const [status, setStatus] = React.useState(Status.form);
 
     const client = GraphQL.useClient();
-
-    let header: React.ReactElement = <></>;
-    let body: React.ReactElement = <></>;
 
     function onSubmit(mutations: GraphQL.Query[])
     {
@@ -109,45 +71,58 @@ export default function Order(props: Props)
     switch (status)
     {
         case Status.loading:
-            header = <Header gray={"Loading..."} black={<></>} />;
-            body = <Loading />;
-            break;
+            {
+                const content: React.ReactElement =
+                    <div className="wrapper">
+                        <Header h2Gray={"Loading..."} h2Black={<></>} />
+                        <div className="page">
+                            <Loading />
+                        </div>
+                        <Footer />
+                    </div >;
+                return <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />;
+            }
         case Status.form:
-            header = <Header gray={"Select"} black={"your essay."} />;
-            body = <Form referral={props.referral} onSubmit={onSubmit} />;
-            break;
+            {
+                const content =
+                    <>
+                        <div className="page">
+                            <Form referral={props.referral} onSubmit={onSubmit} />
+                        </div>
+                        <Footer />
+                    </>;
+                const element: React.ReactElement =
+                    <div className="wrapper">
+                        <Header h2Gray={"Select"} h2Black={"your essay."} />
+                        <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />
+                    </div >;
+                return element;
+            }
         case Status.success:
-            header = <Header gray={"Order"} black={<><strong>confirmed</strong>.</>} />;
-            body = <Suspense fallback={<Loading />}><Success /></Suspense>;
-            break;
+            {
+                const content: React.ReactElement =
+                    <div className="wrapper">
+                        <Header h2Gray={"Order"} h2Black={<><strong>confirmed</strong>.</>} />
+                        <div className="page">
+                            <Success />
+                        </div>
+                        <Footer />
+                    </div >;
+                return <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />;
+            }
         case Status.failure:
-            header = <Header gray={"Order"} black={<><strong>failed!</strong></>} />;
-            body = <Suspense fallback={<Loading />}><Failure /></Suspense>;
-            break;
+            {
+                const content: React.ReactElement =
+                    <div className="wrapper">
+                        <Header h2Gray={"Order"} h2Black={<><strong>failed!</strong></>} />
+                        <div className="page">
+                            <Failure />
+                        </div>
+                        <Footer />
+                    </div >;
+                return <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />;
+            }
         case Status.error:
             return <ReactRouter.Navigate to="/internalerror" />;
     }
-
-    const element =
-        <>
-            <ReactHelmet.Helmet>
-                <title>Ghostwritten | Order</title>
-            </ReactHelmet.Helmet>
-            <div className="wrapper">
-                <div className="header">
-                    <Navbar />
-                    <div className="title-wrapper">
-                        <h1>
-                            <strong><span><span className="ghost-gray">Ghost</span>written</span></strong>
-                        </h1>
-                        {header}
-                    </div>
-                </div>
-                <div className="page">
-                    {body}
-                    <p className="copyinfo">© 2021 Ghostwritten</p>
-                </div>
-            </div >
-        </>;
-    return element;
 }
