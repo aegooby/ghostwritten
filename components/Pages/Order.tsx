@@ -72,15 +72,19 @@ export default function Order(props: Props)
     {
         case Status.loading:
             {
-                const content: React.ReactElement =
-                    <div className="wrapper">
-                        <Header h2Gray={"Loading..."} h2Black={<></>} />
+                const content =
+                    <>
                         <div className="page">
                             <Loading />
                         </div>
                         <Footer />
+                    </>;
+                const element: React.ReactElement =
+                    <div className="wrapper">
+                        <Header h2Gray={"Loading..."} h2Black={<></>} />
+                        <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />
                     </div >;
-                return <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />;
+                return element;
             }
         case Status.form:
             {
@@ -100,27 +104,35 @@ export default function Order(props: Props)
             }
         case Status.success:
             {
-                const content: React.ReactElement =
-                    <div className="wrapper">
-                        <Header h2Gray={"Order"} h2Black={<><strong>confirmed</strong>.</>} />
+                const content =
+                    <>
                         <div className="page">
                             <Success />
                         </div>
                         <Footer />
+                    </>;
+                const element: React.ReactElement =
+                    <div className="wrapper">
+                        <Header h2Gray={"Order"} h2Black={<><strong>confirmed</strong>.</>} />
+                        <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />
                     </div >;
-                return <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />;
+                return element;
             }
         case Status.failure:
             {
-                const content: React.ReactElement =
-                    <div className="wrapper">
-                        <Header h2Gray={"Order"} h2Black={<><strong>failed!</strong></>} />
+                const content =
+                    <>
                         <div className="page">
                             <Failure />
                         </div>
                         <Footer />
+                    </>;
+                const element: React.ReactElement =
+                    <div className="wrapper">
+                        <Header h2Gray={"Order"} h2Black={<><strong>failed!</strong></>} />
+                        <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />
                     </div >;
-                return <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />;
+                return element;
             }
         case Status.error:
             return <ReactRouter.Navigate to="/internalerror" />;
