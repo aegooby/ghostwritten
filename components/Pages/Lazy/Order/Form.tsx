@@ -4,6 +4,7 @@ import * as ReactRouter from "react-router-dom";
 
 import { GraphQL } from "../../../Core/Core.tsx";
 import graphql from "../../../../graphql/graphql.tsx";
+import * as Loading from "../../../Loading.tsx";
 
 type EssayType = "unknown" | "highschool" | "college";
 
@@ -20,6 +21,7 @@ interface Value
 
 export default function Form(props: Props)
 {
+    Loading.useFinishLoading();
     const [essayType, setEssayType] = React.useState("unknown" as EssayType);
     const [details, setDetails] = React.useState("");
     const [email, setEmail] = React.useState("");

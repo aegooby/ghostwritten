@@ -1,8 +1,11 @@
 
 import * as React from "react";
 
+import * as Loading from "../../Loading.tsx";
+
 export default function Terms()
 {
+    Loading.useFinishLoading();
     const element: React.ReactElement =
         <div className="page">
             <div className="main-text">

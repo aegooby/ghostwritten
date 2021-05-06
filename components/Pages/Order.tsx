@@ -8,7 +8,7 @@ const Success = React.lazy(() => import("./Lazy/Order/Success.tsx"));
 const Failure = React.lazy(() => import("./Lazy/Order/Failure.tsx"));
 import Header from "../Header.tsx";
 import Footer from "../Footer.tsx";
-import Loading from "../Loading.tsx";
+import * as Loading from "../Loading.tsx";
 import Page from "../Page.tsx";
 
 enum Status
@@ -75,7 +75,7 @@ export default function Order(props: Props)
                 const content =
                     <>
                         <div className="page">
-                            <Loading />
+                            <Loading.Spinner />
                         </div>
                         <Footer />
                     </>;

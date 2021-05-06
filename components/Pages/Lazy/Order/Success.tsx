@@ -1,8 +1,11 @@
 
 import * as React from "react";
 
+import * as Loading from "../../../Loading.tsx";
+
 export default function Success()
 {
+    Loading.useFinishLoading();
     const element =
         <div className="main-text">
             <h1>We've received your order</h1>

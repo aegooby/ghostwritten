@@ -1,8 +1,11 @@
 
 import * as React from "react";
 
+import * as Loading from "../../../Loading.tsx";
+
 export default function Failure()
 {
+    Loading.useFinishLoading();
     const email = <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a>;
     const element =
         <div className="main-text">
