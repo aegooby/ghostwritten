@@ -20,21 +20,23 @@ interface Props
 export default function App(props: Props)
 {
     const element: React.ReactElement =
-        <GraphQL.Provider value={props.client}>
-            <ReactRouter.Routes>
-                <ReactRouter.Route path="/" element={<Index />} />
-                <ReactRouter.Route path="/support" element={<Support />} />
-                <ReactRouter.Route path="/privacy" element={<Privacy />} />
-                <ReactRouter.Route path="/terms" element={<Terms />} />
-                <ReactRouter.Route path="/license" element={<License />} />
-                <ReactRouter.Route path="/referral/ptembo" element={<Order referral="ptembo" />} />
-                <ReactRouter.Route path="/referral/yqassem" element={<Order referral="yqassem" />} />
-                <ReactRouter.Route path="/referral/wmohammed" element={<Order referral="wmohammed" />} />
-                <ReactRouter.Route path="/referral/nshehaby" element={<Order referral="nshehaby" />} />
-                <ReactRouter.Route path="/order" element={<Order />} />
-                <ReactRouter.Route path="/checkout" element={<Checkout />} />
-                <ReactRouter.Route path="*" element={<Error code={404} text="Not Found" />} />
-            </ReactRouter.Routes>
-        </GraphQL.Provider>;
+        <React.StrictMode>
+            <GraphQL.Provider value={props.client}>
+                <ReactRouter.Routes>
+                    <ReactRouter.Route path="/" element={<Index />} />
+                    <ReactRouter.Route path="/support" element={<Support />} />
+                    <ReactRouter.Route path="/privacy" element={<Privacy />} />
+                    <ReactRouter.Route path="/terms" element={<Terms />} />
+                    <ReactRouter.Route path="/license" element={<License />} />
+                    <ReactRouter.Route path="/referral/ptembo" element={<Order referral="ptembo" />} />
+                    <ReactRouter.Route path="/referral/yqassem" element={<Order referral="yqassem" />} />
+                    <ReactRouter.Route path="/referral/wmohammed" element={<Order referral="wmohammed" />} />
+                    <ReactRouter.Route path="/referral/nshehaby" element={<Order referral="nshehaby" />} />
+                    <ReactRouter.Route path="/order" element={<Order />} />
+                    <ReactRouter.Route path="/checkout" element={<Checkout />} />
+                    <ReactRouter.Route path="*" element={<Error code={404} text="Not Found" />} />
+                </ReactRouter.Routes>
+            </GraphQL.Provider>
+        </React.StrictMode>;
     return element;
 }
