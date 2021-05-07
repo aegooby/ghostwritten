@@ -26,7 +26,6 @@ export default function Form(props: Props)
     const [details, setDetails] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [referral, setReferral] = React.useState(props.referral ?? "");
-    const [terms, setTerms] = React.useState(false);
 
     async function onSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void>
     {
@@ -86,7 +85,7 @@ export default function Form(props: Props)
         return await props.onSubmit([gwMutation, clientMutation]);
     }
 
-    const complete = essayType !== "unknown" && details !== "" && email !== "" && terms;
+    const complete = essayType !== "unknown" && details !== "" && email !== "";
 
     const element =
         <div className="form-wrapper">
@@ -132,12 +131,8 @@ export default function Form(props: Props)
                     />
                 </div>
                 <div className="form-item-wrapper">
-                    <div className="checkbox-item-wrapper">
-                        <div className="checkbox-wrapper">
-                            <input type="checkbox" id="terms" value="terms" name="terms" onChange={function () { setTerms(!terms); }} required />
-                            <label htmlFor="terms">I agree to the <ReactRouter.Link to="/terms">Terms of Service</ReactRouter.Link></label>
-                        </div>
-                        <h1><span className="info required">(required)</span></h1>
+                    <div className="terms-item-wrapper">
+                        <span>By confirming, you agree to the <ReactRouter.Link to="/terms">Terms of Service</ReactRouter.Link></span>
                     </div>
                 </div>
                 <div className="form-item-wrapper">
