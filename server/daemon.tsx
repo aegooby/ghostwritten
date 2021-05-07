@@ -6,7 +6,6 @@ import App from "../components/App.tsx";
 import * as yargs from "@yargs/yargs";
 import * as dotenv from "dotenv";
 import * as sendgrid from "sendgrid";
-// import Stripe from "stripe";
 
 const args = yargs.default(Deno.args)
     .usage("usage: $0 server/daemon.tsx --hostname <host> [--domain <name>] [--tls <path>]")
@@ -17,13 +16,7 @@ const args = yargs.default(Deno.args)
     .parse();
 
 const env = dotenv.config();
-// const stripeConfig =
-// {
-//     apiVersion: "2020-08-27" as const,
-//     typescript: true as const,
-//     protocol: "https" as const
-// };
-// const stripe = new Stripe(env.STRIPE_TEST_KEY, stripeConfig);
+// env.STRIPE_TEST_KEY
 
 export interface Email
 {
