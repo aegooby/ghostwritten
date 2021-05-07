@@ -5,9 +5,7 @@ import App from "../components/App.tsx";
 
 import * as yargs from "@yargs/yargs";
 import * as dotenv from "dotenv";
-
 import * as sendgrid from "sendgrid";
-// @deno-types="https://raw.githubusercontent.com/aegooby/types/master/stripe/index.d.ts";
 // import Stripe from "stripe";
 
 const args = yargs.default(Deno.args)

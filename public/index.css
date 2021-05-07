@@ -376,6 +376,13 @@ h1.page-title
     flex-direction: column;
 }
 
+input 
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 .form-wrapper a
 {
     display: inline-block;

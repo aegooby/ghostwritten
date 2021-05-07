@@ -9,7 +9,7 @@
         "react-responsive": "https://esm.sh/react-responsive",
         "nprogress": "https://esm.sh/nprogress",
         "sendgrid": "https://deno.land/x/sendgrid@0.0.3/mod.ts",
-        "stripe": "https://jspm.dev/stripe",
+        "stripe": "https://esm.sh/stripe",
         "@stripe/stripe-js": "https://esm.sh/@stripe/stripe-js?no-check",
         "@httpsaurus/cli": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/cli/cli.ts",
         "@httpsaurus/server": "https://raw.githubusercontent.com/aegooby/httpsaurus/master/server/server.tsx",
