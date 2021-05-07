@@ -132,7 +132,7 @@ export default function Form(props: Props)
                 </div>
                 <div className="form-item-wrapper">
                     <div className="terms-item-wrapper">
-                        <span>By confirming, you agree to the <ReactRouter.Link to="/terms">Terms of Service</ReactRouter.Link></span>
+                        <span className="terms-text">By confirming, you agree to the <ReactRouter.Link to="/terms">Terms of Service</ReactRouter.Link></span>
                     </div>
                 </div>
                 <div className="form-item-wrapper">

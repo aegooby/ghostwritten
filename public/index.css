@@ -460,6 +460,10 @@ form.order .form-item-wrapper
     width: 100%;
     padding: 0;
 }
+.terms-text
+{
+    text-align: center;
+}
 
 input[type=radio]
 {
