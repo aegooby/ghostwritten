@@ -18,7 +18,6 @@ export default function Terms()
             <Header
                 h2Gray="Terms"
                 h2Black={<>of <strong>Service</strong></>}
-                responsive
             />
             <Page helmet={<title>Ghostwritten | Terms</title>} content={content} lazy />
         </div >;

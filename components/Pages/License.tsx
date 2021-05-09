@@ -18,7 +18,6 @@ export default function License()
             <Header
                 h2Gray="Copyright"
                 h2Black={<strong>License</strong>}
-                responsive
             />
             <Page helmet={<title>Ghostwritten | License</title>} content={content} lazy />
         </div >;

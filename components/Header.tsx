@@ -31,7 +31,6 @@ export default function Header(props: Props)
                 </h2>
                 {props.button ? <div className="button-wrapper">{props.button}</div> : <></>}
             </div>
-        </div>
-        ;
+        </div>;
     return element;
 }
