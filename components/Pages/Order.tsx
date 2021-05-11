@@ -49,7 +49,7 @@ export default function Order(props: Props)
                 throw new Error();
             }
         }
-        async function _(): Promise<void>
+        const sendEmail = async function ()
         {
             const responses = await promises;
             try { responses.forEach(checkError); }
@@ -64,8 +64,8 @@ export default function Order(props: Props)
                 dataResponses.map(function (response) { return response.data.sendEmail.success; });
             const success = successes.reduce(function (__a, __b) { return __a && __b; });
             success ? setStatus(Status.success) : setStatus(Status.failure);
-        }
-        _();
+        };
+        sendEmail();
     }
 
     switch (status)
@@ -74,9 +74,7 @@ export default function Order(props: Props)
             {
                 const content =
                     <>
-                        <div className="page">
-                            <Loading.Spinner />
-                        </div>
+                        <div className="page"><Loading.Spinner /></div>
                         <Footer />
                     </>;
                 const element: React.ReactElement =
