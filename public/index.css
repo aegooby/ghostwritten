@@ -322,16 +322,22 @@ p.disclaimer
 
 .footer .links
 {
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: row wrap;
     margin-bottom: 1rem;
+    width: calc(100% - 6rem);
+    max-width: 30rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .footer .links a
 {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    display: flex;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
     color: #99a3ff;
     transition: color 0.15s ease-in-out;
 }
