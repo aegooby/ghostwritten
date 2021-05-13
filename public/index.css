@@ -129,6 +129,7 @@ img.logo
     padding-bottom: 2rem;
     padding-left: 2em;
     padding-right: 2em;
+    width: calc(100% - 4rem);
 }
 
 .ghost-gray
@@ -324,7 +325,7 @@ p.disclaimer
 {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: space-between;
     flex-flow: row wrap;
     margin-bottom: 1rem;
     width: calc(100% - 6rem);
@@ -335,7 +336,6 @@ p.disclaimer
 
 .footer .links a
 {
-    display: flex;
     margin-left: 0.75rem;
     margin-right: 0.75rem;
     color: #99a3ff;
