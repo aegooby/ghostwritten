@@ -1,4 +1,5 @@
 
+import * as React from "react";
 import * as server from "@httpsaurus/server";
 
 import App from "../components/App.tsx";
@@ -76,7 +77,12 @@ try
         portTls: 8443,
         cert: args.tls,
 
-        App: App,
+        App: <App client={undefined} />,
+        headElements:
+            [
+                <title>Ghostwritten</title>,
+                <meta name="description" content="Fast, reliable essays written by skilled writers." />
+            ],
 
         schema: "graphql/schema.gql",
         resolvers: new Resolvers(env)
