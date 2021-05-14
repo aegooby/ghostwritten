@@ -95,7 +95,7 @@ export default function Order(props: Props)
                     </>;
                 const element: React.ReactElement =
                     <div className="wrapper">
-                        <Header h2Gray={"Select"} h2Black={"your essay."} />
+                        <Header h2Gray={"Select"} h2Black={<>your <strong>essay</strong>.</>} />
                         <Page helmet={<title>Ghostwritten | Order</title>} content={content} lazy />
                     </div >;
                 return element;
