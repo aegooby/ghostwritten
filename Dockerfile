@@ -3,7 +3,9 @@ FROM aegooby/httpsaurus:base-latest AS ghostwritten
 
 WORKDIR /root/ghostwritten
 ADD . /root/ghostwritten
-RUN deno upgrade
+RUN cli/compile.sh
+RUN build/linux upgrade
+RUN build/linux cache
 
 FROM ghostwritten AS dev
 
