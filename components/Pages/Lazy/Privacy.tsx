@@ -81,7 +81,7 @@ export default function Privacy()
                     in perpetuity, or discard at any time, Information
                     collected on the User.
                         </p>
-                <h1>Children under the Age of 13</h1>
+                <h1>Children Under the Age of 13</h1>
                 <p>
                     We do not knowingly collect any Information on children
                     under the Age of 13 unless permitted by law. By using

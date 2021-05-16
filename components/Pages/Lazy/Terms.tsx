@@ -42,7 +42,7 @@ export default function Terms()
                     of the Terms in their entirety. By using the Service in any
                     capacity, the User agrees to be bound by the Terms as written.
                     If the user does not consent to the Terms, they may not use
-                    the service in any capacity.
+                    the Service in any capacity.
         </p>
                 <h1>Making an Agreement</h1>
                 <p>
