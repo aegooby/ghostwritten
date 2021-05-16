@@ -1,6 +1,9 @@
 
 FROM aegooby/httpsaurus:base-latest AS ghostwritten
 
+# Dokku
+EXPOSE 5080
+
 WORKDIR /root/ghostwritten
 ADD . /root/ghostwritten
 RUN build/linux upgrade
