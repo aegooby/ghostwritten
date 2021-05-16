@@ -101,21 +101,6 @@ async function remote(args: Arguments)
             ],
         env: { DENO_DIR: ".cache/" }
     };
-    /** @todo See if fetcher is needed for Deno TLS. */
-    // const fetcher = async function (): Promise<never>
-    // {
-    //     while (true)
-    //     {
-    //         const controller = new AbortController();
-    //         async.delay(5000).then(function () { controller.abort(); });
-    //         const init = { signal: controller.signal };
-    //         const response = await fetch(`https://${domain}:8443/`, init);
-    //         if (!response.ok)
-    //             throw new Error(`${domain} is down`);
-    //         Console.log("fetch(): server is up", { time: true });
-    //         await async.delay(30000);
-    //     }
-    // };
     const ready = async function (): Promise<void>
     {
         while (true)
@@ -124,7 +109,7 @@ async function remote(args: Arguments)
             {
                 await async.delay(750);
                 const init = { headers: { "x-http-only": "" } };
-                await fetch(`http://${domain}:8080/`, init);
+                await fetch(`http://${domain}:5080/`, init);
                 return;
             }
             catch { undefined; }
@@ -137,8 +122,6 @@ async function remote(args: Arguments)
         {
             await ready();
             Console.success("fetch(): server is ready", { time: true });
-            /** @todo See if fetcher is needed for Deno TLS. */
-            // await Promise.race([serverProcess.status(), fetcher()]);
             await serverProcess.status();
         }
         catch { Console.error("fetch(): server is down, restarting", { time: true }); }
