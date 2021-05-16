@@ -67,10 +67,6 @@ async function remote(args: Arguments)
         Console.error(`usage: ${command} remote --target <dev | live>`);
         return;
     }
-    if (await install(args))
-        throw new Error("Installation failed");
-    if (await cache(args))
-        throw new Error("Caching failed");
 
     const domain =
         (args.target === "dev") ? "dev.ghostwritten.me" : "ghostwritten.me";
