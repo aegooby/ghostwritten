@@ -161,6 +161,8 @@ async function docker(args: Arguments)
         return;
     }
 
+    if (await cache(args))
+        throw new Error("Caching failed");
     if (args.prune)
         await prune(args);
 
