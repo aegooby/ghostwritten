@@ -27,7 +27,7 @@ function createCommand(): [string[], string]
         case "linux":
             return [args, "build/linux"];
         default:
-            return [args, defaultCommand];
+            return [Deno.args, defaultCommand];
     }
 }
 const [args, command] = createCommand();
@@ -60,23 +60,37 @@ async function localhost(args: Arguments)
 {
     return await cli.localhost(args);
 }
-async function remote(args: Arguments)
+async function docker(args: Arguments)
 {
-    if (!args.target || (args.target !== "dev" && args.target !== "live"))
+    if (!args.target || !(["localhost", "dev", "live"].includes(args.target)))
     {
-        Console.error(`usage: ${command} remote --target <dev | live>`);
+        Console.error(`usage: ${command} docker --target <localhost | dev | live>`);
         return;
     }
 
-    const domain =
-        (args.target === "dev") ? "dev.ghostwritten.me" : "ghostwritten.me";
+    if (await cache(args))
+        throw new Error("Caching failed");
+
+    const targetDomain = function ()
+    {
+        switch (args.target)
+        {
+            case "localhost": return "localhost";
+            case "dev": return "dev.ghostwritten.me";
+            case "live": return "ghostwritten.me";
+            default:
+                Console.error(`usage: ${command} docker --target <localhost | dev | live>`);
+                throw new Error();
+        }
+    };
+    const domain = targetDomain();
 
     const snowpackRunOptions: Deno.RunOptions =
     {
         cmd:
             [
                 "yarn", "run", "snowpack", "--config",
-                `config/remote-${args.target}.snowpack.js`, "build"
+                `config/docker-${args.target}.snowpack.js`, "build"
             ],
     };
     const snowpackProcess = Deno.run(snowpackRunOptions);
@@ -132,11 +146,11 @@ async function prune(args: Arguments)
 {
     return await cli.prune(args);
 }
-async function docker(args: Arguments)
+async function image(args: Arguments)
 {
     if (!args.target)
     {
-        Console.error(`usage: ${command} docker --target <value>`);
+        Console.error(`usage: ${command} image --target <value>`);
         return;
     }
 
@@ -172,10 +186,10 @@ if (import.meta.main)
         .command("cache", "", {}, cache)
         .command("bundle", "", {}, bundle)
         .command("localhost", "", {}, localhost)
-        .command("remote", "", {}, remote)
+        .command("docker", "", {}, docker)
         .command("test", "", {}, test)
         .command("prune", "", {}, prune)
-        .command("docker", "", {}, docker)
+        .command("image", "", {}, image)
         .command("help", "", {}, help)
         .parse();
 }
