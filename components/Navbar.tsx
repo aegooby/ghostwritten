@@ -9,11 +9,10 @@ export default function Navbar()
             <nav>
                 <ReactRouter.Link to="/" className="home">
                     <img className="logo" src="/logo.svg" height={39} width={50} alt="logo" />Home
-                    </ReactRouter.Link>
+                </ReactRouter.Link>
                 <div className="links">
-                    <ReactRouter.Link to="/support">
-                        Support
-                        </ReactRouter.Link>
+                    <ReactRouter.Link to="/support">Support</ReactRouter.Link>
+                    <ReactRouter.Link to="/careers">Careers</ReactRouter.Link>
                 </div>
             </nav>
         </div>;

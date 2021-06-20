@@ -6,7 +6,7 @@ import { GraphQL } from "../../../Core/Core.tsx";
 import graphql from "../../../../graphql/graphql.tsx";
 import * as Loading from "../../../Loading.tsx";
 
-type EssayType = "unknown" | "highschool" | "college";
+type ServiceType = "unknown" | "tutoring" | "essay";
 
 interface Props
 {
@@ -22,7 +22,7 @@ interface Value
 export default function Form(props: Props)
 {
     Loading.useFinishLoading();
-    const [essayType, setEssayType] = React.useState("unknown" as EssayType);
+    const [serviceType, setServiceType] = React.useState("unknown" as ServiceType);
     const [details, setDetails] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [referral, setReferral] = React.useState(props.referral ?? "");
@@ -52,7 +52,7 @@ export default function Form(props: Props)
                 {
                     "from": `noreply@ghostwritten.me`,
                     "to": `ghostwrittenhq@gmail.com`,
-                    "subject": `Request for ${essayType} essay from <${email}>`,
+                    "subject": `Request for ${serviceType} essay from <${email}>`,
                     "text": gwText,
                     "html": gwHtml,
                 }
@@ -85,23 +85,23 @@ export default function Form(props: Props)
         return await props.onSubmit([gwMutation, clientMutation]);
     }
 
-    const complete = essayType !== "unknown" && details !== "" && email !== "";
+    const complete = serviceType !== "unknown" && details !== "" && email !== "";
 
     const element =
         <div className="form-wrapper">
             <form className="order" onSubmit={onSubmit}>
-                <h1><strong>Essay type</strong><span className="info required">(required)</span></h1>
+                <h1><strong>Service</strong><span className="info required">(required)</span></h1>
                 <div className="form-item-wrapper">
                     <input
-                        type="radio" id="radio-highschool" name="essay-type" required
-                        onChange={function () { setEssayType("highschool"); }}
+                        type="radio" id="radio-tutoring" name="essay-type" required
+                        onChange={function () { setServiceType("tutoring"); }}
                     />
-                    <label className="radio" htmlFor="radio-highschool">High School<br /> Level</label>
+                    <label className="radio" htmlFor="radio-tutoring">Tutoring</label>
                     <input
-                        type="radio" id="radio-college" name="essay-type" required
-                        onChange={function () { setEssayType("college"); }}
+                        type="radio" id="radio-essay" name="essay-type" required
+                        onChange={function () { setServiceType("essay"); }}
                     />
-                    <label className="radio" htmlFor="radio-college">College<br /> Level</label>
+                    <label className="radio" htmlFor="radio-essay">Essay</label>
                 </div>
                 <h1><strong>Details</strong><span className="info required">(required)</span></h1>
                 <div className="form-item-wrapper">

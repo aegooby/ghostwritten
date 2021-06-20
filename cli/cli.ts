@@ -2,7 +2,6 @@
 import * as yargs from "@yargs/yargs";
 import { Arguments } from "@yargs/types";
 import * as colors from "@std/colors";
-import * as async from "@std/async";
 
 import { Console, version } from "@httpsaurus/server";
 import * as cli from "@httpsaurus/cli";
@@ -30,7 +29,7 @@ function createCommand(): [string[], string]
             return [Deno.args, defaultCommand];
     }
 }
-const [args, command] = createCommand();
+const [args, _] = createCommand();
 
 function all(args: Arguments)
 {
@@ -62,81 +61,7 @@ async function localhost(args: Arguments)
 }
 async function docker(args: Arguments)
 {
-    if (!args.target || !(["localhost", "dev", "live"].includes(args.target)))
-    {
-        Console.error(`usage: ${command} docker --target <localhost | dev | live>`);
-        return;
-    }
-
-    if (await cache(args))
-        throw new Error("Caching failed");
-
-    const targetDomain = function ()
-    {
-        switch (args.target)
-        {
-            case "localhost": return "localhost";
-            case "dev": return "dev.ghostwritten.me";
-            case "live": return "ghostwritten.me";
-            default:
-                Console.error(`usage: ${command} docker --target <localhost | dev | live>`);
-                throw new Error();
-        }
-    };
-    const domain = targetDomain();
-
-    const snowpackRunOptions: Deno.RunOptions =
-    {
-        cmd:
-            [
-                "yarn", "run", "snowpack", "--config",
-                `config/docker-${args.target}.snowpack.js`, "build"
-            ],
-    };
-    const snowpackProcess = Deno.run(snowpackRunOptions);
-    const snowpackStatus = await snowpackProcess.status();
-    snowpackProcess.close();
-    if (!snowpackStatus.success)
-        return snowpackStatus.code;
-
-    /** @todo Add Deno TLS. */
-    const serverRunOptions: Deno.RunOptions =
-    {
-        cmd:
-            [
-                "deno", "run", "--unstable", "--allow-all",
-                "--import-map", "import-map.json",
-                "server/daemon.tsx", "--hostname", "0.0.0.0",
-                "--domain", domain, // "--tls", `/etc/letsencrypt/live/${domain}/`
-            ],
-        env: { DENO_DIR: ".cache/" }
-    };
-    const ready = async function (): Promise<void>
-    {
-        while (true)
-        {
-            try
-            {
-                await async.delay(750);
-                const init = { headers: { "x-http-only": "" } };
-                await fetch(`http://${domain}:5080/`, init);
-                return;
-            }
-            catch { undefined; }
-        }
-    };
-    while (true)
-    {
-        const serverProcess = Deno.run(serverRunOptions);
-        try
-        {
-            await ready();
-            Console.success("fetch(): server is ready", { time: true });
-            await serverProcess.status();
-        }
-        catch { Console.error("fetch(): server is down, restarting", { time: true }); }
-        serverProcess.close();
-    }
+    await cli.docker(args);
 }
 async function test(args: Arguments)
 {
@@ -148,22 +73,11 @@ async function prune(args: Arguments)
 }
 async function image(args: Arguments)
 {
-    if (!args.target)
-    {
-        Console.error(`usage: ${command} image --target <value>`);
-        return;
-    }
-
-    if (args.prune)
-        await prune(args);
-
-    const buildRunOptions: Deno.RunOptions =
-        { cmd: ["docker", "build", "--target", args.target, "--tag", "ghostwritten/server", "."] };
-    const buildProcess = Deno.run(buildRunOptions);
-    const buildStatus = await buildProcess.status();
-    buildProcess.close();
-    if (!buildStatus.success)
-        return buildStatus.code;
+    await cli.image(args);
+}
+async function container(args: Arguments)
+{
+    await cli.container(args);
 }
 function help(args: Arguments)
 {
@@ -190,6 +104,7 @@ if (import.meta.main)
         .command("test", "", {}, test)
         .command("prune", "", {}, prune)
         .command("image", "", {}, image)
+        .command("container", "", {}, container)
         .command("help", "", {}, help)
         .parse();
 }

@@ -5,6 +5,7 @@ import { GraphQL } from "./Core/Core.tsx";
 
 import Index from "./Pages/Index.tsx";
 import Support from "./Pages/Support.tsx";
+import Careers from "./Pages/Careers.tsx";
 import Order from "./Pages/Order.tsx";
 import Checkout from "./Pages/Checkout.tsx";
 import Error from "./Pages/Error.tsx";
@@ -25,6 +26,7 @@ export default function App(props: Props)
                 <ReactRouter.Routes>
                     <ReactRouter.Route path="/" element={<Index />} />
                     <ReactRouter.Route path="/support" element={<Support />} />
+                    <ReactRouter.Route path="/careers" element={<Careers />} />
                     <ReactRouter.Route path="/privacy" element={<Privacy />} />
                     <ReactRouter.Route path="/terms" element={<Terms />} />
                     <ReactRouter.Route path="/license" element={<License />} />

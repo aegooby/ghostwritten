@@ -17,50 +17,50 @@ export default function Index()
             <Header
                 button={button}
                 h2Gray="Our expertise."
-                h2Black={<><strong>Your</strong> essays.</>}
+                h2Black={<><strong>Your</strong> success.</>}
                 responsive
             />
             <div className="page">
                 <div className="main-text">
                     <p>
                         Looking for a high school or college-level essay?
-                        No problem. Tell us what you need and when, then
-                        leave the rest to our team of skilled writers.
-                        We guarantee an on-time, A-grade essay in your
-                        inbox.
-                        </p>
+                        No problem. Need tutoring on a tough subject? Tell us
+                        what you need and when, then leave the rest to our team
+                        of skilled writers and tutors. We guarantee on-time,
+                        A-grade service no matter what you need.
+                    </p>
                     <h1>About us</h1>
                     <p>
-                        We are a team of dedicated writers who have consistently
-                        achieved exceptional results through high school
-                        and college, in subjects such as high level mathematics,
-                        physics, literature, and biology.
-                        </p>
+                        We are a team of dedicated writers and tutors who have
+                        consistently achieved exceptional results through high
+                        school and college, in subjects such as high level
+                        mathematics, physics, literature, and biology.
+                    </p>
                     <p>
                         We know exactly how hard it is to write a good essay,
-                        because we’ve been through it before. We are committed
-                        to using our academic expertise to help you become
-                        a top-scoring student.
-                        </p>
+                        or get ready for that big final exam, because we’ve been
+                        through it before. We are committed to using our academic
+                        expertise to help you become a top-scoring student.
+                    </p>
                     <h1>Why Ghostwritten?</h1>
                     <p>
-                        Many essay writing services are staffed by people
-                        who have not touched a college or high school essay
+                        Many academic services are staffed by people
+                        who have not touched a college or high school textbook
                         in years, and are out of touch with modern
                         curriculums.
-                        </p>
+                    </p>
                     <p>
                         Others employ unreliable freelancers who face no
                         reprecussions for conducting fraud, scams, or rating
                         manipulation.
-                        </p>
+                    </p>
                     <p>
-                        When you order a Ghostwritten essay, you are
-                        guaranteed dedicated, reliable writers who have
+                        When you choose Ghostwritten, you are guaranteed
+                        dedicated, reliable writers and tutors who have
                         experience with your requirements and curriculum,
                         including IB, AP, various college programs, and many
                         more.
-                        </p>
+                    </p>
                 </div>
             </div>
             <Footer />
