@@ -2,6 +2,7 @@ input Email
 {
     from: String!
     to: [String]!
+    replyTo: String
     subject: String
     text: String
     html: String

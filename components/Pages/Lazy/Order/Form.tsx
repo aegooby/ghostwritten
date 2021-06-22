@@ -38,10 +38,13 @@ export default function Form(props: Props)
             `No referral code` :
             `Referral code: ${referral}`;
         const referralHtml = referral === "" ?
-            `<h1></strong>No referral code</strong></h1>` :
-            `<h1></strong>Referral code</strong></h1><p>${referral}</p>`;
+            `<p><strong>No referral code</strong></p>` :
+            `<p></strong>Referral code</strong></p><p>${referral}</p>`;
         const gwText = `Details: ${details} * ${referralText}`;
-        const gwHtml = `<h1><strong>Details</strong></h1><p>${details}</p>${referralHtml}`;
+        const detailsSplit = details.split("\n");
+        const detailsHtml = detailsSplit.map(function (value: string) { return `<p>${value}</p>`; });
+        const detailsJoined = detailsHtml.reduce(function (prev: string, next: string) { return prev + next; });
+        const gwHtml = `<p><strong>Details</strong></p><p>${detailsJoined}</p>${referralHtml}`;
 
         const gwMutation: GraphQL.Query =
         {
@@ -52,7 +55,8 @@ export default function Form(props: Props)
                 {
                     "from": `noreply@ghostwritten.me`,
                     "to": `ghostwrittenhq@gmail.com`,
-                    "subject": `Request for ${serviceType} essay from <${email}>`,
+                    "replyTo": email,
+                    "subject": `Request for ${serviceType} from <${email}>`,
                     "text": gwText,
                     "html": gwHtml,
                 }

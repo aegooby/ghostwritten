@@ -23,6 +23,7 @@ export interface Email
 {
     from: string;
     to: string[];
+    replyTo: string | undefined;
     subject: string | undefined;
     text: string | undefined;
     html: string | undefined;
@@ -52,6 +53,7 @@ export class Resolvers
         const mail: sendgrid.IRequestBody =
         {
             from: { email: email.from },
+            replyTo: email.replyTo ? { email: email.replyTo } : undefined,
             personalizations: [{ subject: email.subject ?? "(no subject)", to: to }],
             content:
                 [
