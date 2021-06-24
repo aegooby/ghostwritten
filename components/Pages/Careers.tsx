@@ -22,6 +22,7 @@ export default function Careers()
                 button={button}
                 h2Gray="Become a"
                 h2Black={<><strong>Ghostwriter</strong>.</>}
+                responsive
             />
             <Page helmet={<title>Ghostwritten | Careers</title>} content={content} lazy />
         </div >;
