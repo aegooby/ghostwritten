@@ -80,6 +80,8 @@ nav .links
     align-self: center;
     justify-content: space-evenly;
     align-items: center;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
 }
 
 nav .links a
