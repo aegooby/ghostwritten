@@ -14,8 +14,8 @@ CMD [ "build/linux", "docker", "--target", "localhost", "--domain", "localhost" 
 
 FROM ghostwritten AS dev
 
-CMD [ "build/linux", "docker", "--target", "dev", "--domain", "dev.ghostwritten.me" ]
+CMD [ "build/linux", "docker", "--target", "dev", "--domain", "www.dev.ghostwritten.me" ]
 
 FROM ghostwritten AS live
 
-CMD [ "build/linux", "docker", "--target", "live", "--domain", "ghostwritten.me" ]
+CMD [ "build/linux", "docker", "--target", "live", "--domain", "www.ghostwritten.me" ]
