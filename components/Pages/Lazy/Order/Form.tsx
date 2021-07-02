@@ -109,10 +109,10 @@ export default function Form(props: Props)
                 </div>
                 <div className="form-item-wrapper">
                     <input
-                        type="radio" id="radio-college-app" name="essay-type" required
-                        onChange={function () { setServiceType("college-app"); }}
+                        type="radio" id="radio-college-application" name="essay-type" required
+                        onChange={function () { setServiceType("college application"); }}
                     />
-                    <label className="radio" htmlFor="radio-college-app">College Application</label>
+                    <label className="radio" htmlFor="radio-college-application">College Application</label>
                 </div>
                 <h1><strong>Details</strong><span className="info required">(required)</span></h1>
                 <div className="form-item-wrapper">
