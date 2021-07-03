@@ -7,7 +7,7 @@ import Page from "../Page.tsx";
 
 export default function Index()
 {
-    const email = <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a>;
+    const email = <a href="mailto:support@ghostwritten.io">support@ghostwritten.io</a>;
     const content: React.ReactElement =
         <div className="wrapper">
             <Header h2Gray="Contact" h2Black={<><strong>us</strong>.</>} />
@@ -18,9 +18,9 @@ export default function Index()
                         We aim to provide the best for our customers. If you
                         were not satisfied with your experience, or if you
                         are having issues with the website, feel free to reach
-                            out to us via email at {email} and our support team
-                            will do our best to help you immediately.
-                        </p>
+                        out to us via email at {email} and our support team
+                        will do our best to help you immediately.
+                    </p>
                 </div>
             </div>
             <Footer />
