@@ -53,8 +53,8 @@ export default function Form(props: Props)
             {
                 "email":
                 {
-                    "from": `noreply@ghostwritten.me`,
-                    "to": `ghostwrittenhq@gmail.com`,
+                    "from": `noreply@ghostwritten.io`,
+                    "to": `support@ghostwritten.io`,
                     "replyTo": email,
                     "subject": `Request for ${serviceType} from <${email}>`,
                     "text": gwText,
@@ -77,7 +77,7 @@ export default function Form(props: Props)
             {
                 "email":
                 {
-                    "from": `noreply@ghostwritten.me`,
+                    "from": `noreply@ghostwritten.io`,
                     "to": `${email}`,
                     "subject": `We've received your request!`,
                     "text": clientText,
