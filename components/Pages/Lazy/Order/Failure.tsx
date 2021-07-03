@@ -6,7 +6,7 @@ import * as Loading from "../../../Loading.tsx";
 export default function Failure()
 {
     Loading.useFinishLoading();
-    const email = <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a>;
+    const email = <a href="mailto:support@ghostwritten.io">support@ghostwritten.io</a>;
     const element =
         <div className="main-text">
             <h1>This shouldn't have happened</h1>

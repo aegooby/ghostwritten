@@ -13,7 +13,7 @@ export default function Careers()
                     <p>
                         If you are a recent high school or college graduate looking
                         to join our team as one of the following, send us an email
-                        at <a href="mailto:ghostwrittenhq@gmail.com">ghostwrittenhq@gmail.com</a> with
+                        at <a href="mailto:support@ghostwritten.io">support@ghostwritten.io</a> with
                         your resume attached.
                     </p>
                     <h1>Writers</h1>
