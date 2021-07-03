@@ -111,7 +111,7 @@ export default function Form(props: Props)
                         type="radio" id="radio-college-application" name="essay-type" required
                         onChange={function () { setServiceType("college application"); }}
                     />
-                    <label className="radio" htmlFor="radio-college-application">College App.</label>
+                    <label className="radio" htmlFor="radio-college-application">College App</label>
                 </div>
                 <h1><strong>Details</strong><span className="info required">(required)</span></h1>
                 <div className="form-item-wrapper">
