@@ -6,7 +6,7 @@ import { GraphQL } from "../../../Core/Core.tsx";
 import graphql from "../../../../graphql/graphql.tsx";
 import * as Loading from "../../../Loading.tsx";
 
-type ServiceType = "unknown" | "tutoring" | "essay";
+type ServiceType = "unknown" | "tutoring" | "essay" | "college application";
 
 interface Props
 {
@@ -106,6 +106,12 @@ export default function Form(props: Props)
                         onChange={function () { setServiceType("essay"); }}
                     />
                     <label className="radio" htmlFor="radio-essay">Essay</label>
+                    <div className="radio-spacer"></div>
+                    <input
+                        type="radio" id="radio-college-application" name="essay-type" required
+                        onChange={function () { setServiceType("college application"); }}
+                    />
+                    <label className="radio" htmlFor="radio-college-application">College App</label>
                 </div>
                 <h1><strong>Details</strong><span className="info required">(required)</span></h1>
                 <div className="form-item-wrapper">

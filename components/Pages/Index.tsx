@@ -24,9 +24,13 @@ export default function Index()
                 <div className="main-text">
                     <p>
                         Looking for a high school or college-level essay?
-                        No problem. Need tutoring on a tough subject? Tell us
+                        No problem. Need tutoring on a tough subject? Done. 
+                        Confused on how to write your college application? Tell us
                         what you need and when, then leave the rest to our team
-                        of skilled writers and tutors. We guarantee on-time,
+                        of skilled writers and tutors. 
+                    </p>
+                    <p>    
+                        We guarantee on-time,
                         A-grade service no matter what you need.
                     </p>
                     <h1>About us</h1>
