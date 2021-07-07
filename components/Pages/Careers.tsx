@@ -8,7 +8,7 @@ import Page from "../Page.tsx";
 export default function Careers()
 {
     const button =
-        <a className="button shadow" href="mailto:support@ghostwritten.io">
+        <a className="button shadow" href="mailto:careers@ghostwritten.io">
             Contact Us
         </a>;
     const content =
