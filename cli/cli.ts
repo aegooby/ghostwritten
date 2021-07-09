@@ -79,6 +79,10 @@ async function container(args: Arguments)
 {
     await cli.container(args);
 }
+async function sync(args: Arguments)
+{
+    await cli.sync(args);
+}
 function help(args: Arguments)
 {
     return cli.help(args);
@@ -105,6 +109,7 @@ if (import.meta.main)
         .command("prune", "", {}, prune)
         .command("image", "", {}, image)
         .command("container", "", {}, container)
+        .command("sync", "", {}, sync)
         .command("help", "", {}, help)
         .parse();
 }
