@@ -29,7 +29,7 @@ type EmailResult @remote
 }
 type Mutation
 {
-    sendEmail(email: Email): EmailResult @custom(http: {
+    sendEmail(email: Email!): EmailResult @custom(http: {
         url: "http://localhost:3080/graphql/custom"
         method: "POST",
         graphql: "mutation($email: Email!) { sendEmail(email: $email) }"
