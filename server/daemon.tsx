@@ -86,6 +86,7 @@ try
                 <meta name="description" content="Fast, reliable essays written by skilled writers." />
             ],
 
+        customSchema: "graphql/custom.gql",
         schema: "graphql/schema.gql",
         resolvers: new Resolvers(env)
     };

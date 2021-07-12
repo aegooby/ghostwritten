@@ -1,3 +1,18 @@
+
+type User @secret(field: "password")
+{
+    username: String! @id
+}
+
+type Query
+{
+    request: String @custom(http: {
+        url: "http://localhost:3080/graphql/custom"
+        method: "POST",
+        graphql: "query { request }"
+        skipIntrospection: true
+    })
+}
 input Email
 {
     from: String!
@@ -7,21 +22,16 @@ input Email
     text: String
     html: String
 }
-type EmailResult
+type EmailResult @remote
 {
     success: Boolean!
     errors: [String]
 }
-type Query 
-{ 
-    request: String
-}
 type Mutation
 {
-    sendEmail(email: Email): EmailResult
-}
-
-mutation SendEmail($email: Email)
-{
-    sendEmail(email: $email) { success } 
+    sendEmail(email: Email): EmailResult @custom(http: {
+        url: "http://localhost:3080/graphql/custom"
+        method: "POST",
+        graphql: "mutation($email: Email!) { sendEmail(email: $email) }"
+    })
 }
