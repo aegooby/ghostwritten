@@ -55,6 +55,10 @@ async function bundle(args: Arguments)
 {
     return await cli.bundle(args);
 }
+async function codegen(args: Arguments)
+{
+    return await cli.codegen(args);
+}
 async function localhost(args: Arguments)
 {
     return await cli.localhost(args);
@@ -103,6 +107,7 @@ if (import.meta.main)
         .command("upgrade", "", {}, upgrade)
         .command("cache", "", {}, cache)
         .command("bundle", "", {}, bundle)
+        .command("codegen", "", {}, bundle)
         .command("localhost", "", {}, localhost)
         .command("docker", "", {}, docker)
         .command("test", "", {}, test)

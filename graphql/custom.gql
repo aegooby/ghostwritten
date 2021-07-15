@@ -1,7 +1,7 @@
 input Email
 {
     from: String!
-    to: [String]!
+    to: [String!]!
     replyTo: String
     subject: String
     text: String

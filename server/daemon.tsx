@@ -8,6 +8,8 @@ import * as yargs from "@yargs/yargs";
 import * as dotenv from "dotenv";
 import * as sendgrid from "sendgrid";
 
+import type { Email, EmailResult } from "./types.d.tsx";
+
 const args = yargs.default(Deno.args)
     .usage("usage: $0 server/daemon.tsx --hostname <host> [--domain <name>] [--tls <path>]")
     .hide("help")
@@ -18,21 +20,6 @@ const args = yargs.default(Deno.args)
 
 const env = dotenv.config();
 // env.STRIPE_TEST_KEY
-
-export interface Email
-{
-    from: string;
-    to: string[];
-    replyTo: string | undefined;
-    subject: string | undefined;
-    text: string | undefined;
-    html: string | undefined;
-}
-export interface EmailResult
-{
-    success: boolean;
-    errors: string[] | undefined;
-}
 
 export class Resolvers
 {
@@ -47,7 +34,7 @@ export class Resolvers
     }
     public async sendEmail({ email }: { email: Email; }): Promise<EmailResult>
     {
-        const to: { email: string; }[] = email.to.map(function (recipient) { return { email: recipient }; });
+        const to = email.to.map(function (recipient) { return { email: recipient }; });
         email.text ?? (email.text = "(no body)");
         email.html ?? (email.html = email.text);
         const mail: sendgrid.IRequestBody =
