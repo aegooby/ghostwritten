@@ -47,6 +47,10 @@ async function upgrade(args: Arguments)
 {
     return await cli.upgrade(args);
 }
+async function pkgUpdate(args: Arguments)
+{
+    return await cli.pkgUpdate(args);
+}
 async function cache(args: Arguments)
 {
     return await cli.cache(args);
@@ -105,6 +109,7 @@ if (import.meta.main)
         .command("clean", "", {}, clean)
         .command("install", "", {}, install)
         .command("upgrade", "", {}, upgrade)
+        .command("pkg-update", "", {}, pkgUpdate)
         .command("cache", "", {}, cache)
         .command("bundle", "", {}, bundle)
         .command("codegen", "", {}, codegen)
