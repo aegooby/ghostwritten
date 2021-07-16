@@ -2,5 +2,12 @@
     "src": ".",
     "user": "root",
     "host": "dev.ghostwritten.io",
-    "dest": "~/ghostwritten"
+    "dest": "~/ghostwritten",
+    "exclude": [
+        ".git",
+        ".cache",
+        "dist",
+        "node_modules",
+        ".env"
+    ]
 }
