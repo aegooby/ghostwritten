@@ -6,16 +6,17 @@ EXPOSE 3080
 
 WORKDIR /root/ghostwritten
 ADD . /root/ghostwritten
-RUN build/linux upgrade
+RUN cli/install.sh
+RUN deno-cli upgrade
 
 FROM ghostwritten AS localhost
 
-CMD [ "build/linux", "docker", "--target", "localhost", "--domain", "localhost" ]
+CMD [ "deno-cli", "docker", "--target", "localhost", "--domain", "localhost" ]
 
 FROM ghostwritten AS dev
 
-CMD [ "build/linux", "docker", "--target", "dev", "--domain", "www.dev.ghostwritten.io" ]
+CMD [ "deno-cli", "docker", "--target", "dev", "--domain", "www.dev.ghostwritten.io" ]
 
 FROM ghostwritten AS live
 
-CMD [ "build/linux", "docker", "--target", "live", "--domain", "www.ghostwritten.io" ]
+CMD [ "deno-cli", "docker", "--target", "live", "--domain", "www.ghostwritten.io" ]
