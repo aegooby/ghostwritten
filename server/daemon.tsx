@@ -9,7 +9,7 @@ import * as dotenv from "dotenv";
 import * as sendgrid from "sendgrid";
 import * as yargs from "@yargs/yargs";
 
-import type { Email, EmailResult, Resolvers } from "./types.d.tsx";
+import type { Email, EmailResult, Resolvers } from "../graphql/types.d.tsx";
 
 const args = yargs.default(Deno.args)
     .usage("usage: $0 server/daemon.tsx --hostname <host> [--domain <name>] [--tls <path>]")

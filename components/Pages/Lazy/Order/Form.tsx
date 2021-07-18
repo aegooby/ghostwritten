@@ -31,8 +31,12 @@ export default function Form(props: Props)
     {
         event.preventDefault();
 
-        const query =
-            graphql`mutation SendEmail($email: Email!){ sendEmail(email: $email) { success } }`;
+        const query = graphql`
+            mutation ($email: Email!)
+            { 
+                sendEmail(email: $email) { success } 
+            }
+        `;
 
         const referralText = referral === "" ?
             `No referral code` :
