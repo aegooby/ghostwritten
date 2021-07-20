@@ -17,7 +17,6 @@ enum Status
     loading,
     success,
     failure,
-    error,
 }
 
 interface Props
@@ -55,7 +54,7 @@ export default function Order(props: Props)
             try { responses.forEach(checkError); }
             catch (error) 
             {
-                setStatus(Status.error);
+                setStatus(Status.failure);
                 return;
             }
 
@@ -132,7 +131,5 @@ export default function Order(props: Props)
                     </div >;
                 return element;
             }
-        case Status.error:
-            return <ReactRouter.Navigate to="/internalerror" />;
     }
 }

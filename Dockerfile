@@ -13,17 +13,17 @@ RUN turtle cache
 FROM ghostwritten AS localhost
 
 RUN turtle clean --dist
-RUN turtle docker:bundle --target localhost --domain localhost
+RUN turtle docker:bundle --target localhost
 CMD [ "turtle", "docker:server", "--domain", "localhost" ]
 
 FROM ghostwritten AS dev
 
 RUN turtle clean --dist
-RUN turtle docker:bundle --target dev --domain www.dev.ghostwritten.io
+RUN turtle docker:bundle --target dev
 CMD [ "turtle", "docker:server", "--domain", "www.dev.ghostwritten.io" ]
 
 FROM ghostwritten AS live
 
 RUN turtle clean --dist
-RUN turtle docker:bundle --target live --domain www.ghostwritten.io
+RUN turtle docker:bundle --target live
 CMD [ "turtle", "docker:server", "--domain", "www.ghostwritten.io" ]
