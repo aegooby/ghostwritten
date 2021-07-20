@@ -24,6 +24,8 @@ const env = dotenv.config();
 
 try
 {
+    if (!env.SENDGRID_KEY && args.domain !== "localhost")
+        throw new Error("SENDGRID_KEY not found, is \".env\" missing?");
     const resolvers: Resolvers =
     {
         Query:
