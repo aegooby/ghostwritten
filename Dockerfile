@@ -13,17 +13,17 @@ RUN turtle cache
 FROM ghostwritten AS localhost
 
 RUN turtle clean --dist
-RUN turtle docker:bundle --target localhost
-CMD [ "turtle", "docker:server", "--domain", "localhost" ]
+RUN turtle bundle --graphql http://localhost/graphql
+CMD [ "turtle", "deploy:server", "--domain", "localhost" ]
 
 FROM ghostwritten AS dev
 
 RUN turtle clean --dist
-RUN turtle docker:bundle --target dev
-CMD [ "turtle", "docker:server", "--domain", "www.dev.ghostwritten.io" ]
+RUN turtle bundle --graphql https://www.dev.ghostwritten.io/graphql
+CMD [ "turtle", "deploy:server", "--domain", "www.dev.ghostwritten.io" ]
 
 FROM ghostwritten AS live
 
 RUN turtle clean --dist
-RUN turtle docker:bundle --target live
-CMD [ "turtle", "docker:server", "--domain", "www.ghostwritten.io" ]
+RUN turtle bundle --graphql https://www.ghostwritten.io/graphql
+CMD [ "turtle", "deploy:server", "--domain", "www.ghostwritten.io" ]
